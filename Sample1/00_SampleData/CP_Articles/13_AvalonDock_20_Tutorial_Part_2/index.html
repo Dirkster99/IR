@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>AvalonDock [2.0] Tutorial Part 2 - Adding a Start Page - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="How to create a start page based on AvalonDock [2.0].; Author: Dirkster99; Updated: 31 Jan 2014; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 31 Jan 2014">
+<meta name="Keywords" content="WinXP, Vista, C#, Windows, .NET, Architect, Dev, WPF, Design, Intermediate, C#4.0, Win7,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/483533/AvalonDock-Tutorial-Part-Adding-a-Start-Page">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Applications">Applications</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/483533/AvalonDock-Tutorial-Part-Adding-a-Start-Page?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">AvalonDock [2.0] Tutorial Part 2 - Adding a Start Page</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2014-01-31 19:53:00">
+							            1 Feb 2014</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 119px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 0px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">5.00</span> (<span itemprop="ratingCount" class="count">9</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><span title="0 votes">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="9 votes, 100.0%" title="9 votes, 100.0%" border="0px" height="20px" width="20pxpx"></div><span title="9 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">5.00/5 - 9 votes</div><div class="small-text align-center subdue">μ 5.00, σ<sub>a</sub> 1.10 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">How to create a start page based on AvalonDock [2.0].</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<h2>Download</h2><ul><li><a href="edi_startpage.zip">Download Edi_StartPage.zip</a> </li></ul><h2>Introduction&nbsp;&nbsp;&nbsp;</h2>
+<p>Please read the first part of this tutorial [1] if you are new to this series of articles.&nbsp;
+
+</p><p>I am in no way involved with the development of AvalonDock but fell that it was time to document some essential things. I am not sure whether I got everything completely right (since I am not the primary developer) but I am building on some experience and simply hope people will give me feedback here if I am making claims that are false.&nbsp;</p><p><img src="v03_edi_screenshot.png" height="423" width="600">&nbsp;</p>
+
+<p>This part of the tutorial, explains how we can add a Start Page to an application that is build on AvalonDock [2.0] and I will also document some experiences that I have made with focus problems when doing CTRL+TAB between documents and some customization options on document tabs. There may be more parts on other AvalonDock subjects (theming, localization, AvalonEdit in AvalonDock 2.0) later. Those who cannot wait for later articles shall look at Edi (<a href="http://edi.codeplex.com/">http://edi.codeplex.com</a>) to see some of the things before I document them here. This article was in fact written with Edi.</p>
+
+<p>This article is based on a solution that requires only the AvalonDock project (you can download this from CodePlex), a SimpleControls library (that I documented here on CodeProject), and an application project called EDI. So lets have a look at the solution that is attached to this article.
+
+&nbsp;</p><h2>The ViewModel&nbsp;</h2>
+
+<p>The first thing to note is the <code>Edi.ViewModel.StartPageViewModel</code> and the <code>Edi.View.StartPage</code> classes which are both introduced to implement the viewmodel and view of the Start Page item. We also note a new base ViewModel class of the <code>FileBaseViewModel</code> type is introduced to give the document viewmodels, <code>FileViewModel</code> and <code>StartPageViewModel</code>, a common root.&nbsp; The <code>FileBaseViewModel</code> is an abstract class with the following properties:&nbsp; </p>
+<ul><li><code>IsFilePathReal</code> - Get whether the current path does exist on disk or not. This is for example useful when we have done File&gt;New but not, yet, File&gt;Save. In this case, the document may have name (Untitled.txt) but System.IO.File.Exists is likely to be useless in this situation.'<br><br>The Start Page will of course never ever have a valid path.&nbsp; </li><li>
+	<code>FilePath</code> - This is the string that determines where the document is saved if it can be saved.</li><li><code>IsDirty</code> - This property decides whether the document needs to be saved or not.<br>&nbsp; </li><li>
+	<code>CloseCommand</code> - This command is invoked when the user clicks the document tab close button.<br>&nbsp;</li><li>
+	<code>SaveCommand</code> - This command is invoked when a document is saved. Returning null here should disable controls that bind to this command, which is just what we need for the Start Page.</li></ul><p>This common root is necessary because the document collection is stored in the <code>Workspace</code> viewmodel:&nbsp;</p>
+
+<pre lang="cs">ObservableCollection&lt;filebaseviewmodel&gt; _files = <span class="code-keyword">null</span>;
+ReadOnlyObservableCollection&lt;filebaseviewmodel&gt; _readonyFiles = <span class="code-keyword">null</span>;
+<span class="code-keyword">public</span> ReadOnlyObservableCollection&lt;filebaseviewmodel&gt; Files
+{
+  <span class="code-keyword">get</span>
+  {
+    <span class="code-keyword">if</span> (_readonyFiles == <span class="code-keyword">null</span>)
+      _readonyFiles = <span class="code-keyword">new</span> ReadOnlyObservableCollection&lt;filebaseviewmodel&gt;(_files);
+
+    <span class="code-keyword">return</span> _readonyFiles;
+  }
+}</pre>
+
+<p>I could of course also have used something more abstract like <code>ObservableCollection&lt;object&gt;</code> but I felt that an inheritance with a common root would be more appropriate here, especially when more document types pop-up in the future. So, this is where all the documents live in AvalonDock [2.0], and whether or not, a Start Page is shown, at the start-up of the application, depends on the following statement in the constructor of the <code>Workspace</code> viewmodel:</p><pre lang="cs"><span class="code-keyword">protected</span> Workspace()
+{
+  _files = <span class="code-keyword">new</span> ObservableCollection&lt;filebaseviewmodel&gt;();
+  _files.Add(<span class="code-keyword">new</span> <strong>StartPageViewModel()</strong>);
+}</pre>
+
+<p>But we can also close a Start Page through the corresponding <code>CloseCommand</code> and re-open it with the ShowStartPage command in the command in <code>AppCommand</code> 
+and the following <code>WorkSpace</code> statements:&nbsp; </p><pre lang="cs">win.CommandBindings.Add(<span class="code-keyword">new</span> CommandBinding(AppCommand.ShowStartPage,
+(s, e) =&gt;
+{
+  StartPageViewModel spage = <span class="code-keyword">this</span>.GetStartPage(<span class="code-keyword">true</span>);
+
+  <span class="code-keyword">if</span> (spage != <span class="code-keyword">null</span>)
+  {
+    <span class="code-keyword">this</span>.ActiveDocument = spage;
+  }
+}));
+</pre><p>Here is the <code>GetStartPage</code> section:</p><pre lang="cs"><span class="code-keyword">internal</span> StartPageViewModel GetStartPage(<span class="code-keyword">bool</span> CreateNewViewModelIfNecessary)
+{
+  List&lt;StartPageViewModel&gt; l = <span class="code-keyword">this</span>._files.OfType&lt;StartPageViewModel&gt;().ToList();
+
+  <span class="code-keyword">if</span> (l.Count == <span class="code-digit">0</span>)
+  {
+    <span class="code-keyword">if</span> (CreateNewViewModelIfNecessary == <span class="code-keyword">false</span>)
+      <span class="code-keyword">return</span> <span class="code-keyword">null</span>;
+    <span class="code-keyword">else</span>
+    {
+      StartPageViewModel s = <span class="code-keyword">new</span> StartPageViewModel();
+      <span class="code-keyword">this</span>._files.Add(s);
+
+      <span class="code-keyword">return</span> s;
+    }
+  }
+
+  <span class="code-keyword">return</span> l[<span class="code-digit">0</span>];
+}</pre><p>Once these things are established its almost trivial to continue - I had problems figuring out the <code>OfType</code> cast and some other Linq things that make live easier when it is required to work with a certain type of viewmodel. I even constructed dedicated properties such as this one in my Edi application:&nbsp;</p><pre><span class="code-keyword">private</span> List&lt;EdiViewModel&gt; Documents
+{
+  get
+  {
+    <span class="code-keyword">return</span> <span class="code-keyword">this</span>.mFiles.OfType&lt;EdiViewModel&gt;().ToList();
+  }
+}</pre><p>Working and binding through these properties even hides the cast and makes things much easier to live with. The complete show may require special converters and some advanced binding tricks, such as, FallBack values in places where a binding may only work if the appropriate type of viewmodel is present.</p><p>One converter that needs an adjustment is the <code>ActiveDocumentConverter</code> class. This converter is invoked when a document's viewmodel is assigned to the <code>ActiveDocument</code> property in the <code>Workspace</code> class:</p><pre lang="cs"><span class="code-keyword">class</span> ActiveDocumentConverter : IValueConverter
+{
+  <span class="code-keyword">public</span> <span class="code-keyword">object</span> Convert(<span class="code-keyword">object</span> value, Type targetType, <span class="code-keyword">object</span> parameter,
+                        System.Globalization.CultureInfo culture)
+  {
+    <span class="code-keyword">if</span> (value <span class="code-keyword">is</span> EdiViews.ViewModel.Base.FileBaseViewModel)
+      <span class="code-keyword">return</span> value;
+
+    <span class="code-keyword">return</span> Binding.DoNothing;
+  }
+
+  <span class="code-keyword">public</span> <span class="code-keyword">object</span> ConvertBack(<span class="code-keyword">object</span> value, Type targetType, <span class="code-keyword">object</span> parameter,
+                            System.Globalization.CultureInfo culture)
+  {
+    <span class="code-keyword">if</span> (value <span class="code-keyword">is</span> EdiViews.ViewModel.Base.FileBaseViewModel)
+      <span class="code-keyword">return</span> value;
+
+    <span class="code-keyword">return</span> Binding.DoNothing;
+  }
+}</pre><p>The important bit here is the check for the <code>FileBaseViewModel</code> class. For fun you could just edit this into the FileViewModel and you will see then that a Start Page does not come to the foreground if you close the Start Page, open a file, and select Tools&gt;Start Page (the last text file will stay in the foreground).<br><br>So, this is how we organize a new document in AvalonDock. But how is it displayed and how come AvalonDock [2.0] associates the correct viewmodel with a view? That 
+is what we discuss next.</p>
+
+<h2>The View</h2>
+
+<p>Extending the view part for a new document type is almost identical to extending the view part of the tool window view discussed in the previous article. I ended up extending <code>View.Pane.PanesStyleSelector</code> by adding a <code>Style</code> property:</p>
+
+<pre lang="cs"><span class="code-keyword">public</span> Style StartPageStyle
+{
+  <span class="code-keyword">get</span>;
+  <span class="code-keyword">set</span>;
+}</pre>
+
+<p>...and the following statement in the <code>SelectStyle</code> method:</p>
+
+<pre lang="cs"><span class="code-keyword">if</span> (item <span class="code-keyword">is</span> StartPageViewModel)
+  <span class="code-keyword">return</span> StartPageStyle;</pre>
+
+<p>...which works with the corresponding extension in the <em>MainWindow.xaml</em> file:</p>
+
+<pre lang="cs">&lt;pane:panestemplateselector.startpageviewtemplate&gt;
+  &lt;datatemplate&gt;
+    &lt;view:startpage&gt;
+  <span class="code-keyword">&lt;/</span><span class="code-leadattribute">view:startpage</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">pane:panestemplateselector.startpageviewtemplate</span><span class="code-keyword">&gt;</span></pre>
+
+<p>...and as before in part 1 we are looking at a very similar drill for the style:</p>
+
+<p><code>View.Pane.PanesStyleSelector</code> property:</p>
+
+<pre lang="cs"><span class="code-keyword">public</span> Style StartPageStyle
+{
+  <span class="code-keyword">get</span>;
+  <span class="code-keyword">set</span>;
+}</pre>
+
+<p><code>View.Pane.PanesStyleSelector</code> method extension in <code>SelectStyle</code>:</p>
+
+<pre lang="cs"><span class="code-keyword">if</span> (item <span class="code-keyword">is</span> StartPageViewModel)
+  <span class="code-keyword">return</span> StartPageStyle;</pre>
+
+<p><code>MainWindow.xaml</code> file:</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">pane:panesstyleselector.startpagestyle</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">style</span> <span class="code-attribute">targettype</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type avalonDock:LayoutItem}"</span><span class="code-keyword">&gt;</span>
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Title"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.Title}"</span>/&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">ToolTip"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.StartPageTip}"</span>/&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">CloseCommand"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.CloseCommand}"</span>/&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">IconSource"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.IconSource}"</span>/&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">ContentId"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.ContentId}"</span>/&gt;
+<span class="code-keyword">&lt;/</span><span class="code-leadattribute">style</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">pane:panesstyleselector.startpagestyle</span><span class="code-keyword">&gt;</span></pre>
+
+<h2>The Document Focus Problem</h2>
+<p>AvalonDock [2.0] requires that a document view can acquire the keyboard focus. This is required to support switching between documents with CTRL+TAB. I am a frequent user of the keyboard and found it therefore, quite anyoing that it would not work once the Start Page was implemented. <strong>I ended up spending two days just to debug AvalonDock [2.0] and determine the nature of my focus problem.</strong>&nbsp;</p><p>It turns out that you can enhance the test application if you use a dedicated user control for each document view. Therefore, I replaced the <code>DataTemplate</code> - <code>TextBox</code> sample with the following user control that I referenced in AvalonDock's DataTemplate manager:</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">UserControl</span> <span class="code-attribute">x:Class</span><span class="code-keyword">="</span><span class="code-keyword">Edi.View.DocumentView"</span>
+             <span class="code-attribute">xmlns</span><span class="code-keyword">="</span><span class="code-keyword">http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>
+             <span class="code-attribute">xmlns:x</span><span class="code-keyword">="</span><span class="code-keyword">http://schemas.microsoft.com/winfx/2006/xaml"</span>
+             <span class="code-attribute">xmlns:mc</span><span class="code-keyword">="</span><span class="code-keyword">http://schemas.openxmlformats.org/markup-compatibility/2006"</span> 
+             <span class="code-attribute">xmlns:d</span><span class="code-keyword">="</span><span class="code-keyword">http://schemas.microsoft.com/expression/blend/2008"</span> 
+             <span class="code-attribute">mc:Ignorable</span><span class="code-keyword">="</span><span class="code-keyword">d"</span> 
+             <span class="code-attribute">d:DesignHeight</span><span class="code-keyword">="</span><span class="code-keyword">300"</span> <span class="code-attribute">d:DesignWidth</span><span class="code-keyword">="</span><span class="code-keyword">300"</span>
+             <span class="code-attribute">FocusManager.FocusedElement</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ElementName=DemoTextBox}"</span>
+             <span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Grid</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBox</span> <span class="code-attribute">Name</span><span class="code-keyword">="</span><span class="code-keyword">DemoTextBox"</span> 
+      <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding TextContent, UpdateSourceTrigger=PropertyChanged}"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Grid</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">UserControl</span><span class="code-keyword">&gt;</span> </pre>
+<p>The important bit here is the <code>FocusManager.FocusedElement="{Binding ElementName=DemoTextBox}"</code> binding - remove it and you will see that the Navigator window is half as stable when using CTRL+TAB</p>
+<p><img src="navigator.png" height="395" width="600"></p>
+<p>Now this solution will work if your document view has a control that can acquire the keyboard focus, or you will not even notice this problem if you use a control that acquires the focus by default (see for example AvalonEdit). But what can we do if we have Start Page that sports neither a TextBox nor AvalonEdit? In that case (I found out the hard way) we can use an attached behaviour to set the focus to the UserControl itself:</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">UserControl</span> <span class="code-attribute">...</span>
+<span class="code-attribute">Focusable</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+<span class="code-attribute">KeyboardNavigation.IsTabStop</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+<span class="code-attribute">Name</span><span class="code-keyword">="</span><span class="code-keyword">StartPageView"</span>
+<span class="code-attribute">behav:KeyboardFocus.On</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ElementName=StartPageView}"</span>
+<span class="code-keyword">&gt;</span></pre>
+<p>And that is about it. Other than that I had to make some adjustments that would support the Start Page functionality. I added, for example, a <code>ApplicationCommands.New</code> and <code>ApplicationCommands.Open</code> command binding to support these functions for usage in the Start Page. I also added a <code>AppCommand.BrowseURL</code> command to enable users to browse to the application home page when they click on the logo (dog) in the upper right corner.&nbsp;</p>
+<p>And I also adjusted some statements to separate the execution of <code>StartPageViewModel</code> operations from those of the <code>FileViewModel</code> operations. An example for this is given in the first lines of the <code>ViewModel.Workspace.Open()</code> method:</p>
+
+<pre lang="cs">List&lt;FileViewModel&gt; filesFileViewModel = <span class="code-keyword">this</span>._files.OfType&lt;FileViewModel&gt;().ToList();
+
+<span class="code-comment">//</span><span class="code-comment"> Verify whether file is already open in editor, and if so, show it
+</span><span class="code-keyword">var</span> fileViewModel = filesFileViewModel.FirstOrDefault(fm =&gt; fm.FilePath == filepath);</pre>
+
+<p>Here I am filtering for FileViewModel objects automatically removing objects of any other type. </p>
+
+<h2>Costumizing the Document Panel</h2><p>I have often asked myself (and have seen others with the exact same question) whether it is possible configure the way a document 
+is presented in AvalonDock or not.</p><p>More to the point, can we change the way a document title is presented? Can we customize the pop-up menu on AvalonDock's document title?</p><p>The answer is 'yes we can'. I have used, the following <code>DocumentHeaderTemplate</code> inside the <code>avalonDock:DockingManager</code> XAML tag (in the <em>MainWindow.xaml</em>).</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonDock:DockingManager.DocumentHeaderTemplate</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">StackPanel</span> <span class="code-attribute">Orientation</span><span class="code-keyword">="</span><span class="code-keyword">Horizontal"</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBlock</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Title}"</span> <span class="code-attribute">TextTrimming</span><span class="code-keyword">="</span><span class="code-keyword">CharacterEllipsis"</span> <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+        <span class="code-comment">&lt;!--</span><span class="code-keyword"><span class="code-comment"> Show IsReadOnly Icon if that properties' true </span>--&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">{StaticResource Image_DocTabReadOnly}"</span>
+               <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">3,0,0,0"</span>
+               <span class="code-attribute">Visibility</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Content.IsReadOnly, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"</span>
+               <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Content.IsReadOnlyReason}"</span>
+               <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span>
+               <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">StackPanel</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">avalonDock:DockingManager.DocumentHeaderTemplate</span><span class="code-keyword">&gt;</span></pre>
+<p>to add an additional icon (with tooltip) when the <a target="_top" href="https://edi.codeplex.com/" title="Link to the Edi editor">editor</a> 
+is able to open a file but cannot access it with write permission: </p>
+<p><img src="lockwithtooltip.png" height="71" width="673"></p>
+<p>The context&nbsp; menu can be customized in a similar fashion. Add the <code>DocumentContextMenu</code> tag shown below into your definition of the <code>avalonDock:DockingManager</code> XAML 
+tag (in the <em>MainWindow.xaml</em>):</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonDock:DockingManager.DocumentContextMenu</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">ContextMenu</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Open Containing Folder..."</span> 
+                <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Model.OpenContainingFolderCommand}"</span>
+                <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Copy URL to Clipboard"</span> 
+                <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Model.CopyFullPathtoClipboard}"</span>
+                <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Separator</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static avalonDockProperties:Resources.Document_Close}"</span> 
+                <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=CloseCommand}"</span>
+                <span class="code-attribute">Visibility</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, 
+                  Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"</span>
+                <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static avalonDockProperties:Resources.Document_CloseAllButThis}"</span> 
+                <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=CloseAllButThisCommand}"</span>
+                <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static avalonDockProperties:Resources.Document_Float}"</span> 
+                <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=FloatCommand}"</span>
+                <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static avalonDockProperties:Resources.Document_DockAsDocument}"</span> 
+                <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=DockAsDocumentCommand}"</span>
+                <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static avalonDockProperties:Resources.Document_NewHorizontalTabGroup}"</span> 
+                <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=NewHorizontalTabGroupCommand}"</span>
+                <span class="code-attribute">Visibility</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, 
+                  Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"</span>
+                <span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+          <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/AvalonDock.Themes.Aero;component/Images/HTabGroup.png"</span> <span class="code-attribute">Stretch</span><span class="code-keyword">="</span><span class="code-keyword">Uniform"</span> <span class="code-attribute">Width</span><span class="code-keyword">="</span><span class="code-keyword">14"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ContextMenu</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">avalonDock:DockingManager.DocumentContextMenu</span><span class="code-keyword">&gt;</span></pre>
+<p>This has produced the following context menu in my case</p>
+<p><img src="popupmenuondocumenttitle.png" height="238" width="544"></p>
+<p>It should be obvious that such an extension will only work if the bindings are working. I have bound to a command in the FileViewModel 
+(or <code>StartPageViewModel</code> in the above example). I am not going to explain this in more detail, as this seems to be fairly easy, but you can download my open source editor 
+<a target="_top" href="https://edi.codeplex.com/">Edi</a> to review these details on your own.</p>
+<h2>Summary</h2>
+<p>Once again I can say this is about it. I think this part of tutorial shows some of the true strengths of WPF. There is the ability to display one and the same data 
+in many different ways and locations of a given application. There is the rich way of expressing functionality through items like pines in a list. There is...&nbsp;</p><h2>References</h2><ul><li>[1]<br>AvalonDock [2.0] Tutorial Part 1 - Adding a Tool Window<br><a href="http://www.codeproject.com/Articles/483507/AvalonDock-2-0-Tutorial-Part-1-Adding-a-Tool-Windo" target="_top">http://www.codeproject.com/Articles/483507/AvalonDock-2-0-Tutorial-Part-1-Adding-a-Tool-Windo</a><br><br>AvalonDock [2.0] Tutorial Part 3 - AvalonEdit in AvalonDock<br><a href="http://www.codeproject.com/Articles/570313/AvalonDock-2-0-Tutorial-Part-3-AvalonEdit-in-Avalo" target="_top">http://www.codeproject.com/Articles/570313/AvalonDock-2-0-Tutorial-Part-3-AvalonEdit-in-Avalo</a><br><br>AvalonDock [2.0] Tutorial Part 4 - Integrating AvalonEdit<br><a href="http://www.codeproject.com/Articles/570324/AvalonDock-2-0-Tutorial-Part-4-Integrating-AvalonE" target="_top">http://www.codeproject.com/Articles/570324/AvalonDock-2-0-Tutorial-Part-4-Integrating-AvalonE</a>
+<br><br>
+AvalonDock [2.0] Tutorial Part 5 - Load/Save Layout with De-Referenced DockingManager<br>
+<a target="_top" href="http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi">http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi</a><br><br></li>
+
+<li>[2]<br>AvalonDock<br><a href="http://avalondock.codeplex.com/" target="_top">http://avalondock.codeplex.com/</a>&nbsp;</li></ul>
+
+
+<h2>History&nbsp;&nbsp;</h2>
+
+<ul>
+<li>24.10.2012: Initial creation.</li><li>9. November 2012: Included sample customization of title and context menus for documents</li><li> 28. February 2013: I found quit a few important problems, such as, the focus section being uncovered so I updated the article and source code with more advanced functions and a more up-to-date AvalonDock version.</li>
+</ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+
+</body></html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Patterns in Attached Behaviours - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="Developing attached behaviours in WPF based on patterns.; Author: Dirkster99; Updated: 22 Jul 2012; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 22 Jul 2012">
+<meta name="Keywords" content="C#, Architect, Dev, XAML, WPF, Beginner, C#4.0,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/422537/Patterns-in-Attached-Behaviours">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Utilities">Utilities</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/422537/Patterns-in-Attached-Behaviours?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">Patterns in Attached Behaviours</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2012-07-22 07:19:00">
+							            22 Jul 2012</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 116px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 3px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.85</span> (<span itemprop="ratingCount" class="count">4</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="1 vote, 25.0%" title="1 vote, 25.0%" border="0px" height="6px" width="20pxpx"></div><span title="1 vote">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="3 votes, 75.0%" title="3 votes, 75.0%" border="0px" height="20px" width="20pxpx"></div><span title="3 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.85/5 - 4 votes</div><div class="small-text align-center subdue">μ 4.85, σ<sub>a</sub> 1.01 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">Developing attached behaviours in WPF based on patterns.</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+<li><a href="01_eventbaseddragdrop.zip">Download 01_EventBasedDragDrop.zip</a>&nbsp;</li>
+<li><a href="02_abdelegate.zip">Download 02_ABDelegate.zip</a></li>
+<li><a href="03_abcommand.zip">Download 03_ABCommand.zip</a>&nbsp;</li>
+<li><a href="04_bringlistviewitemintoview.zip">Download 04_BringListViewItemIntoView.zip</a>&nbsp;</li>
+</ul>
+<h2>Summary&nbsp;</h2>
+
+<p>This article is a small survey on a re-occurring pattern of attached behaviours.
+I hope that defining the <em><strong>ASR</strong></em> and <em><strong>AR</strong></em> pattern based on a number of sample implementations
+gives us a way for better understanding these thinks. The pattern itself is far
+from being a rocket science breakthrough. It is just a review on a re-occurring
+theme. But naming things and pointing out their common structure should enable us
+to better understand them.</p><p>The discussion on patterns might even be boring to you. In that case, check out the collection of attached behaviours and samples attached to this article. Maybe there is something more interesting for you, as well.&nbsp;</p>
+
+<h2>Introduction</h2>
+
+<p>I have been given the task of implementing a Drag &amp; Drop function that is present in almost
+every application these days. The required workflow is this:</p>
+
+<ul>
+<li>The user drags file(s) from the Windows Explorer and drops them on Application X</li>
+<li>Expectation: Application X opens the dropped files and displays their content</li>
+</ul>
+
+<p>I was interested in doing this with WPF and MVVM - so I had a hunch that
+it could be done with attached behaviours. Therefore, I first researched the
+event based solution and converted it later on into an attached behaviour.
+I looked real hard at the attached behaviour and was not happy with it until
+I could be sure that it supports command bindings with RoutedCommands or
+delegate (RelayCommand) Commands as a sink of the drop event.
+The solution to each of these steps is based on three other solution [1][2][3]
+(by their respective authors) that I found on the Internet. It was Kane Nguyen
+at the WPF MSDN Forum [3] who helped me getting the final version of the attached
+drop behaviour.</p>
+
+<p>Thinking about these developments has made me think about a development pattern
+<em><strong>Attach-Subscribe-Response</strong></em> (ASR) that seems to be consistently re-appearing with
+attached behaviours. I am not claiming that this is the only pattern with attached
+behaviours nor am I claiming that I have invented something. I am just trying to separated a pattern from some samples. Just naming it and understanding the abstract
+meaning should enable us to decide early on whether something can be implemented with
+an attached behaviour or not.&nbsp;</p>
+
+<p>I am talking about this pattern and other thinks I learned from it further below.
+The next sub-sections gives you a feeling of how I developed the <code>DropCommand</code> behaviour.
+This together with the ASR pattern should be helpful when you look at developing your
+own attached behaviour for control X, event Y, and (command) binding Z.&nbsp;&nbsp;</p>
+
+<h3>The Event based method for file Drag &amp; Drop operations</h3>
+
+<p>Sample Code: 01_EventBasedDragDrop.zip</p>
+
+<p>Some research [1] showed that dragging a file over an applications window is a rather
+trivial problem to implement (one you found the solution on the net - haha). In WPF
+there really is not much more than setting the <code>AllowDrop="True"</code> property
+and defining a corresponding routed event handler <code>Drop="DropEventHandler"</code>
+on the UI where you want the file drop to be accepted. The event handler itself is also
+not too complicated:</p>
+
+<pre lang="cs"><span class="code-keyword">private</span> <span class="code-keyword">void</span> DropEventHandler(<span class="code-keyword">object</span> sender, DragEventArgs e)
+{
+  <span class="code-keyword">if</span> (e.Data.GetDataPresent(DataFormats.FileDrop))
+  {
+    <span class="code-keyword">string</span>[] droppedFilePaths =
+    e.Data.GetData(DataFormats.FileDrop, <span class="code-keyword">true</span>) <span class="code-keyword">as</span> <span class="code-keyword">string</span>[];
+
+    <span class="code-keyword">foreach</span> (<span class="code-keyword">string</span> droppedFilePath <span class="code-keyword">in</span> droppedFilePaths)
+    {
+      MessageBox.Show(<span class="code-keyword">string</span>.Format(<span class="code-string">"</span><span class="code-string">Opening file '{0}'"</span>,
+         droppedFilePath), <span class="code-string">"</span><span class="code-string">Debug Info"</span>, MessageBoxButton.OK);
+    }
+  }
+}
+</pre>
+
+<p>Download and test the sample attached to the beginning of this section if you want
+to see this in action.</p>
+
+<h3>Drop Attached Behaviour with Delegate Commands</h3>
+
+Sample Code: 02_ABDelegate.zip
+
+<p>In this section I am using an attached drop behaviour to show you how you can receive a
+drop event and convert it into a delegate command. Refer to the next section if you
+are interested in RoutedCommands.</p>
+
+<p>The Sample application for this section starts up in the <code>Application_Startup</code>
+method of the <code>App.xaml.cs</code> file. Here we construct the ViewModel with the
+MainWindow and show the window to the user.</p>
+
+<p>The MainWindow is identical to the MainWindow in the previous version - except that
+we do no longer use the event in the code behind file. Instead we do use an attached
+behaviour <code>behav:DropFileCommand.DropCommand="{Binding LoadFileCommand}"</code>
+which invokes the <code>LoadFileCommand</code> upon receiving a drop event from the
+attached control.</p>
+
+<p>And this is where I used to exit the analysis, because I did not understand how the
+drop event can possibly cause a command to fire, or do something else, such as, bring
+an item into view, for that matter. But bare with me and keep the sample from the previous
+section in mind.</p>
+
+<p>The equivalent attached behaviour for the event processing of the previous section
+can be derived if we can agree that we really want to convert [2] the initial event into a command and use the command binding to do the actual processing in the ViewModel.</p>
+
+<p>Drop Event -&gt; Execute Command -&gt; Processing in ViewModel</p>
+
+<h3>Attach</h3>
+
+<p>Looking into the <code>DropFileCommand.cs</code> file we find that the attachment is
+realized with one static ICommand field and a corresponding setter and getter method:</p>
+
+<pre lang="cs"><span class="code-keyword">private</span> <span class="code-keyword">static</span> <span class="code-keyword">readonly</span> DependencyProperty DropCommandProperty = DependencyProperty.RegisterAttached(
+        <span class="code-string">"</span><span class="code-string">DropCommand"</span>,
+        <span class="code-keyword">typeof</span>(ICommand),
+        <span class="code-keyword">typeof</span>(DropFileCommand),
+        <span class="code-keyword">new</span> PropertyMetadata(<span class="code-keyword">null</span>, OnDropCommandChange));
+
+<span class="code-keyword">public</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> SetDropCommand(DependencyObject source, ICommand value)
+{
+  source.SetValue(DropCommandProperty, value);
+}
+
+<span class="code-keyword">public</span> <span class="code-keyword">static</span> ICommand GetDropCommand(DependencyObject source)
+{
+  <span class="code-keyword">return</span> (ICommand)source.GetValue(DropCommandProperty);
+}</pre>
+
+<p>This is called an attached dependency property [6] and you can generate it in Visual Studio 2010 by typing 'propa' and hitting the TAB-Key (if the drop down was not offered already). This is the basic glue that keeps things together just like the dependency property glues the ViewModel to the View.</p>
+
+<h3>Subscribe</h3>
+
+<p>Now, at binding time the <code>DropCommandProperty</code> is bound to the ViewModel, which
+in turn invokes the <code>OnDropCommandChange</code> method:</p>
+
+<pre lang="cs"><span class="code-keyword">private</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> OnDropCommandChange(DependencyObject d, DependencyPropertyChangedEventArgs 
+{
+      UIElement uiElement = d <span class="code-keyword">as</span> UIElement <span class="code-comment">//</span><span class="code-comment"> Remove the handler if it exist to avoid memory leaks
+</span>      uiElement.Drop -= UIElement_Drop;
+
+      <span class="code-keyword">var</span> command = e.NewValue <span class="code-keyword">as</span> ICommand;
+      <span class="code-keyword">if</span> (command != <span class="code-keyword">null</span>)
+        uiElement.Drop += UIElement_Drop;
+}</pre>
+<p>The <code>OnDropCommandChange</code> method sees the UI element to which the behaviour is attached in the parameter <code>DependencyObject d</code>. We use this behaviour to register
+the <code>UIElement_Drop</code> method with the drop event of the UI element we are attached to.</p>
+<p>This code</p>
+<pre lang="cs">uiElement.Drop += UIElement_Drop;</pre>
+
+<p>is basically telling the computer to call the <code>UIElement_Drop</code> method each time when a drop event occurs.</p>
+
+<h3>Response</h3>
+
+<p>Looking into the <code>UIElement_Drop</code> method we can see</p>
+
+<pre lang="cs">UIElement uiElement = sender <span class="code-keyword">as</span> UIElement;
+
+<span class="code-keyword">if</span> (uiElement == <span class="code-keyword">null</span>)
+  <span class="code-keyword">return</span>;
+
+ICommand dropCommand = DropFileCommand.GetDropCommand(uiElement);
+
+<span class="code-keyword">if</span> (dropCommand == <span class="code-keyword">null</span>)
+  <span class="code-keyword">return</span>;
+
+<span class="code-keyword">if</span> (e.Data.GetDataPresent(DataFormats.FileDrop))
+{
+  <span class="code-keyword">string</span>[] droppedFilePaths =
+    e.Data.GetData(DataFormats.FileDrop, <span class="code-keyword">true</span>) <span class="code-keyword">as</span> <span class="code-keyword">string</span>[];
+
+<span class="code-keyword">foreach</span> (<span class="code-keyword">string</span> droppedFilePath <span class="code-keyword">in</span> droppedFilePaths)
+{
+  <span class="code-keyword">if</span> (dropCommand <span class="code-keyword">is</span> RoutedCommand)
+	(dropCommand <span class="code-keyword">as</span> RoutedCommand).Execute(droppedFilePath, uiElement);
+  <span class="code-keyword">else</span>
+	dropCommand.Execute(droppedFilePath);
+}</pre>
+
+<p>that the caller can be extracted out of the <code>sender</code> parameter. That information is used to retrieve the exact command binding of the instance that generated this event (after all, these are all static methods). The inner <code>if</code> block looks familiar to the processing in the previous section - the deciding difference here is that we either call a <code>RoutedCommand</code> or, as in our present case, a <code>delegete</code>
+(RelayCommand) Command.</p>
+
+<p>The command binding is defined in the XAML and it invokes the LoadFile method.</p>
+
+<h2>Drop Attached Behaviour with Delegate Commands or RoutedCommands&nbsp;</h2>
+
+<p>Sample Code: 03_ABCommand.zip</p>
+
+<p>The routed command binding in this sample is a little different in comparison to the previous sample.</p>
+
+<p>There is no <code>RelayCommand</code> class, because the <code>RoutedCommand</code> class and the
+<code>RoutedUICommand</code> class are part of the standard .Net Framework.
+The <code>InitMainWindowCommandBinding</code> method in the <code>App</code> class is used to bind
+the static <code>AppCommand.LoadFile</code> <code>RoutedUICommand</code> to the  <code>LoadFile</code>
+method in the ViewModel. This binding links the <code>RoutedUICommand</code> to a method that is executed
+whenever the command is invoked.&nbsp;</p>
+
+<p>The attached behaviour binds to the <code>AppCommand.LoadFile</code> <code>RoutedUICommand</code> with
+the following binding expression in the <code>MainWindow</code> XAML:</p>
+
+<pre lang="xml">behav:DropFileCommand.DropCommand="cmd:AppCommand.LoadFile"</pre>
+
+<p>Otherwise, the behaviour itself is identical with the behaviour of the previous section. The only difference
+is that we invoke the <code>(dropCommand as RoutedCommand).Execute(droppedFilePath, uiElement);</code> branch
+in the <code>if</code> statement of the <code>UIElement_Drop</code> method (thanks go to Kane Nguyen for
+sharing this detail).</p>
+
+<h2>The Attached Behaviour Pattern</h2>
+
+<p>Looking back at the <code>DropFileCommand.cs</code> file (and the description I've
+given above) we can see that the attached behaviour can be divided into three parts
+(or 3 processing stages):</p>
+
+<ol>
+<li>Attach</li>
+<li>Subscribe</li>
+<li>Response</li>
+</ol>
+
+<p>I have realized that these 3 parts are a re-occurring theme. Moreover, it is now
+clear to me that we can develop this type of attached behaviour by first implementing
+the event based method (Response). Then implementing the Attach portion and bringing
+it together in the Subscribe portion.</p><p>Here is an overview that depicts the bits and pieces with attached behaviours:</p>
+
+<p><img src="ab_overview.png" height="600" width="622"><br>&nbsp;</p><p>My primary challenge here is to master all these items: events, properties, and methods available with UI controls, - with the correct response formula in WPF (although a response can also result in the manipulation of properties or methods, as we will see next.<br>&nbsp; </p>
+
+<h2>ASR Samples</h2>
+<h3>ScrollDownListView Behaviour</h3>
+<p>04_BringListViewItemIntoView.zip</p>
+
+<p>Josh Smith has published an attached behaviour for bringing a selected <code>TreeView</code>
+item into view when it is selected via ViewModel [7].</p>
+
+<p>This implementation of an atached behaviour also shows the Attach-Subsribe-Response (ASR)
+pattern. This time however, is the Response not an executed command but the execution of
+a method of a <code>TreeViewItem</code>. </p>
+
+<p>There are similar problems - for example scroll a listview down to its last entry at the end
+of a long running process - and when you compare Josh's solution and the sample solution in
+this section (<code>BringSelectedListViewItemIntoView</code>) you will find that Josh's solution
+was used as a template (almost literaly exchanging <code>TreeView</code> with <code>ListView</code>
+and <code>TreeViewItem</code> with <code>ListViewItem</code>).</p>
+
+<p>The processing sampled here is explained in more detail in [8].&nbsp;</p>
+
+<p>Looking into the <code>BringSelectedListViewItemIntoView</code> class shows that we again
+have 3 portions of code. The <strong>Attach</strong> part is the <code>IsBroughtIntoViewWhenSelected</code>
+attached property. The <strong>Subscribe</strong> part is the event hooking in the
+<code>OnIsBroughtIntoViewWhenSelectedChanged</code> method. The <strong>Response</strong> part is the event processing in the <code>OnListViewItemSelected</code> method.</p>
+
+<h3>Strech ListView Column</h3>
+<p>04_BringListViewItemIntoView.zip&nbsp;</p>
+
+<p>The 04_BringListViewItemIntoView.zip sample also contains an attached behaviour that will stretch
+the columns of a ListView across the available the space (<code>ListViewColumns.cs</code>). This is
+also an excellent sample of the ASR pattern discussed here. Note that the attached behaviour Subscribes
+to two events: <code>Loaded</code> and <code>SizeChanged</code>. Either event is served with a
+different Response.</p>
+
+<p>This means the pattern can be extended such that we have a control, <code>n</code> event subscriptions,
+and at least (if not more) <code>n</code> different responses.</p>
+<h2>Non-ASR Samples&nbsp;</h2>
+<h3>Dialog Closer</h3>
+
+<p>The DialogCloser [9] attached behaviour shows that we are not limited to ASR.
+This attached behaviour (AB) consists only of an attached dependency property with
+a method that is executed when the attached dependency property is changed. I therefore,
+name this pattern the AR (Attach - Respond) pattern.</p>
+<p>Surprisingly, this attached behaviour does not subscribe to any event, but is still able to do 
+something useful by re-acting on a ViewModel initiated change of the attached dependency property. 
+This AB shows that we are not limited to events being realized in the view on which the property is attached. 
+We can also react to changes in the ViewModel (via <code>OnChanged</code> method of the attached dependency property).</p>
+<p>The ASR pattern is usually used to transfer data or state from the View into the ViewModel
+(although it can just as well work from ViewModel into View as well), while the pattern of the
+DialogCloser gives an example for transferring state from a ViewModel into the View via attached
+behaviour.</p>
+
+<h2>What I have learned</h2>
+
+<p>I have learned in this development that authors of <code>ICommand</code> dependency
+or attached properties should always be sure to check for the kind of command that is actually bound and execute the corresponding 
+<code>Execute</code> method instead of implementing support for only one kind of <code>ICommand</code> class. The required effort boils down to something like this:&nbsp;</p>
+
+<pre lang="cs"><span class="code-comment">//</span><span class="code-comment"> Check whether this attached behaviour is bound to a RoutedCommand
+</span><span class="code-keyword">if</span> (dropCommand <span class="code-keyword">is</span> RoutedCommand)
+{
+  <span class="code-comment">//</span><span class="code-comment"> Execute the routed command
+</span>  (dropCommand <span class="code-keyword">as</span> RoutedCommand).Execute(droppedFilePath, uiElement);
+}
+<span class="code-keyword">else</span>
+{
+  <span class="code-comment">//</span><span class="code-comment"> Execute the Command as bound delegate
+</span>  dropCommand.Execute(droppedFilePath);
+}</pre>
+<p>...and is well worth it. The second thing that I've learned is the pattern on developing attached behaviours from event based codes. As a beginner, I am rather inclined to try this instead of using more complex libraries [5] that I do not, yet, fully understand. Do not get me wrong - I am using open source libraries on a daily base. But I also develop my own solutions when I can. With attached behaviours this seems to be my way to go since I end up with simple non-generic solutions that are easy to maintain and apply.</p>
+<p>Reading about the differences between Routed Events and Commands etc. [4] has given me a good base for arguing for or against RoutedCommands in a particular implementation.</p>
+<h2>References</h2><ul><li>[1] Description on the implementation of Drag&amp;Drop events via 
+routed events<br>Drag &amp; Drop Files in WPF (kirupa)<br><a href="http://www.kirupa.com/blend_wpf/drag_drop_files_wpf_pg1.htm">http://www.kirupa.com/blend_wpf/drag_drop_files_wpf_pg1.htm</a>&nbsp;</li><li>[2] First version of attached drop behaviour<br>Drag and Drop in MVVM with ScatterView (Dave Clemmer)<br><a href="http://stackoverflow.com/questions/1034374/drag-and-drop-in-mvvm-with-scatterview">http://stackoverflow.com/questions/1034374/drag-and-drop-in-mvvm-with-scatterview</a>&nbsp;</li><li>[3] Improved, almost final of attached drop behaviour (Kane Nguyen)<br>Executing RoutedCommand via Attached Behaviour<br><a href="http://social.msdn.microsoft.com/Forums/de-DE/wpf/thread/21bed380-c485-44fb-8741-f9245524d0ae">http://social.msdn.microsoft.com/Forums/de-DE/wpf/thread/21bed380-c485-44fb-8741-f9245524d0ae</a>&nbsp;</li><li>[4] Furter reading: Understanding Routed Events and Commands In WPF (Brian Noyes)<br><a href="http://msdn.microsoft.com/en-us/magazine/cc785480.aspx">http://msdn.microsoft.com/en-us/magazine/cc785480.aspx</a><br><br>A discussion thread on that topic<br><a href="http://social.msdn.microsoft.com/Forums/de-DE/wpf/thread/7c3eb6b0-765d-4c0e-96e7-8faf8ad93669">http://social.msdn.microsoft.com/Forums/de-DE/wpf/thread/7c3eb6b0-765d-4c0e-96e7-8faf8ad93669</a>&nbsp;</li><li>[5] AttachedCommandBehavior V2 aka ACB<br>
+<a href="http://marlongrech.wordpress.com/2008/12/13/attachedcommandbehavior-v2-aka-acb/">http://marlongrech.wordpress.com/2008/12/13/attachedcommandbehavior-v2-aka-acb/</a><br><br>gong-wpf-dragdrop<br><a href="http://code.google.com/p/gong-wpf-dragdrop/">http://code.google.com/p/gong-wpf-dragdrop/</a>&nbsp;</li><li>[6] Attached Properties Overview<br><a href="http://msdn.microsoft.com/en-us/library/ms749011.aspx">http://msdn.microsoft.com/en-us/library/ms749011.aspx</a>&nbsp;</li><li>[7] Introduction to Attached Behaviors in WPF (Josh Smith)<br><a href="http://www.codeproject.com/Articles/28959/Introduction-to-Attached-Behaviors-in-WPF">http://www.codeproject.com/Articles/28959/Introduction-to-Attached-Behaviors-in-WPF</a>&nbsp;</li><li>[8] A MultiProgressViewModel to observe progress in complex algorithms<br><a href="http://www.codeproject.com/Articles/317199/A-MultiProgressViewModel-to-observe-progress-in-co">http://www.codeproject.com/Articles/317199/A-MultiProgressViewModel-to-observe-progress-in-co</a>&nbsp;</li><li>[9] Closing Windows and Applications with WPF and MVVM<br><a href="http://www.codeproject.com/Articles/413517/Closing-Windows-and-Applications-with-WPF-and-MVVM">http://www.codeproject.com/Articles/413517/Closing-Windows-and-Applications-with-WPF-and-MVVM</a></li></ul>
+<h2>History</h2>
+<ul>
+<li>17.07.2012 - Initial post</li><li>21.07.2012 - Added an overview graphic and removed some spelling errors</li>
+</ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+</body></html>

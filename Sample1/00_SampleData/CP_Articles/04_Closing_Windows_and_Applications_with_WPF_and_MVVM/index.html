@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Closing Windows and Applications with WPF and MVVM - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="This article samples a MVVM conform implementation of startup and shutdown sequences for an application and its dialogs.; Author: Dirkster99; Updated: 10 Aug 2012; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 10 Aug 2012">
+<meta name="Keywords" content="C#, Architect, Dev, XAML, WPF, Design, Beginner, Intermediate, C#4.0, dialog,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/413517/Closing-Windows-and-Applications-with-WPF-and-MVVM">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#General">General</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/413517/Closing-Windows-and-Applications-with-WPF-and-MVVM?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">Closing Windows and Applications with WPF and MVVM</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2012-08-10 11:48:00">
+							            10 Aug 2012</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 104px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 15px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.22</span> (<span itemprop="ratingCount" class="count">6</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="1 vote, 16.7%" title="1 vote, 16.7%" border="0px" height="6px" width="20pxpx"></div><span title="1 vote">3</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="2 votes, 33.3%" title="2 votes, 33.3%" border="0px" height="13px" width="20pxpx"></div><span title="2 votes">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="3 votes, 50.0%" title="3 votes, 50.0%" border="0px" height="20px" width="20pxpx"></div><span title="3 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.22/5 - 6 votes</div><div class="small-text align-center subdue">μ 4.22, σ<sub>a</sub> 1.09 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">This article samples a MVVM conform implementation of startup and shutdown sequences for an application and its dialogs.</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<h2>Introduction</h2><p>
+		This article presents an MVVM conform implmentation of an application that demonstrates how:</p><ul><li>Application Startup/Shutdown and</li><li>Window Open/Close</li></ul><p>
+can be implemented:</p>
+
+<ul class="download">
+<li>
+<a href="dialogcloser.zip"></a><a href="dialogcloser.zip">Download DialogCloser.zip</a></li>
+<li><a href="dialogcloser_service.zip">Download DialogCloser_Service.zip</a></li>
+</ul>
+
+<p>I have researched different solutions for closing windows in WPF for a while and I found a number of approaches&nbsp;(which was at first confusing). There are suggestions 
+on the Internet&nbsp;[2]&nbsp;where an attached behaviour in the MainWindow of an application is used to close a window via an attached property&nbsp;[3]&nbsp;which is bound 
+to a ViewModel.&nbsp;My sample application takes advantage of that solution and adds on to it. The sample implements:</p>
+<ul><li>Closing an Application's MainWindow (it makes no difference whether this is initiated by the MainWindow,&nbsp;the ViewModel,&nbsp;or the Windows 
+Operating System - the <code>App</code> object is always in full control of the situation)&nbsp;</li>
+<li>A dialog specific viewmodel that can be used to drive a dialog and receive a DialogResult<br>The dialog viewModel also sports a facitility for evaluating user input and producing corresponding messages&nbsp;(information,&nbsp;warning,&nbsp;error etc...) 
+if some input is not of the expected quality.&nbsp;&nbsp;</li>
+</ul><h2> Using the code&nbsp;&nbsp;&nbsp;</h2>
+<h3>Application Startup and Shutdown&nbsp;</h3><p>The sequence for the application start-up is to:</p>
+<ul><li>Instantiate an object of the <code>App</code> class&nbsp;(which is generated by default in a WPF project) and use a <code>Application_Startup</code> method in that object to:&nbsp;</li>
+<ul>
+<li>Instantiate an <code>AppViewModel</code> (sometimes also referred to as workspace)</li><li>Instantiate an application MainWindow</li>
+<li>Attach the ViewModel to the DataContext of the MainWindow</li><li>and Show the MainWindow</li></ul>
+</ul>
+<pre lang="cs"><span class="code-keyword">private</span> <span class="code-keyword">void</span> Application_Startup(<span class="code-keyword">object</span> sender, StartupEventArgs e)
+{
+  AppViewModel tVM = <span class="code-keyword">new</span> AppViewModel();  <span class="code-comment">//</span><span class="code-comment"> Construct ViewModel and MainWindow
+</span>  <span class="code-keyword">this</span>.win = <span class="code-keyword">new</span> MainWindow();
+
+  <span class="code-keyword">this</span>.win.Closing += <span class="code-keyword">this</span>.OnClosing;
+
+  <span class="code-comment">//</span><span class="code-comment"> When the ViewModel asks to be closed, it closes the window via attached behaviour.
+</span>  <span class="code-comment">//</span><span class="code-comment"> We use this event to shut down the remaining parts of the application
+</span>  tVM.RequestClose += <span class="code-keyword">delegate</span>
+  {
+    <span class="code-comment">//</span><span class="code-comment"> Make sure close down event is processed only once
+</span>    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.mRequestClose == <span class="code-keyword">false</span>)
+    {
+      <span class="code-keyword">this</span>.mRequestClose = <span class="code-keyword">true</span>;
+
+      <span class="code-comment">//</span><span class="code-comment"> Save session data and close application
+</span>      <span class="code-keyword">this</span>.OnClosed(<span class="code-keyword">this</span>.win.DataContext <span class="code-keyword">as</span> ViewModel.AppViewModel, <span class="code-keyword">this</span>.win);
+    }
+  };
+
+
+  <span class="code-keyword">this</span>.win.DataContext = tVM; <span class="code-comment">//</span><span class="code-comment"> Attach ViewModel to DataContext of ViewModel
+</span>  <span class="code-keyword">this</span>.InitMainWindowCommandBinding(<span class="code-keyword">this</span>.win);  <span class="code-comment">//</span><span class="code-comment"> Initialize RoutedCommand bindings
+</span>  <span class="code-keyword">this</span>.win.Show(); <span class="code-comment">//</span><span class="code-comment"> SHOW ME DA WINDOW!
+</span>}</pre><p>This startup sequence has the advantage that View and ViewModel have no references of each other but can still work together perfectly.&nbsp;This is especially 
+advantageous if you have to maintain more than one MainWinodw and you have to instantiate a different MainWindow based on the currently used configuration or a command line option.&nbsp;Command line parameters can also be evaluated in the <code>Application_Startup</code> method.&nbsp;The methode can then prepare the&nbsp;<code>AppViewModel</code> accordingly,&nbsp;and start-up the application in the expected manner (evaluating command line parameters is not implemented in the sample though).<br><br>
+The&nbsp;<code>App</code> class represents an outer shell that is wrapped around the instances of Views and ViewModels of an application.&nbsp;That outer shell should becomes active whenever the application starts up or shuts down.<br><br>
+The application shut down sequence is the inverse of the start-up sequence.&nbsp;That is,&nbsp;the&nbsp;<code>MainWindow</code> tells the <code>AppViewModel</code> that it has received a request for closing the application,&nbsp;the ViewModel evaluates this based on the current situation and either rejects it or confirms the request.&nbsp;<br><br>
+Whether the shutdown sequence can take place or not is routed through the <code>App</code> class:</p>
+<pre lang="cs"><span class="code-keyword">this</span>.win.Closing += <span class="code-keyword">this</span>.OnClosing;
+
+<span class="code-keyword">private</span> <span class="code-keyword">void</span> OnClosing(<span class="code-keyword">object</span> sender, System.ComponentModel.CancelEventArgs e)
+{
+  e.Cancel = <span class="code-keyword">this</span>.OnSessionEnding();
+} 
+
+<span class="code-keyword">private</span> <span class="code-keyword">bool</span> OnSessionEnding()
+{
+  ViewModel.AppViewModel tVM = <span class="code-keyword">this</span>.MainWindow.DataContext <span class="code-keyword">as</span> ViewModel.AppViewModel;
+ 
+  <span class="code-keyword">if</span> (tVM != <span class="code-keyword">null</span>)
+  {
+    <span class="code-keyword">if</span> (tVM.IsReadyToClose == <span class="code-keyword">false</span>)
+    {
+      MessageBox.Show(<span class="code-string">"</span><span class="code-string">Application is not ready to exit.\n"</span> +
+                      <span class="code-string">"</span><span class="code-string">Hint: Check the checkbox in the MainWindow before exiting the application."</span>,
+                      <span class="code-string">"</span><span class="code-string">Cannot exit application"</span>, MessageBoxButton.OK);
+ 
+      <span class="code-keyword">return</span> !tVM.IsReadyToClose; <span class="code-comment">//</span><span class="code-comment"> Cancel close down request if ViewModel is not ready, yet
+</span>    }
+ 
+    tVM.OnRequestClose(<span class="code-keyword">false</span>);
+ 
+    <span class="code-keyword">return</span> !tVM.IsReadyToClose; <span class="code-comment">//</span><span class="code-comment"> Cancel close down request if ViewModel is not ready, yet
+</span>  }
+ 
+  <span class="code-keyword">return</span> <span class="code-keyword">true</span>;
+}</pre>
+<p>This cascade of events takes place when the user clicks the MainWindow close button.&nbsp;It is slightly, different when the user selects the File&gt;Exit menu option 
+or presses the ALT+F4 Keys.&nbsp;In this case, the routed command binding in <code>App.xaml.cs</code> is executed:</p>
+<pre lang="cs">win.CommandBindings.Add(<span class="code-keyword">new</span> CommandBinding(AppCommand.Exit,
+    (s, e) =&gt;
+  {
+    e.Handled = <span class="code-keyword">true</span>;
+
+    ((AppViewModel)win.DataContext).ExitExecuted();
+  }));</pre>
+<p>...which invokes the <code>ExitExecuted()</code> method in the <code>AppViewModel</code> class:</p>
+<pre lang="cs"><span class="code-keyword">if</span> (<span class="code-keyword">this</span>.mShutDownInProgress == <span class="code-keyword">false</span>)
+{
+  <span class="code-keyword">this</span>.mShutDownInProgress = <span class="code-keyword">true</span>;
+
+  <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.OnSessionEnding != <span class="code-keyword">null</span>)
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.OnSessionEnding() == <span class="code-keyword">true</span>)
+    {
+      <span class="code-keyword">this</span>.mShutDownInProgress = <span class="code-keyword">false</span>;
+      <span class="code-keyword">return</span>;
+    }
+  }
+
+  <span class="code-keyword">this</span>.WindowCloseResult = <span class="code-keyword">true</span>;              <span class="code-comment">//</span><span class="code-comment"> Close the MainWindow and tell outside world
+</span>                                             <span class="code-comment">//</span><span class="code-comment"> that we are closed down.
+</span>  EventHandler handler = <span class="code-keyword">this</span>.RequestClose;
+
+  <span class="code-keyword">if</span> (handler != <span class="code-keyword">null</span>)
+    handler(<span class="code-keyword">this</span>, EventArgs.Empty);
+}</pre>
+<p>...the above code calls the <code>OnSessionEnding</code> method in the <code>App</code> class via the delegate method property of the same name. This is done in such a 
+convoluted way because I want to make sure that all shut down requests are handled by one method (<code>App.OnSessionEnding()</code>). <br><br>The shutdown progresses by setting the <code>this.WindowCloseResult = true;</code> which in turn invokes the attached <code>DialogCloser</code> property, which in turn will closes the <code>MainWindow</code> via the bound boolean property (see 
+<em>MainWindow.xaml</em>).&nbsp;</p><p><img src="dialogcloseroverview.png" height="349" width="606"></p>
+<p>There is also a third path of execution towards the shutdown of the application, which is to shutdown the Windows Operating system. This event iterates through each application and asks them whether they can shutdown or not. We have set the <code>SessionEnding="App_SessionEnding"</code> property in the <code>App.xaml</code> code to invoke the <code>OnSessionEnding</code> method when Windows shuts down. This way, Windows will no longer shut down if the <code>OnSessionEnding</code> method signals that we still have things to save on disk (unless user forces Windows shut down of course).
+</p>
+<p>To summarize this section. There are several execution paths for shutting down the main window, and through that, the application. All these paths are based on the same evaluation function (<code>OnSessionEnding</code> in <code>App</code> class) and end in one shutdown function <code>OnClosed</code> to make sure that session data can be saved before the application is down for good.
+
+</p><ul>
+<li>The main window can send the Closing event to check whether close down is OK via <code>OnClosing</code>
+  method in the <code>App</code> class.
+</li>
+
+<li>The main window can execute the <code>AppCommand.Exit</code> routed command (via File&gt;Exit or Alt+F4) 
+  to shutdown the application through the <code>ExitExecuted()</code> method in the <code>AppViewModel</code>
+  class.
+</li>  
+<li>The Windows operating system can invoke the <code>App_SessionEnding</code> method in the <code>App</code>
+  class to gracefully shutdown our application</li>
+</ul><h3>Dialog Open and Close</h3>
+
+<p>The previous section has described one case in which the attached property <code>DialogCloser</code> is used
+to close the MainWindow through setting the <code>WindowCloseResult</code> property to <code>true</code>.
+This attached behaviour (AB) is actually designed such that it can be used like a DialogResult. It is
+<code>null</code> by default and is set to <code>true</code> or <code>false</code> when the user closes
+the application via Cancel or OK.
+</p>
+<p>
+I am using this behaviour to implement a viewmodel that drives a dialog (or any other view) in an MVVM conform
+way such that the dialog will not close unless the user has input data of the expected quality. The important
+theme here is that we have a viewmodel which drives the view through its complete life cycle without using any
+code behind. To do this, we have to construct a ViewModel and View object, attach the former to the <code>DataContext</code>
+of the later and subscribe to the Closing event of the view. Further more, View and ViewModel should implement
+an OK and Cancel Command to do the corresponding processing when the user clicks either button.
+</p>
+<p>
+That seems to be a lot of work - so we have to do this for every ViewModel that drives a dialog? Too painful
+I hear you saying. Too convoluted some already said [2] claiming that code behind is OK in some cases. Some
+of you have a point there but if the complexity could by abstracted away into a neat little class which then
+could be used in a viewmodel whenever a dialog (or any other view) is needed to process input based on a OK
+or Cancel?
+</p>
+<p>
+The <code>DialogViewModelBase</code> class implements the above items (and a bit more) needed to drive a dialog
+through its life cycle. The class can be used to make user input validation a trivial task.</p><p><img src="dialogscreenshot.png" height="493" width="660"> </p>
+<p>
+This dialog is shown through the <code>ShowDialog</code> routed command in the <code>AppCommand</code> class,
+which is bound to the <code>ShowDialog</code> method in the <code>AppViewModel</code> class. This method invokes
+the <code>ShowDialog</code> method in the <code>Util</code> class. Here, we 
+instantiate the dialog, attach a copy
+of the <code>UsernameViewModel</code> object and initiate the <code>OpenCloseView</code> property.
+</p>
+<p>
+The <code>UsernameViewModel</code> class instantiates the <code>DialogViewModel</code> class in its
+<code>OpenCloseView</code> property. The <code>OpenCloseView</code> property is bound in the
+<em>UsernameDialog.xaml</em>.&nbsp;</p><p><img src="usernamedialogoverview.png" height="468" width="674"></p>
+
+<p>
+So, when you click OK or Cancel (or use the Escape key) in the UsernameDialog then you are actually executing a
+corresponding command in the <code>DialogViewModel</code> class. Now, executing the OK command invokes the
+<code>PerformInputDataEvaluation</code> method, which in turn, invokes an external method (<code>ValidateData</code>)
+bound to the <code>EvaluateInputData</code> delegate property.
+</p>
+<p>
+The signature of that method is to return <code>true</code> or <code>false</code> depending on whether there
+are problems in the user input or not. If there are problems, these can be detailled, classified, and returned
+with <code>Msg</code> objects in the <code>out List&lt;msg&gt;</code> parameter. This list of messages is then fed
+into the <code>ListMessages</code> property of the <code>ObservableCollection&lt;msg&gt;</code> type. These messages
+are then visible with icons because the XAML of the dialog makes use of the
+<code>CountToVisibilityHiddenConverter</code> to hide the messages StackPanel when there are no messages. And it
+also uses the <code>MsgTypeToResourceConverter</code> to convert the category of a message into an image resource
+that can be displayed in the list of messages [4].
+</p>
+<p>
+This input evaluation and message listing can be disabled by simple setting the <code>EvaluateInputData</code>
+delegate property to null. The dialog will then close via ViewModel when the <code>IsReadyToClose</code> is <code>true</code>. </p>
+
+<h2>Part 2 Using a DialogService</h2>
+
+<p>
+I received controversial feedback when I published the first version of this article. Some
+people were missing a dialog service implementation (I get to that in this section) and others
+were saying this approach of implementing dialogs is an over-design. Looking back on it,
+and having seen some other articles on similar topics [5], - I have realized that I stumbled
+into a "CodeProject trap" that snaps shut because some topics, such as, MVVM,
+are not so well defined and some patterns are quit different when being applied to solve
+different requirements.
+</p>
+
+<p>
+My initial idea was to simply publish a small code example that could be used to implement
+simple WPF applications. Although, the requirements:
+</p>
+
+<ul>
+<li>unit test</li>
+<li>code re-use, and</li>
+<li>seperation of concerns</li>
+</ul>
+
+<p>
+[6] are more than useful problems to solve, they were not part of my initial concerns.
+I have reviewed a lot of articles on MSDN, CodeProject, and elsewhere since then and have
+come to the conclusion that a dialog service is a more than a useful exercise.
+</p>
+
+<p>
+The key-terms to know are "Inversion of Control" (IOC) and Dependency Injection (DI).
+Just enter "IOC", "Dependency Injection", or "DialogService"
+into the search engine here at CodeProject or elsewhere and you will find numerous explanations
+on that topic. 
+</p>
+<p>
+I followed the IOC track and found there are lots of frameworks on that topic:
+<strong>Unity, MEF, StructureMap, Castle.Windsor, AutoFac, Chinch, LinFu, Hiro, </strong>and <strong>Ninject</strong>,
+which explains why people are so tired of being shown yet another framework <img alt="Smile | <img src=" src="smiley_smile.gif" align="top"> " /&gt; 
+&nbsp;</p>
+<p>
+I am not going to implement and document yet another framework in this article.
+Instead, we are going to look at a simplified implementation of a DialogService to explain
+and document the IOC service pattern with a sample implementation. I found such a sample
+implementation here at codeproject [5], simplified it a little bit more, and applied it to
+my sample code as described next. </p>
+<p>Disore's original implementation [5] implements a few services to define interfaces for:</p>
+
+<ul>
+<li>Reading Person information from XML,</li>
+<li>Displaying MessageBox contents,</li>
+<li>Using common dialogs, such as, Open File or Folder Browsing, and</li>
+<li>Using ViewModels with a DialogService.</li>
+</ul>
+
+<p>I was interested in the last point 'Using ViewModels with a "DialogService", only.
+So, I downloaded his source code and removed everything that was unnecessary for the
+DialogService implementation. This left me with the classes in the "Service"
+and "WindowViewModelMapping" folder:
+</p>
+
+<img src="solutionexploreroverview.png">
+
+<p>
+We like simple things, right? It turns out that using these classes for the first time is simple (thanks to Disore's article and source code). But understanding
+their correct application in a non-intimidating way is all but simple. So, lets walk through the code
+to see what we can learn here.
+</p>
+
+<p>
+The <code>ServiceLocator</code> class is <code>static</code> which means that it is initialized and
+loaded as soon as the .Net Framework loads the corresponding namespace. The dialog service starts its
+timely existence in the <code>App.Application_Startup</code> of the <code>App</code> class.
+The following lines:
+</p>
+
+<pre lang="cs"><span class="code-comment">//</span><span class="code-comment"> Configure service locator
+</span>ServiceLocator.RegisterSingleton&lt;IDialogService, DialogService&gt;();
+ServiceLocator.RegisterSingleton&lt;IWindowViewModelMappings, WindowViewModelMappings&gt;(); 
+</pre>
+
+<p>
+initialize two services:
+&nbsp;</p>
+
+<ul>
+<li>A DialogService - which is used to create and show a View for a ViewModel, and</li>
+<li>A WindowViewModelMappings service to associate (map) a ViewModel class with its corresponding View class.</li>
+</ul>
+
+
+<p>
+We can register these services in any way we would like but we can (obviously) not instantiate a
+View for a ViewModel unless there is a map (association) for both classes. Disore [5] shows different
+ways for creating this map in his article. In our case, though, we use the below map:
+&nbsp;</p>
+
+<pre lang="cs"><span class="code-keyword">public</span> WindowViewModelMappings()
+{
+  mappings = <span class="code-keyword">new</span> Dictionary&lt;type,&gt;
+  {
+<span class="code-summarycomment">///</span><span class="code-comment">/{ typeof(AppViewModel), typeof(string) } ////,
+</span><strong>{ <span class="code-keyword">typeof</span>(UsernameViewModel), <span class="code-keyword">typeof</span>(UsernameDialog)}</strong>
+  };
+} 
+</pre>
+
+<p>
+to associate the <code>UsernameViewModel</code> class with the <code>UsernameDialog</code> class
+at run-time. This comes to life in the below <code>AppViewModel</code> function:
+</p>
+
+<pre lang="cs"><span class="code-keyword">public</span> <span class="code-keyword">void</span> ShowUserNameDialog()
+{
+  UsernameViewModel dlgVM = <span class="code-keyword">null</span>;
+
+  <span class="code-keyword">try</span>
+  {
+    dlgVM = <span class="code-keyword">new</span> UsernameViewModel(<span class="code-keyword">this</span>.mTestDialogViewModel);
+
+    <span class="code-comment">//</span><span class="code-comment"> It is important to either:
+</span>    <span class="code-comment">//</span><span class="code-comment"> 1&gt; Use the InitDialogInputData methode here or
+</span>    <span class="code-comment">//</span><span class="code-comment"> 2&gt; Reset the WindowCloseResult=null property
+</span>    <span class="code-comment">//</span><span class="code-comment"> because otherwise ShowDialog will not work twice
+</span>    <span class="code-comment">//</span><span class="code-comment"> (Symptom: The dialog is closed immeditialy by the attached behaviour)
+</span>    dlgVM.InitDialogInputData();
+
+    <span class="code-comment">//</span><span class="code-comment"> Showing the dialog, alternative 1.
+</span>    <span class="code-comment">//</span><span class="code-comment"> Showing a specified dialog. This doesn't require any form of mapping using 
+</span>    <span class="code-comment">//</span><span class="code-comment"> IWindowViewModelMappings.
+</span>    <strong>dialogService.ShowDialog(<span class="code-keyword">this</span>, dlgVM);</strong>
+
+    <span class="code-comment">//</span><span class="code-comment"> Copy input if user OK'ed it. This could also be done by a method, equality operator, or copy constructor
+</span>    <span class="code-keyword">if</span> (dlgVM.OpenCloseView.WindowCloseResult == <span class="code-keyword">true</span>)
+    {
+      Console.WriteLine(<span class="code-string">"</span><span class="code-string">Dialog was OK'ed."</span>);
+      <span class="code-keyword">this</span>.mTestDialogViewModel.FirstName = dlgVM.FirstName;
+      <span class="code-keyword">this</span>.mTestDialogViewModel.LastName = dlgVM.LastName;
+    }
+    <span class="code-keyword">else</span>
+      Console.WriteLine(<span class="code-string">"</span><span class="code-string">Dialog was Cancel'ed."</span>);
+  }
+  <span class="code-keyword">catch</span> (Exception exc)
+  {
+    MessageBox.Show(exc.ToString());
+  }
+}
+</pre>
+
+<p>The call to <code>InitDialogInputData()</code> could be abstracted away into the interface
+of the dialog service but I am not going into that because, you feel comfortable with this concept,
+you should just use one of the 10 IOC containers listed above.
+</p>
+
+<p>
+Summarizing the concept - there is one static class, the <code>ServiceLocator</code> [7] which is used
+to register the <code>DialogService</code> class and the <code>WindowViewModelMappings</code> class.
+The result of that registration is stored in a dictionary object in the <code>ServiceLocator</code> class:
+</p>
+
+<pre lang="cs"><span class="code-keyword">private</span> <span class="code-keyword">static</span> Dictionary&lt;Type, ServiceInfo&gt; services = <span class="code-keyword">new</span> Dictionary&lt;Type, ServiceInfo&gt;(); 
+</pre>
+
+<p>The call to the dialogService <code>dialogService.ShowDialog(this, dlgVM);</code> then pulls out
+the mapping service from the <code>ServiceLocator</code> dictionary which in turn pulls out the
+corresponding view from the <code>WindowViewModelMappings</code> dictionary:
+&nbsp;</p>
+
+<pre lang="cs"><span class="code-keyword">public</span> <span class="code-keyword">bool</span>? ShowDialog(<span class="code-keyword">object</span> ownerViewModel, <span class="code-keyword">object</span> viewModel)
+{
+  Type dialogType = windowViewModelMappings.GetWindowTypeFromViewModelType(viewModel.GetType());
+  <span class="code-keyword">return</span> ShowDialog(ownerViewModel, viewModel, dialogType);
+}
+</pre>
+
+<p>
+Now we have an implementation that makes sure that Views and ViewModels are not aware of each other.
+Thats good for unit testing - which turns out to be simpler than you think. Just get, for example,
+Disore's source code, download and install the NUnit setup and use the Graphical GUI to get started with unit testing in 5 minutes.
+</p>
+
+<p>Using an implementation like this uncovers other possebilities as well. Consider, for example,
+an application with an advanced and a basic view, -or an application in which you need a viewing
+mode or an editing mode. You could simply implement such run-time changes by mapping/re-mapping
+views at run-time.</p>
+
+
+<h2>Points of Interest</h2>
+<p>I have learned to use delegate methods to execute a flexible piece of code within a complex system, exposing thus, exactly what I need to expose while keeping 
+the complexity of the overall system hidden. I also learned that common functions, such as, driving a dialog through its lifecycle can be encapsulated 
+in a class, which can be instantiated when that dialog (or view) is being shown. Using a ServiceLocator can drive this development even further towards a professional implementation. I now have pattern that I can simply apply without having to care about Window Close, Closing, or any other events, because I could just implement:</p>
+<ul>
+<li>the <code>OpenCloseView</code> property, the Input Evaluation method, and the <code>ShowDialog</code> method</li>
+<li>plus the required <code>XAML</code></li>
+</ul>
+<p>and I am done with another dialog. Oh, and all that is done in an MVVM conform fashion. Now why would that not be a good approach?</p>
+
+
+
+<h2>References&nbsp;</h2>
+<ul><li>[1]<br>WPF Apps With The Model-View-ViewModel Design Pattern:<br>
+<a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">http://msdn.microsoft.com/en-us/magazine/dd419663.aspx</a></li></ul>
+<ul><li>[2]<br>WPF: If Carlsberg did MVVM Frameworks: Part 3 of n<br><a href="http://www.codeproject.com/Articles/38440/WPF-If-Carlsberg-did-MVVM-Frameworks-Part-3-of-n#PopServ">http://www.codeproject.com/Articles/38440/WPF-If-Carlsberg-did-MVVM-Frameworks-Part-3-of-n#PopServ</a><br><br>WPF MVVM Newbie - how should the ViewModel close the form?<br>
+<a href="http://stackoverflow.com/questions/501886/wpf-mvvm-newbie-how-should-the-viewmodel-close-the-form">http://stackoverflow.com/questions/501886/wpf-mvvm-newbie-how-should-the-viewmodel-close-the-form</a>&nbsp;</li></ul>
+<ul><li>[3]<br>Introduction to Attached Behaviors in WPF (Josh Smith)<br><a href="http://www.codeproject.com/Articles/28959/Introduction-to-Attached-Behaviors-in-WPF">http://www.codeproject.com/Articles/28959/Introduction-to-Attached-Behaviors-in-WPF</a></li></ul>
+<ul><li>[4]<br>Using ValueConverter and MultiValueConverter in WPF<br><a href="http://www.codeproject.com/Articles/298950/Using-ValueConverter-and-MultiValueConverter-in-WP">http://www.codeproject.com/Articles/298950/Using-ValueConverter-and-MultiValueConverter-in-WP</a> </li>
+<li>
+[5]<br>
+Showing Dialogs When Using the MVVM Pattern - By disore<br>
+<a href="http://www.codeproject.com/Articles/36745/Showing-Dialogs-When-Using-the-MVVM-Pattern">http://www.codeproject.com/Articles/36745/Showing-Dialogs-When-Using-the-MVVM-Pattern</a><br><br>
+</li>
+
+<li>
+[6]<br>
+DI/IOCs - By Sacha Barber<br>
+<a href="http://www.codeproject.com/Articles/32190/DI-IOCs">http://www.codeproject.com/Articles/32190/DI-IOCs</a><br><br>
+</li>
+
+<li>
+[7]<br>
+Using a Service Locator to Work with MessageBoxes in an MVVM Application - By Josh Smith<br>
+<a href="http://www.codeproject.com/Articles/70223/Using-a-Service-Locator-to-Work-with-MessageBoxes">http://www.codeproject.com/Articles/70223/Using-a-Service-Locator-to-Work-with-MessageBoxes</a><br>
+</li>
+
+
+</ul>
+
+
+
+<h2>History&nbsp;&nbsp;&nbsp;</h2>
+<ul>
+<li>09. August 2012 Added DialogService implementation section and advanced code sample</li>
+<li>30 June 2012: Initial version</li><li>3rd of July 2012 (fixed a bug in OnClosing method and moved util.ShowDialog out of ViewModel namespace</li>
+</ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+</body></html>

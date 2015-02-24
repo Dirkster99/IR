@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>A reusable ProgressViewModel to observe progress with MVVM - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="UI and code-behind is executed in different threads. Long running processes need asynchronous execution. This artice shows a way of doing this in a ViewModel approach.; Author: Dirkster99; Updated: 30 Jan 2012; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 30 Jan 2012">
+<meta name="Keywords" content=".NET3.5, C#, Dev, XAML, WPF, Design, Intermediate, Application, General, UI, display, Algorithms,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/317170/A-WPF-ProgressViewModel-to-observe-progress-with-M">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#General">General</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/317170/A-WPF-ProgressViewModel-to-observe-progress-with-M?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">A reusable ProgressViewModel to observe progress with MVVM</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2012-01-30 23:56:00">
+							            31 Jan 2012</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 108px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 11px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.44</span> (<span itemprop="ratingCount" class="count">8</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="2 votes, 25.0%" title="2 votes, 25.0%" border="0px" height="8px" width="20pxpx"></div><span title="2 votes">3</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="1 vote, 12.5%" title="1 vote, 12.5%" border="0px" height="4px" width="20pxpx"></div><span title="1 vote">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="5 votes, 62.5%" title="5 votes, 62.5%" border="0px" height="20px" width="20pxpx"></div><span title="5 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.44/5 - 8 votes</div><div class="small-text align-center subdue">μ 4.44, σ<sub>a</sub> 2.04 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">UI and code-behind is executed in different threads. Long running processes need asynchronous execution. This artice shows a way of doing this in a ViewModel approach.</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+<li><a href="progressviewmodel_part1.zip">Download source code - 30.2 KB</a></li>
+</ul>
+<h2>Introduction</h2>
+<p>The introduction of WPF and the Task Parallel Library have made life using C# much easier than ever before. It is time to say goodbye to BackgroundWorker, 
+UI freeze, events, and all those things that do their job but are not the full price, if you want to develop professional applications that are easy 
+to use, responsive, and reliable - while being produced at a competitive price.</p>
+<p>In this article, I am going show a ViewModel that can be used to fire off asynchrony process sing and observe its progress towards completion through WPF binding. 
+I name this pattern <strong>ProgressViewModel</strong>, because it sits between the view and the model and eases the life of both the UI designer and the developer, 
+since both have a set (and yet flexible) interface for connecting background processing with an appealing GUI.</p>
+<p>This is a stable solution that can be used with C# 4.0 and later, and we do not have to wait for C# version 5.0 (or have to use the Async CTP yet) 
+to implement background processing <strong>without</strong> all the worries about communication/thread synchronization/thread context, and so forth.</p>
+<p>It is assumed that you already know C# and have a working knowledge of WPF, the Task library, and XAML.</p>
+<h3>StyleCop</h3>
+<p>I use StyleCop in my projects to make the code readable in a uniform way. So, you can either download and install StyleCop, or edit/remove 
+the corresponding entries in each <em>.csproj</em> file (if you should get an error when compiling the project):</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Import</span> <span class="code-attribute">Project</span><span class="code-keyword">="</span><span class="code-keyword">$(ProgramFiles)\MSBuild\StyleCop\v4.5\StyleCop.Targets"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+<h2>Background</h2>
+<p>I soon hit a few rocks when I started to use WPF. Sometimes the GUI would freeze and sometimes 
+<a title="This type of CollectionView does not support changes to its SourceCollection from a thread different from the Dispatcher thread." href="http://stackoverflow.com/questions/2137769/wpf-where-do-i-get-a-threadsafe-collectionview">exceptions would fly</a> and leave me clueless for a while. 
+This is yet another attempt to provide a stable software design for getting past these initial problems and hitting the ground running when developing long running processes with WPF.</p>
+<h2>The Demo Application</h2>
+<p>The demo application is a program that scans a directory for HTML files and uses the <a title="Html Agility Pack" href="http://htmlagilitypack.codeplex.com/">HTML Agility Pack</a> to parse and display the title of each file.</p>
+<p><img alt="MainWindow.PNG" src="mainwindow.png" height="425" width="600"></p>
+<p>This article series comes in two parts. You are reading part 1. In this part, we are looking at an application that accepts a path to a file system folder 
+in which HTML files are stored (you can download the attached sample data <a href="wikipediasampledata.zip">from Wikipedia (865.75 KB)</a> 
+and point the application to the uncompressed directory if you do not have any HTML laying around on your hard disk).</p>
+<p>In any event, point the <em><strong>Path</strong></em> to a location where HTML files are stored and click the <strong><em>Process HTML</em></strong> button. 
+And enjoy the rich progress feedback while processing your request <img src="smiley_smile.gif" alt="Smile | :)" align="top"> </p>
+<h2>Using the Code</h2>
+<h3>Re-using the Code</h3>
+<p>This project can be re-used by including the Progress DLL in another project and implementing a derived version 
+of the <code>ProgressVM</code> class (in this project, that is <code>ProcessHTMLVM</code>). But let us have an overview of how it works before letting it work for us...</p>
+<h3>The Software Design </h3>
+<p>In my WPF code, I am now using a layered architecture where I attach an <strong>ApplicationViewModel</strong> to the <code>DataContext</code> of the <code>MainWindow</code> and put 
+all other ViewModels underneath this ViewModel (expose other ViewModels as properties and methods of the ApplicationViewModel). Let's look at an overview 
+of the class design and explain the call sequence further below.</p>
+<table>
+<tbody>
+<tr>
+<td><img alt="SoftwareDesign.PNG" src="softwaredesign.png" height="622" width="382"></td>
+<td valign="top"><p>The diagram on the left side gives us a bird's eye view of the architecture of the ProgressViewModel.</p>
+<p>The heart of it is the <code>ProgressVM</code> class (which lives in a separate DLL to make re-usage a simple matter of referencing it). 
+The <code>ProgressVM</code> class exposes properties that can be used to control and view the progress shown in a progress control (<code>ProgressMin</code>, 
+<code>ProgressMax</code>, and <code>ProgressValue</code>) and whether:</p>
+<ul>
+<li>a start and stop button should be enabled (<code>CanRunProcess</code>)</li>
+<li>a progress should be shown (<code>IsProgressVisible</code>)</li>
+<li>a cancel button should be enabled (<code>CanCancelRunProcess</code>)</li>
+</ul>
+<p>The method that does the main work here is <code>RunProcess</code>. This method fires the asynchronous process through a <code>Func&lt;&gt;</code> statement 
+that is handed down to it from the ApplicationViewModel.</p>
+<p>But the ApplicationViewModel (<code>AppVM</code>) and <code>ProcessVM</code> are not directly connected. The connecting element is the <code>ProcessHTMLVM</code> class 
+which inherits from <code>ProcessVM</code>. <code>ProcessHTMLVM</code> lives in <code>AppVM</code> as a field called <code>mProcessing</code> and is an exposed property 
+called <code>Processing</code>.</p>
+<p>So, when we bind to a <strong>ProgressViewModel</strong> property in <code>ProcessHTMLVM</code>, we go through 
+the <code>MainWindow-&gt;DataContext</code> (see the <code>MainWindow</code> constructor) and the <code>Processing</code> property in the <code>AppVM</code> class.</p>
+<p>The <code>ProgressResult</code> class is a container class to hold the result (or pointers to it) that is obtained from the long processing task. We revisit this further below.</p></td>
+</tr>
+</tbody>
+</table>
+<h3>The Call Sequence </h3>
+<p>The following XAML code defines the <em><strong>Process HTML</strong></em> button in the <code>MainWindow</code> class:</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Button</span> <span class="code-attribute">Content</span><span class="code-keyword">="</span><span class="code-keyword">{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"</span>
+            <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword"><strong>cmd:Main.ProcessHTML</strong>"</span>
+            <span class="code-attribute">CommandParameter</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=Path}"</span>
+            <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">2"</span> <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">3,6,3,6"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span> </pre>
+<p>The <code>Command</code> bit binds the button to the <code>ProcessHTML</code> command defined in the static <code>Main</code> class in 
+<em>View/Main.cs</em>. It tells WPF, whenever a user 
+clicks this control, then execute this command with the content of the <code>Path</code> property exposed by the <code>AppVM</code>. 
+The <code>Path</code> property of the <code>AppVM</code> contains the current directory path because it is bound to the <code>Text</code> property 
+of the <strong><em>Path</em></strong> textbox:</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBox</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=<strong>Path</strong>,UpdateSourceTrigger=PropertyChanged}"</span> 
+              <span class="code-attribute">HorizontalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Stretch"</span> <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span> 
+              <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">1"</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">1"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span> </pre>
+<p>Now that's where the input comes from, but let's continue to look at how the command is invoked with that parameter. The actual method to be executed 
+via the <code>ProcessHTML</code> command is declared in the <code>BindCommands</code> method in the code-behind of the <code>MainWindow</code> class.</p>
+<pre lang="cs">CommandBindings.Add(<span class="code-keyword">new</span> CommandBinding(Main.ProcessHTML,
+            (s, e) =&gt; <span class="code-keyword">this</span>.AppVM.<strong>ProcessHTMLDirectory</strong>(e,
+                      <span class="code-keyword">this</span>.prgProgress,
+                      <span class="code-keyword">this</span>.txtProgressStatus,
+                      <span class="code-keyword">null</span>, <span class="code-keyword">this</span>.lstStatus, <span class="code-keyword">null</span>),
+            (s, e) =&gt; <span class="code-keyword">this</span>.AppVM.<strong>CanExecute_IfNoProcessRuns</strong>(s, e)));</pre>
+<p>I know this looks awful at first sight, but it is just another way to bind a (to be executed) method to a command. 
+We use a <a title="Lamda Expressions Explained" href="http://www.codeproject.com/Articles/24255/Exploring-Lambda-Expression-in-C">Lambda expression</a> with the <code>CommandBindings</code> class 
+to tell WPF that it should execute:</p>
+<ul>
+<li><code> CanExecute_IfNoProcessRuns</code>: determine whether this command is enabled or not, and execute</li>
+<li>the <code>ProcessHTMLDirectory</code> method to execute this command.</li>
+</ul>
+<p>The <code>ProcessHTMLDirectory</code> method in the <code>AppVM</code> class is called with a host of controls as parameters (ProgressBar, etc.) to bind the ViewModel 
+to at run-time. I used this initially because I destroy the <code>ProcessHTMLVM</code> object each time I start a new process and I thought that I would have 
+to dynamically re-bind (with code).</p>
+<p>It turns out that the binding in the XAML is enough, because WPF re-binds correctly when the <code>Processing</code> property is changed. So, I could either remove the property binding 
+in the XAML (because there is a binding in the code-behind) or remove the call to <code>BindStatusBarItems</code> in the <code>ProcessHTMLDirectory</code> method (which is more 
+likely what I would do).</p>
+<p>But I opted to leave things as they are so people can actually see how equivalent expressions for binding in code-behind and XAML are.</p>
+<p>At any rate, the <code>ProcessHTMLDirectory</code> method sets up:</p>
+<ul>
+<li>a new object of type <code>ProgressVM</code> (or more specifically <code>ProcessHTMLVM</code>) in the <code>BindStatusBarItems</code> method,</li>
+<li>registers a callback method <code>ProcessHTML_Results</code> that is executed when processing is finished (with or without errors),</li>
+<li>calls <code>SetProgressVisibility</code> to switch progress controls to <code>Visible</code> from <code>Collapsed</code> state,</li>
+<li>puts the path string into a <strong><code>Dictionary</code></strong> object and hands it over to the <code>RunProcess</code> method in the <code>ProcessHTMLVM</code> class.</li>
+</ul>
+<p>I  am using the <strong><code>Dictionary</code></strong> approach to pass parameters in and get results out. Because, I think this is simple enough to deal with while 
+I do not have to change the signature of the <code>RunProcess</code> method. This way, I can apply the same method of instantiating the async 
+ProgressViewModel framework over and over again, while doing completely different things with each implementation...</p>
+<p>One important parameter of the <code>RunProcess</code> method call is the <code>ProcessHTMLDirectory</code> bit. This is actually a method handed over 
+to <code>RunProcess</code>. <code>RunProcess</code> uses this method to do the asynchronous processing via the <a title="Func lamda delegates" href="http://msdn.microsoft.com/en-us/library/bb549151.aspx">Func&lt;&gt; delegate</a> approach. The code inside <code>RunProcess</code> shows that it:</p>
+<ul>
+<li>initiates a <a title="Task class in C#" href="http://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx"><code>Task</code></a> class via its factory</li>
+<li>creates a new <code>CancelToken</code> to let the executing process know when a user would like to cancel a running process, and</li>
+<li>starts the actual processing (<code>ProcessHTMLVM.ProcessHTMLDirectory</code>) via <code>execFunc(callParameters)</code></li>
+</ul>
+<p>Now looking into <code>ProcessHTMLVM.ProcessHTMLDirectory</code>, we can see how the <code>Dictionary</code> call parameter is unpacked and the HTML 
+processing is implemented there. Setting values such as <code>this.ProgressMax</code> inside that method, -are, via <code>AppVM</code> and binding, reported back 
+to the progress controls of the UI.</p>
+<p>The result of the <code>ProcessHTMLDirectory</code> method is passed back to <code>ProcessHTML_Results</code> in <code>AppVM</code> via the <code>this.callResults.Add</code> 
+statement at the bottom of the class.</p>
+<p>The <code>ProcessHTMLVM</code> class defines <code>keyString</code> values (in the fields region) to be used for the parameter and 
+a result <code>Dictionary</code> and the <code>ProcessHTMLDirectory</code> method to be executed. The <code>ProcessName</code> property can be used to output a 
+meaningful string to the user if we need to display a descriptive name for the running background process. Everything else is inherited from <code>ProgressVM</code>.</p>
+<h2>Summary</h2>
+<p>Overviewing the sequence of executing methods described above, we can see the command being initiated in the <code>MainWindow</code>, being converted in a method call 
+in the <code>AppVM</code>, being processed in <code>ProcessHTMLVM</code>, and being passed back to <code>ProcessHTML_Results</code> in <code>AppVM</code>.</p>
+<p>Noteworthy is also the <code>Cancel</code> command which executes the <code>CancelProcessing</code> method in the <code>AppVM</code> class. 
+That call is passed on to the <code>ProgressVM</code> object (if there is any) and inside that, <code>CancelToken</code> is set to scream at the running process: Get out of here!</p>
+<h2>Points of interest</h2>
+<p>I discovered this pattern writing an application that processes about 20 commands, always using the same template, I soon found it easy and relaxing writing responsive 
+and reliable applications. I hope it can help others to concentrate on their task at hand and not having to worry about all these tiny techniques and twists cast into the Progress DLL.</p>
+<p><a title="Second part of this article" href="http://www.codeproject.com/Articles/317199/A-MultiProgressViewModel-to-observe-progress-in-co">Part two of this article</a> 
+will develop the idea shown here a little bit further. We are going to expose properties for viewing multiple progress values when processing complex algorithms.</p>
+<p>Please comment and vote on this to let me know what you think about this.</p>
+<h2>History</h2>
+<ul><li>20 January 2012: Initial creation.</li></ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+</body></html>

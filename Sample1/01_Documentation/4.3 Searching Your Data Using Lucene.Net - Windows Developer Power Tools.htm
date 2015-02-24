@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html data-testing="0" data-debug="0" data-epub-sample="true" data-epub-title="Windows Developer Power Tools" data-htmlfile-name="ch04s04.html" data-publishers="O'Reilly Media, Inc." data-archive="0596527543" data-highlight-privacy="" data-csrf-cookie="csrfsafari" data-url="/library/view/windows-developer-power/0596527543/ch04s04.html" data-offline-url="/" data-login-url="/accounts/login/" "="" itemtype="http://schema.org/Book http://schema.org/ItemPage" itemscope="" prefix="og: http://ogp.me/ns/# og:book: http://ogp.me/ns/book# og:video: http://ogp.me/ns/video#" class=" js flexbox flexboxlegacy no-touch no-websqldatabase indexeddb history csscolumns csstransforms localstorage sessionstorage applicationcache svg inlinesvg no-zoom" style="" lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="author" content="Safari Books Online"><meta name="format-detection" content="telephone=no"><meta http-equiv="cleartype" content="on"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="apple-itunes-app" content="app-id=881697395"><meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0"><meta property="twitter:account_id" content="4503599627559754"><link rel="apple-touch-icon" href="https://www.safaribooksonline.com/static/images/apple-touch-icon.dc4dcf1f75e0.png"><link rel="shortcut icon" href="favicon.ico" type="image/x-icon"><title>4.3 Searching Your Data Using Lucene.Net - Windows Developer Power Tools</title><link rel="canonical" href="https://www.safaribooksonline.com/library/view/windows-developer-power/0596527543/ch04s04.html"><meta name="description" content="4.3 Searching Your Data Using Lucene.Net Data is everywhere, whether it’s on the Internet, your local system, or networked hard drives. The challenge often isn’t in ... "><meta property="og:title" content="4.3 Searching Your Data Using Lucene.Net"><meta itemprop="isPartOf" content="/library/view/windows-developer-power/0596527543/"><meta itemprop="name" content="4.3 Searching Your Data Using Lucene.Net"><meta property="og:url" itemprop="url" content="https://www.safaribooksonline.com/library/view/windows-developer-power/0596527543/ch04s04.html"><meta property="og:site_name" content="Safari"><meta property="og:image" itemprop="thumbnailUrl" content="https://www.safaribooksonline.com/library/cover/0596527543/"><meta property="og:description" itemprop="description" content="4.3 Searching Your Data Using Lucene.Net Data is everywhere, whether it’s on the Internet, your local system, or networked hard drives. The challenge often isn’t in ... "><meta itemprop="inLanguage" content="en"><meta itemprop="publisher" content="O'Reilly Media, Inc."><meta property="og:type" content="book"><meta property="og:book:isbn" itemprop="isbn" content="9780596527549"><meta property="og:book:author" itemprop="author" content="Jim Holmes"><meta property="og:book:author" itemprop="author" content="James Avery"><meta property="og:book:tag" itemprop="about" content=".NET"><meta property="og:book:tag" itemprop="about" content="Core Programming"><meta property="og:book:tag" itemprop="about" content="Microsoft"><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@safari"><!--[if lt IE 9]><script src="/static/js/src/respond.min.9831c0bcb305.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="4.3%20Searching%20Your%20Data%20Using%20Lucene.Net%20-%20Windows%20Developer%20Power%20Tools_files/index.css" media="all">
+</head>
+<body class="reading sidenav  js-preview-content prodsample-book scalefonts subscribe-panel library">
+    
+      <div class="hide" role="status working">
+        <div role="working-image"></div>
+      </div>
+      <div class="sbo-site-nav">
+        
+
+
+<a href="#container" class="skip">Skip to content</a>
+
+
+      </div>
+      <div style="height: auto;" id="container" role="application">
+        
+          <div class="nav-container clearfix">
+            
+
+
+            
+            
+          </div>
+
+          
+
+  <div class="js-toc">
+    
+
+    <div class="interface-controls interface-controls-top">
+      
+    </div>
+    <section role="document">
+        <div class="t-sbo-prev sbo-prev sbo-nav-top">
+  
+    
+      
+        
+    
+  
+  </div>
+  
+  <div class="t-sbo-next sbo-next sbo-nav-top">
+  
+    
+      
+        
+    
+  
+  </div>
+<a href="https://www.safaribooksonline.com/library/view/windows-developer-power/0596527543/ch04s04.html">Original Source</a>
+
+<div id="sbo-rt-content"><div class="sect1" title="4.3 Searching Your Data Using Lucene.Net"><div class="titlepage"><div><div><h1 class="title"><a id="fourdot3_searching_your_data_using_lucen"></a>4.3 Searching Your Data Using Lucene.Net</h1></div></div></div><p>Data
+ is everywhere, whether it’s on the Internet, your local system, or 
+networked hard drives. The challenge often isn’t in collecting and 
+organizing your data but in finding it. Businesses collect data in a 
+staggering array of formats, including Microsoft Outlook or Excel files,
+ Access or SQL databases, PDFs, HTML files, plain old text files, and 
+perhaps even custom application formats. That data often then gets 
+scattered across a dizzying number of locations on different servers.</p><p><a id="iddle2901" class="indexterm"></a><a id="iddle2905" class="indexterm"></a><a id="iddle2909" class="indexterm"></a><a id="iddle2910" class="indexterm"></a><a id="iddle2913" class="indexterm"></a><a id="iddle3426" class="indexterm"></a><a id="iddle4123" class="indexterm"></a><a id="iddle5082" class="indexterm"></a>Chances
+ are that your customers will need to deal with disparate data formats 
+and with data stored in multiple locations. Furthermore, they will 
+probably want to be able to exert some control over how searches are 
+performed. Customers may want to be able to limit searches to certain 
+keywords or to a particular set of data folders on a particular server, 
+or to filter out information older than a particular date.</p><p>Google 
+Desktop has made a splash by bringing this functionality to end users. 
+Now you have the power to bring the same indexing and searching 
+capabilities into your applications using Lucene.Net, a 
+high-performance, scalable search engine library written in the C# 
+language and utilizing the .NET Framework.</p><div class="informaltable"><table style="border-collapse: collapse; border-width: 0.5pt; border-style: solid; border-color: -moz-use-text-color;"><colgroup><col><col></colgroup><thead><tr><th style="border-bottom: 0.5pt solid;" colspan="2"><p><span class="inlinemediaobject"><a id="inline_id00023"></a><img data-mfp-src="/library/view/windows-developer-power/0596527543/httpatomoreillycomsourceoreillyimages2038773.png.jpg" src="4.3%20Searching%20Your%20Data%20Using%20Lucene.Net%20-%20Windows%20Developer%20Power%20Tools_files/httpatomoreillycomsourceoreillyimages2038773.jpg" alt="" height="77" width="80"></span> Lucene.Net at a Glance</p></th></tr></thead><tbody><tr><td style="border-right: 0.5pt solid; border-bottom: 0.5pt solid;" valign="top"><p><span class="strong"><strong>Tool</strong></span></p></td><td style="border-bottom: 0.5pt solid;" valign="top"><p>Lucene.Net</p></td></tr><tr><td style="border-right: 0.5pt solid; border-bottom: 0.5pt solid;" valign="top"><p><span class="strong"><strong>Version covered</strong></span></p></td><td style="border-bottom: 0.5pt solid;" valign="top"><p>1.4.3, 1.9, 1.9.1, and 2.0</p></td></tr><tr><td style="border-right: 0.5pt solid; border-bottom: 0.5pt solid;" valign="top"><p><span class="strong"><strong>Home page</strong></span></p></td><td style="border-bottom: 0.5pt solid;" valign="top"><p><span class="emphasis"><em><a class="ulink" href="http://incubator.apache.org/lucene.net/">http://incubator.apache.org/lucene.net/</a></em></span></p></td></tr><tr><td style="border-right: 0.5pt solid; border-bottom: 0.5pt solid;" valign="top"><p><span class="strong"><strong>Power Tools page</strong></span></p></td><td style="border-bottom: 0.5pt solid;" valign="top"><p><span class="emphasis"><em><a class="ulink" href="http://www.windevpowertools.com/tools/144">http://www.windevpowertools.com/tools/144</a></em></span></p></td></tr><tr><td style="border-right: 0.5pt solid; border-bottom: 0.5pt solid;" valign="top"><p><span class="strong"><strong>Summary</strong></span></p></td><td style="border-bottom: 0.5pt solid;" valign="top"><p>.NET-based search engine API for indexing and searching contents</p></td></tr><tr><td style="border-right: 0.5pt solid; border-bottom: 0.5pt solid;" valign="top"><p><span class="strong"><strong>License type</strong></span></p></td><td style="border-bottom: 0.5pt solid;" valign="top"><p>Apache License, version 2.0</p></td></tr><tr><td style="border-right: 0.5pt solid; border-bottom: 0.5pt solid;" valign="top"><p><span class="strong"><strong>Online resources</strong></span></p></td><td style="border-bottom: 0.5pt solid;" valign="top"><p>API documentation, mailing list at ASF</p></td></tr><tr><td style="border-right: 0.5pt solid;" valign="top"><p><span class="strong"><strong>Supported Frameworks</strong></span></p></td><td valign="top"><p>.NET 1.1, 2.0</p></td></tr></tbody></table></div><div class="sect2" title="Getting Started"><div class="titlepage"><div><div><h2 class="title"><a id="getting_started-id00055"></a>Getting Started</h2></div></div></div><p>Lucene.Net
+ is an open source project currently under incubation at the Apache 
+Software Foundation (ASF). The source code can be downloaded from the 
+project’s home page as a <span class="emphasis"><em>.zip</em></span> archive or checked out from the Subversion repository.</p><p>Lucene.Net
+ requires a Microsoft C# compiler and version 1.1 or 2.0 of the .NET 
+Framework. It works with either Microsoft Visual Studio 2003 or 2005. 
+The source comes with a solution for Visual Studio 2003.</p><p>NUnit is required if you want to run the test code. It can be downloaded from its home page at <span class="emphasis"><em><a class="ulink" href="http://www.nunit.org/">http://www.nunit.org</a></em></span>.</p><p>You’ll
+ also need SharpZipLib (discussed later in this chapter) if you want to 
+support compressed indexing in Lucene.Net versions 1.9 and 1.9.1. 
+SharpZipLib can be downloaded from its home page at <span class="emphasis"><em><a class="ulink" href="http://www.icsharpcode.net/OpenSource/SharpZipLib/">http://www.icsharpcode.net/OpenSource/SharpZipLib/</a></em></span>.</p></div><div class="sect2" title="Using Lucene.Net"><div class="titlepage"><div><div><h2 class="title"><a id="using_lucenedotnet"></a>Using Lucene.Net</h2></div></div></div><p>Lucene.Net
+ is not a standalone search engine application. It can’t be used as-is 
+out of the box to index and search your data or the Web. Out of the box,
+ Lucene.Net can’t extract or read your binary data (such as Microsoft 
+Office or PDF files), make use of SQL data, or crawl the Web.</p><p><a id="iddle1081" class="indexterm"></a><a id="iddle2904" class="indexterm"></a><a id="iddle2906" class="indexterm"></a>You
+ must understand this about Lucene.Net so that you will be able to 
+appreciate and understand its capabilities. All that Lucene.Net has to 
+offer is a set of rich APIs that you must call to first create a 
+Lucene.Net index and later search on that index. The task of extracting 
+raw text data out of your binary data is your job. You have to write the
+ code to read from formats such as Microsoft Office files, extract the 
+raw text out of the files, and pass this raw text data to Lucene.Net, 
+where it can finally be indexed and later searched.</p><p>After your raw
+ text data has been indexed, you can use Lucene.Net’s API to search this
+ data. Indexing and searching via Lucene.Net’s APIs is easy and yet very
+ powerful.</p><div class="sidebar"><a id="brief_history_of_lucenedotnet"></a><p class="title">A Brief History of Lucene.Net</p><p>Lucene.Net’s
+ origins can be traced back to its parent project, Apache Lucene. Apache
+ Lucene is written in Java, is well established as an ASF project, and 
+has solid followers in the open source community. Lucene.Net is a port 
+of Apache Lucene to C# that utilizes the Microsoft .NET Framework, and 
+it preserves the look and feel of Apache Lucene’s API.</p><p>If you open
+ any C# file and its corresponding Java file, you’ll see that, with the 
+exception of the naming conventions, the class names and method names 
+are the same—that is, <code class="literal">org.apache.lucene.store.FSDirectory.createOutput( )</code> in Java becomes <code class="literal">Lucene.Net.Store.FSDirectory.CreateOutput( )</code>
+ in C#. It’s not only the classes and methods that are ported to C#, 
+though; the Lucene algorithms are ported too, as well as the Lucene 
+index format.</p><p>This consistent port offers a number of advantages. 
+First, it means someone familiar with Lucene’s Java implementation will 
+have an easy time reading Lucene.Net’s C# code.</p><p>More importantly, 
+it means applications using Lucene.Net can coexist with applications 
+using the Java version. Indexes can be read, modified, and shared 
+between either version. What’s more, both the Java and C# versions can 
+share Lucene’s lock file, so you Apache Lucene and Lucene.Net can use 
+the same index concurrently.</p><p>Finally, in addition to the C# port 
+of Lucene’s core code, the Lucene test code is also ported to C#. All 
+NUnit tests pass as they do with the Java version. This should give you a
+ high level of confidence in the C# port of the code.</p></div><p>Two 
+groups of APIs make up Lucene.Net: the indexing APIs and the search 
+APIs. You will spend most of your time writing code for the search APIs.
+ However, before you can start searching, you must create indexes.</p><div class="sect3" title="Creating an index"><div class="titlepage"><div><div><h3 class="title"><a id="creating_an_index"></a>Creating an index</h3></div></div></div><p><a id="iddle2726" class="indexterm"></a><a id="iddle2907" class="indexterm"></a><span class="emphasis"><em>Indexing</em></span>
+ is the process of analyzing raw text data and converting it into a 
+format that will allow Lucene.Net to search that data quickly. A 
+Lucene.Net index is optimized for fast random access to all words stored
+ in the index. When you create a Lucene.Net index, you have the option 
+to create multiple fields and store different data in each field. For 
+example, if you are indexing Microsoft Office (Word, Excel, Power Point,
+ etc.) files, you can create a field for the filename, a field for the 
+file date, and a field for the body of the document. In this way, at 
+search time, you can narrow your query to only filenames, file dates, or
+ the body of the document, or you can mix two or more fields with the 
+same query and get a search hit.</p><p><a class="xref" href="https://www.safaribooksonline.com/library/view/windows-developer-power/0596527543/ch04s04.html#lucenedotnet_command-line_sample_applica" title="Example&nbsp;4-1.&nbsp;A Lucene.Net command-line sample application to index a filesystem">Example&nbsp;4-1</a>
+ shows a slightly modified version of the demo code found in 
+Lucene.Net’s source-code distribution. This example application shows 
+you how to create an index and populate it with data. It assumes that 
+you have a folder holding several raw text files. If you don’t have such
+ a folder, you’ll need to create one and populate it with some files. In
+ addition, you will need an empty folder where the index will be stored.
+ The example application will create a subfolder called <span class="emphasis"><em>index</em></span> for this purpose.</p><div class="example"><a id="lucenedotnet_command-line_sample_applica"></a><p class="title">Example&nbsp;4-1.&nbsp;A Lucene.Net command-line sample application to index a filesystem</p><div class="example-contents"><pre class="programlisting">using System;
+using StandardAnalyzer = Lucene.Net.Analysis.Standard.StandardAnalyzer;
+using IndexWriter = Lucene.Net.Index.IndexWriter;
+using Document = Lucene.Net.Documents.Document;
+using Field = Lucene.Net.Documents.Field;
+using DateTools = Lucene.Net.Documents.DateTools;
+
+namespace Lucene.Net.Demo
+{
+  class IndexFiles
+  {
+    internal static readonly System.IO.FileInfo INDEX_DIR =
+        new System.IO.FileInfo("index");
+
+    [STAThread]
+    public static void  Main(System.String[] args)
+    {
+      System.String usage = typeof(IndexFiles) + " &lt;root_directory&gt;";
+      if (args.Length == 0)
+      {
+        System.Console.Error.WriteLine("Usage: " + usage);
+        System.Environment.Exit(1);
+      }
+
+      // Check whether the "index" directory exists.
+      // If not, create it; otherwise, exit program.
+      bool tmpBool = System.IO.Directory.Exists(INDEX_DIR.FullName);
+      if (tmpBool)
+      {
+        System.Console.Out.WriteLine("Cannot save index to '" +
+            INDEX_DIR + "' directory, please delete it first");
+        System.Environment.Exit(1);
+      }
+
+      System.IO.FileInfo docDir = new System.IO.FileInfo(args[0]);
+      tmpBool = System.IO.Directory.Exists(docDir.FullName);
+      if (!tmpBool)
+      {
+        System.Console.Out.WriteLine("Document directory '" +
+            docDir.FullName + "' does not exist or is not readable, " +
+            "please check the path");
+        System.Environment.Exit(1);
+      }
+
+      System.DateTime start = System.DateTime.Now;
+      try
+      {
+        IndexWriter writer =
+            new IndexWriter(INDEX_DIR, new StandardAnalyzer( ), true);
+        System.Console.Out.WriteLine("Indexing to directory '" +
+                                     INDEX_DIR + "'...");
+        IndexDocs(writer, docDir);
+        System.Console.Out.WriteLine("Optimizing...");
+        writer.Optimize( );
+        writer.Close( );
+
+        System.DateTime end = System.DateTime.Now;
+        System.Console.Out.WriteLine(end.Ticks - start.Ticks +
+                                     " total milliseconds");
+      }
+      catch (System.IO.IOException e)
+      {
+        System.Console.Out.WriteLine(" caught a " + e.GetType( ) +
+                                     "\n with message: " + e.Message);
+      }
+    }
+
+    public static void  IndexDocs(IndexWriter writer,
+                                  System.IO.FileInfo file)
+    {
+      if (System.IO.Directory.Exists(file.FullName))
+      {
+        System.String[] files =
+            System.IO.Directory.GetFileSystemEntries(file.FullName);
+        if (files != null)
+        {
+          for (int i = 0; i &lt; files.Length; i++)
+          {
+            IndexDocs(writer, new System.IO.FileInfo(files[i]));
+          }
+        }
+      }
+      else
+      {
+        System.Console.Out.WriteLine("adding " + file);
+        writer.AddDocument(IndexDocument(file));
+      }
+    }
+
+    public static Document IndexDocument(System.IO.FileInfo f)
+    {
+      // Make a new, empty document
+      Document doc = new Document( );
+
+      // Add the path of the file as a field named "path".
+      // Use a field that is indexed (i.e., searchable), but don't
+      // tokenize the field into words.
+      doc.Add(new Field("path", f.FullName, Field.Store.YES,
+                        Field.Index.UN_TOKENIZED));
+
+      // Add the last modified date of the file to a field named
+      // "modified". Use a field that is indexed (i.e., searchable),
+      // but don't tokenize the field into words.
+      doc.Add(new Field("modified",
+                        DateTools.TimeToString(f.LastWriteTime.Ticks,
+                        DateTools.Resolution.MINUTE),
+                        Field.Store.YES, Field.Index.UN_TOKENIZED));
+
+      // Add the contents of the file to a field named "contents".
+      // Specify a Reader, so that the text of the file is tokenized
+      // and indexed, but not stored. Note that FileReader expects
+      // the file to be in the system's default encoding. If that's
+      // not the case, searching for special characters will fail.
+      doc.Add(new Field("contents",
+                        new System.IO.StreamReader(f.FullName,
+                        System.Text.Encoding.Default)));
+
+      // Return the document
+      return doc;
+    }
+  }
+}</pre></div></div><p><a id="iddle2903" class="indexterm"></a><a id="iddle2911" class="indexterm"></a>The key Lucene.Net references used in this example application are <code class="literal">StandardAnalyzer</code>, <code class="literal">IndexWriter</code>, <code class="literal">Document</code>, and <code class="literal">Field</code>. We’ll take a look at each of these next.</p><div class="sect4" title="Understanding analyzers"><div class="titlepage"><div><div><h4 class="title"><a id="understanding_analyzers"></a>Understanding analyzers</h4></div></div></div><p>An
+ analyzer, combined with a streamer, plays an important role in 
+Lucene.Net. During indexing, an analyzer and a streamer take a stream of
+ raw text and break it into searchable terms. In addition, they remove 
+any “noise” from the text (commas, periods, question marks, etc.), as 
+well as common words (“this,” “that,” “then,” “is,” “a,” etc.). Removing
+ noise and common words greatly speeds up searching.</p><p>If you want 
+to index non-English data, you can write your own analyzer and streamer.
+ However, chances are that someone has already written one that fits the
+ bill and contributed it to Lucene.Net. Currently, the following 
+streamers are supported: Danish, Dutch, Finnish, French, German, 
+Italian, Norwegian, Portuguese, Russian, Spanish, and Swedish. These 
+streamers can be found in the <span class="emphasis"><em>contrib</em></span> folder of the distribution. If you want to write your own, you can use one of the available analyzers and streamers as a model.</p><p>Our example application uses the standard analyzer that comes with Lucene.Net.</p></div><div class="sect4" title="Understanding the role of the IndexWriter"><div class="titlepage"><div><div><h4 class="title"><a id="understanding_the_role_of_the_indexwrite"></a>Understanding the role of the IndexWriter</h4></div></div></div><p>The following line:</p><a id="pro_id00081"></a><pre class="programlisting">IndexWriter writer =
+    new IndexWriter(INDEX_DIR, new StandardAnalyzer( ), true);</pre><p>creates or opens an index. This is done through the <code class="literal">IndexWriter</code> object. An <code class="literal">IndexWriter</code>
+ is used whenever you want to add anything to or delete anything from an
+ index. The first parameter is the path to the index. The second 
+parameter is an analyzer (discussed in the previous section). If you 
+wrote your own analyzer, you will specify it here. The last parameter 
+tells the <code class="literal">IndexWriter</code> constructor to create a new index (<code class="literal">true</code>) or open an existing one (<code class="literal">false</code>).</p><p>Once
+ an index has been created or opened, you’re ready to modify it. In our 
+example, we are indexing a filesystem, which means we will read a folder
+ and the subfolders it contains. As we iterate through the filesystem, 
+any file we visit will be opened by the <code class="literal">IndexDocs( )</code> method as text and indexed. <code class="literal">IndexDocs( )</code> opens files and passes the file handles to <code class="literal">addDocument( )</code>. This method constructs what is known as a Lucene.Net <code class="literal">Document</code>.</p><p>Think of a <code class="literal">Document</code>
+ as a virtual document that contains metadata: the title, author, 
+publication date, and chapters. For each file you index, a separate <code class="literal">Document</code> is created, like so:</p><a id="pro_id00082"></a><pre class="programlisting">Document doc = new Document( );</pre></div></div><div class="sect3" title="Adding data to a document"><div class="titlepage"><div><div><h3 class="title"><a id="adding_data_to_a_document"></a>Adding data to a document</h3></div></div></div><p>Once you’ve created a <code class="literal">Document</code>, you’ll need to add data to it. This is done by creating one or more <code class="literal">Field</code>s for each piece of metadata in your file. For example, in the sample application, we created a <code class="literal">Field</code> called <code class="literal">path</code> that holds the path to the file we are indexing, a <code class="literal">Field</code> called <code class="literal">modified</code> that holds the date the file was last modified, and a <code class="literal">Field</code> called <code class="literal">contents</code> that holds the document’s raw text content. You can create more <code class="literal">Field</code>s as your application requires. When you create a <code class="literal">Field</code>, you can also specify what type of <code class="literal">Field</code> it is.</p><p>The three <code class="literal">Field</code>s in our sample application are added to a <code class="literal">Document</code> like so:</p><a id="pro_id00083"></a><pre class="programlisting">doc.Add(new Field("path", f.FullName, Field.Store.YES,
+                  Field.Index.UN_TOKENIZED));
+
+doc.Add(new Field("modified",
+                  DateTools.TimeToString(f.LastWriteTime.Ticks,
+                  DateTools.Resolution.MINUTE), Field.Store.YES,
+                  Field.Index.UN_TOKENIZED));
+
+doc.Add(new Field("contents", new System.IO.StreamReader(f.FullName,
+                  System.Text.Encoding.Default)));</pre><p><a id="iddle2908" class="indexterm"></a>After you’ve populated a <code class="literal">Document</code> object with <code class="literal">Field</code> objects, you’re ready to add the <code class="literal">Document</code> to the index:</p><a id="pro_id00084"></a><pre class="programlisting">writer.AddDocument(IndexDocument(file));</pre><div class="sect4" title="Running the IndexFiles application"><div class="titlepage"><div><div><h4 class="title"><a id="running_the_indexfiles_application"></a>Running the IndexFiles application</h4></div></div></div><p>From the command line, run the <code class="literal">IndexFiles</code> application against the folder you have populated with raw text files. You can also simply point <code class="literal">IndexFiles</code> to the Lucene.Net source directory, and <code class="literal">IndexFiles</code> will index the Lucene.Net source files for you. To start <code class="literal">IndexFiles</code>, issue the following command from the <span class="emphasis"><em>bin</em></span> directory: <code class="literal">IndexFiles C:\Lucene.Net\</code>. Once <code class="literal">IndexFiles</code> is done indexing your files, it creates a directory called <span class="emphasis"><em>index</em></span> in the current directory and stores the index in it.</p></div></div><div class="sect3" title="Searching an index"><div class="titlepage"><div><div><h3 class="title"><a id="searching_an_index"></a>Searching an index</h3></div></div></div><p>Searching
+ in Lucene.Net is similar to indexing and offers great functionality. 
+It’s expected that you will spend more time in Lucene.Net’s search APIs 
+than in the indexing ones.</p><p>There are several ways you can search 
+your index. You can use Lucene.Net to search one index, or you can 
+search multiple indexes using <code class="literal">MultiSearcher</code>.
+ Searching two or more indexes distributes your data across multiple 
+indexes for faster searching, better tuning, and greater control.</p><p>For
+ example, you can separate your data into date ranges, perhaps creating 
+an index for each month. This will allow you to narrow your search to a 
+particular month’s index or combine multiple months’ indexes. 
+(Obviously, this kind of index creation doesn’t have to be date-related;
+ it can be based on any useful criteria.)</p><p>In addition to the <code class="literal">MultiSearcher</code>, Lucene.Net also offers the <code class="literal">RemoteSearchable</code> capability. With <code class="literal">RemoteSearchable</code>, you can rely on Lucene.Net’s web server API to search one or more indexes residing on different servers.</p><p>Lucene.Net
+ also gives you the power and flexibility of searching on one or more 
+fields, individually weighting any of your fields, and applying Boolean 
+query criteria such as <code class="literal">AND</code>, <code class="literal">OR</code>, <code class="literal">NOT</code>, <code class="literal">NEAR</code>, and <code class="literal">DATE_RANGE</code>.
+ What’s more, you can update an index and search it at the same time. 
+Once the index update is done, just close your searcher and reopen it, 
+and your updated data will be available.</p><p>Our Lucene.Net example application will show you how to search the index that we created in <a class="xref" href="https://www.safaribooksonline.com/library/view/windows-developer-power/0596527543/ch04s04.html#lucenedotnet_command-line_sample_applica" title="Example&nbsp;4-1.&nbsp;A Lucene.Net command-line sample application to index a filesystem">Example&nbsp;4-1</a>, where we indexed the filesystem. <a class="xref" href="https://www.safaribooksonline.com/library/view/windows-developer-power/0596527543/ch04s04.html#lucenedotnet_command-line_sample-id00056" title="Example&nbsp;4-2.&nbsp;A Lucene.Net command-line sample application to search an index">Example&nbsp;4-2</a> shows a slightly modified version of the demo code found in Lucene.Net’s source-code distribution.</p><div class="example"><a id="lucenedotnet_command-line_sample-id00056"></a><p class="title">Example&nbsp;4-2.&nbsp;A Lucene.Net command-line sample application to search an index</p><div class="example-contents"><pre class="programlisting">using System;
+using Analyzer = Lucene.Net.Analysis.Analyzer;
+using StandardAnalyzer = Lucene.Net.Analysis.Standard.StandardAnalyzer;
+using Document = Lucene.Net.Documents.Document;
+using QueryParser = Lucene.Net.QueryParsers.QueryParser;
+using Hits = Lucene.Net.Search.Hits;
+using IndexSearcher = Lucene.Net.Search.IndexSearcher;
+using Query = Lucene.Net.Search.Query;
+using Searcher = Lucene.Net.Search.Searcher;
+
+namespace Lucene.Net.Demo
+{
+  class SearchFiles
+  {
+    [STAThread]
+    public static void  Main(System.String[] args)
+    {
+      try
+      {
+        Searcher searcher = new IndexSearcher(@"index");
+        Analyzer analyzer = new StandardAnalyzer( );
+
+
+        // Create a new StreamReader using standard input as the stream
+        System.IO.StreamReader streamReader =
+            new System.IO.StreamReader(
+                // Sets reader's input stream to the standard input stream
+                new System.IO.StreamReader(
+                    System.Console.OpenStandardInput( ),
+                    System.Text.Encoding.Default).BaseStream,
+                // Sets reader's encoding to whatever standard input is using
+                new System.IO.StreamReader(
+                    System.Console.OpenStandardInput( ),
+                    System.Text.Encoding.Default).CurrentEncoding);
+        while (true)
+        {
+          System.Console.Out.Write("Query: ");
+          System.String line = streamReader.ReadLine( );
+
+          if (line.Length &lt;= 0)
+            break;
+
+          Query query = QueryParser.Parse(line, "contents", analyzer);
+          System.Console.Out.WriteLine("Searching for: " +
+                                       query.ToString("contents"));
+
+          Hits hits = searcher.Search(query);
+          System.Console.Out.WriteLine(hits.Length( ) +
+                                       " total matching documents");
+
+          int HITS_PER_PAGE = 10;
+          for (int start = 0; start &lt; hits.Length( ); start += HITS_PER_PAGE)
+          {
+            int end = System.Math.Min(hits.Length( ), start + HITS_PER_PAGE);
+            for (int i = start; i &lt; end; i++)
+            {
+              Document doc = hits.Doc(i);
+              System.String path = doc.Get("path");
+              if (path != null)
+              {
+                System.Console.Out.WriteLine(i + ". " + path);
+              }
+              else
+              {
+                System.String url = doc.Get("url");
+                if (url != null)
+                {
+                  System.Console.Out.WriteLine(i + ". " + url);
+                  System.Console.Out.WriteLine("   - " + doc.Get("title"));
+                }
+                else
+                {
+                  System.Console.Out.WriteLine(i + ". " +
+                                     "No path nor URL for this document");
+                }
+              }
+            }
+
+            if (hits.Length( ) &gt; end)
+            {
+              System.Console.Out.Write("more (y/n) ? ");
+              line = streamReader.ReadLine( );
+              if (line.Length &lt;= 0 || line[0] == 'n')
+                break;
+            }
+          }
+        }
+        searcher.Close( );
+      }
+      catch (System.Exception e)
+      {
+        System.Console.Out.WriteLine(" caught a " + e.GetType( ) +
+                                     "\n with message: " + e.Message);
+      }
+    }
+  }
+}</pre></div></div><p>In this example application, the key Lucene.Net references being used are <code class="literal">Standard-Analyzer</code>, <code class="literal">Document</code>, <code class="literal">QueryParser</code>, <code class="literal">Hits</code>, <code class="literal">IndexSearcher</code>, <code class="literal">Query</code>, and <code class="literal">Searcher</code>.</p><div class="sect4" title="Understanding searchers"><div class="titlepage"><div><div><h4 class="title"><a id="understanding_searchers"></a>Understanding searchers</h4></div></div></div><p>A <code class="literal">Searcher</code>
+ is the front door to your index. Through it, search single or multiple 
+indexes located locally on your hard drive or remotely on different 
+machines. The following line:</p><a id="pro_id00085"></a><pre class="programlisting">Searcher searcher = new IndexSearcher(@"index");</pre><p>creates a <code class="literal">Searcher</code> object by instantiating an <code class="literal">IndexSearcher</code>. The parameter passed to <code class="literal">IndexSearcher</code> is the name of a folder containing an index, expressed as either a full path or a relative path.</p></div><div class="sect4" title="Using analyzers in searching"><div class="titlepage"><div><div><h4 class="title"><a id="using_analyzers_in_searching"></a>Using analyzers in searching</h4></div></div></div><p>We
+ used analyzers when we created the index. Why do we need them again 
+during searching? During indexing, we used an analyzer to clean up our 
+raw text. The same rules must be applied on the text a user types at the
+ search prompt. Furthermore, the same type of analyzer must be used for 
+searching as for indexing, or the search results will not be correct—or,
+ even worse, no hits may be returned at all.</p><p>This line creates the matching analyzer:</p><a id="pro_id00086"></a><pre class="programlisting">Analyzer analyzer = new StandardAnalyzer( );</pre></div><div class="sect4" title="Revisiting documents"><div class="titlepage"><div><div><h4 class="title"><a id="revisiting_documents"></a>Revisiting documents</h4></div></div></div><p>We also covered the <code class="literal">Document</code> class during indexing. At search time, we use a <code class="literal">Document</code> object to hold information about a hit resulting from a search query. The <code class="literal">Document</code> object contains the fields and the data in those fields.</p><p>In our example application, a reference to a <code class="literal">Document</code> object is retrieved like so:</p><a id="pro_id00087"></a><pre class="programlisting">Document doc = hits.Doc(i);</pre></div><div class="sect4" title="Parsing user input with QueryParser"><div class="titlepage"><div><div><h4 class="title"><a id="parsing_user_input_with_queryparser"></a>Parsing user input with QueryParser</h4></div></div></div><p>A <code class="literal">QueryParser</code> works hand-in-hand with an analyzer. The job of the <code class="literal">QueryParser</code> is to take a user’s query, apply the same rules as the analyzer, and figure out what the user is searching for.</p><p>For example, if your search query is <code class="literal">+cat +dog</code>, the <code class="literal">QueryParser</code> will know that you are searching for both the words <span class="emphasis"><em>cat</em></span> and <span class="emphasis"><em>dog</em></span> and that they must be in the same field.</p><div class="tip" title="Tip"><h3 class="title"><a id="ch04note08"></a>Tip</h3><p>The <code class="literal">+</code> option marks a term as a required part of the query.</p></div><p>Lucene.Net supports several such power-search features. You can do a Boolean search using <code class="literal">OR</code>, <code class="literal">AND</code>, and <code class="literal">NOT</code> terms, and you can limit your search to a particular field.</p><p>In our example application, a <code class="literal">QueryParser</code> is created like so:</p><a id="pro_id00088"></a><pre class="programlisting">Query query = QueryParser.Parse(line, "contents", analyzer);</pre><p>Here,
+ we pass three parameters to the parser. The first is the string that 
+the user typed (the search query). The second parameter is the name of 
+the default field that <a id="iddle1114" class="indexterm"></a><a id="iddle2902" class="indexterm"></a><a id="iddle2912" class="indexterm"></a>we
+ will search. You can specify multiple fields, or no field at all, 
+leaving it up to the user to identify the field to search in. The final 
+parameter is the analyzer.</p></div><div class="sect4" title="Working with search hits"><div class="titlepage"><div><div><h4 class="title"><a id="working_with_search_hits"></a>Working with search hits</h4></div></div></div><p>A <code class="literal">Hits</code> collection is what you get back as a result of running a search query. If your search query returns hits, you use the <code class="literal">Hits</code> object to iterate over a list of <code class="literal">Document</code> objects.</p><p>In our example application, a reference to a <code class="literal">Hits</code> object is returned like so:</p><a id="pro_id00089"></a><pre class="programlisting">Hits hits = searcher.Search(query);</pre><p>Remember that we instantiated a <code class="literal">Searcher</code> object and pointed it at our <span class="emphasis"><em>index</em></span> folder. Now we’re passing it a reference to the <code class="literal">Query</code>
+ object discussed previously. This kind of abstraction is what makes 
+Lucene.Net so flexible and powerful; working with an index is 
+consistent, regardless of whether you’re using one or more indexes and 
+whether they’re local or remote. Additionally, the search behavior is 
+consistent, whether you have one query or a combination of queries.</p></div></div><div class="sect3" title="Running the SearchFiles application"><div class="titlepage"><div><div><h3 class="title"><a id="running_the_searchfiles_application"></a>Running the SearchFiles application</h3></div></div></div><p>When
+ you’re ready to run the application, move to the folder where the index
+ was created during indexing. Once you are in that folder, run the <code class="literal">SearchFiles</code>
+ application by just typing its name (using the fully qualified pathname
+ if you haven’t copied it to the same directory as the indexes).</p></div></div><div class="sect2" title="Getting Support"><div class="titlepage"><div><div><h2 class="title"><a id="getting_support-id00057"></a>Getting Support</h2></div></div></div><p>Since
+ Lucene.Net is an open source project and is incubated into ASF, support
+ for it is through its mailing list, noted at the project’s home page. 
+Subscribe to the mailing list and post your questions there. Questions 
+are answered in a timely fashion, and the community is looking to grow.</p><div class="sidebar"><a id="lucenedotnet_in_a_nutshell"></a><p class="title">Lucene.Net in a Nutshell</p><div class="blockquote"><blockquote class="blockquote"><p>Lucene.Net
+ is a powerful, fast, and feature-rich search engine. In addition, it is
+ open source, is incubated at ASF, and has a support community.</p><p>Today,
+ Lucene.Net is being used to index and search filesystems, email data, 
+web pages, and even source code. What’s more, Lucene.Net is being used 
+in commercial applications as a web service search engine, as an 
+embedded search engine for Outlook, and as a desktop search engine for 
+Novel Linux via the Mono compiler.</p><p>As applications become more and
+ more complex and generate more and more data, the addition of a search 
+feature is becoming a logical solution. Lucene.Net’s APIs make it 
+possible to integrate powerful search capabilities into your 
+applications. What’s more, Lucene.Net provides the means to scale; 
+supports different languages; and is cross compatible with Apache Lucene
+ at the API, algorithmic, and index levels.</p><div class="attribution"><p>—<span class="attribution"><span class="emphasis"><em>George Aroush, committer for Lucene.Net</em></span></span></p></div></blockquote></div></div></div></div></div>
+
+  <div class="t-sbo-prev sbo-prev sbo-nav-bottom">
+  
+    
+      
+        <a href="https://www.safaribooksonline.com/library/view/windows-developer-power/0596527543/ch04s03.html" role="prev" class="nav-link">
+      
+          <span class="pagination-label t-prev-label">Prev</span>
+          <div class="pagination-title t-prev-title">4.2 Diagnosing Without Downtime via log4net</div>
+        </a>
+    
+  
+  </div>
+  
+  <div class="t-sbo-next sbo-next sbo-nav-bottom">
+  
+    
+      
+        <a href="https://www.safaribooksonline.com/library/view/windows-developer-power/0596527543/ch04s05.html" role="next" class="nav-link">
+      
+          <span class="pagination-label t-next-label">Next</span>
+          <div class="pagination-title t-next-title">4.4 Finding Changes Between Assembly Versions with LibCheck</div>
+        </a>
+    
+  
+  </div>
+
+
+    </section>
+    <div class="reading-controls-bottom">
+      <ul class="interface-controls js-bitlist">
+        <li data-api-url="/api/v1/book/0596527543/chapter/ch04s04.html">
+        
+
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="js-related-container related"></div>
+<section class="sbo-saved-archives"></section>
+
+
+          
+          
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    
+      
+        
+
+      
+    
+  
+
+
+
+        
+      </div>
+      
+
+
+
+  
+
+
+
+
+    
+
+    
+    
+    
+      
+      
+    
+    
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+    
+    
+
+
+  
+
+<div style="top: 151px; left: 1018px;" class="font-flyout"><a href="#" id="increase-font" class="font-size-changer icnTxLr" title="Increase font size" aria-label="Increase font size">
+  Make font larger
+</a><!--
+--><a href="#" id="decrease-font" class="font-size-changer icnTxSm" title="Decrease font size" aria-label="Decrease font size">
+  Make font smaller
+</a>
+
+</div>
+
+
+
+</body></html>

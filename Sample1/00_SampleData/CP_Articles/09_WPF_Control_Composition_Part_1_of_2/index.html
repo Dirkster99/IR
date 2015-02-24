@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>WPF Control Composition (Part 1 of 2) - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="Composing controls in a user control improves the consistency of a resulting application but does not  add much extra work or complexity.; Author: Dirkster99; Updated: 16 Mar 2012; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 16 Mar 2012">
+<meta name="Keywords" content="C#, .NET, Architect, Dev, Design, Intermediate, C#4.0,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/332539/WPFControlCompositionPart-of">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Controls">Controls</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/332539/WPFControlCompositionPart-of?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">WPF Control Composition (Part 1 of 2)</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2012-03-16 10:44:00">
+							            16 Mar 2012</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 116px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 3px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.88</span> (<span itemprop="ratingCount" class="count">7</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="1 vote, 14.3%" title="1 vote, 14.3%" border="0px" height="3px" width="20pxpx"></div><span title="1 vote">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="6 votes, 85.7%" title="6 votes, 85.7%" border="0px" height="20px" width="20pxpx"></div><span title="6 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.88/5 - 7 votes</div><div class="small-text align-center subdue">μ 4.88, σ<sub>a</sub> 0.98 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">Composing controls in a user control improves the consistency of a resulting application but does not  add much extra work or complexity.</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+<li><a href="simplecontrols_version1.zip">SimpleControls Version 1 - 48 KB</a></li>
+<li><a href="simplecontrols_version1_advanced.zip">SimpleControls Version1 Advanced</a></li>
+</ul>
+<h2>Introduction</h2>
+<p>The Windows Presentation Foundation (WPF) offers at least two ways of implementing controls. There are User Controls and Custom Controls. 
+User Controls are composed of one or more standard controls (and cannot be styled) while Custom Controls either extend existing controls or start 
+from scratch (and can be styled). This series of two articles shows a particular simple but effective technique for implementing Custom Controls 
+and extends one of them in the second article into a theme-able (Custom Control).</p>
+<p>The article assumes that you have a working knowledge of WPF. In particular, knowledge of Dependency Properties and Commanding are required.</p>
+<p>I sometimes observe myself doing repetitive things when designing input forms: put a label here, put a textbox there, put another label and another textbox ... 
+you get the picture. And the problem sometimes gets even worse when I find that a need a Margin of 3 on all labels and a margin of 0 on all textboxes...</p>
+<p>This article shows a technique that lets us declare a new control that is, for example, composed of a label and a textbox, with the addition of a new <code>TextBoxLabel</code> property which can be used in XAML to set the text of the label but let the control decide where to put the label in relation to the textbox.</p>
+<p>This way, the number of elements in the XAML is reduced and an input form containing a few controls is easy to maintain because the content is likely to look more consistent. Let's have a look at a:</p><ul><li>Textbox (with Watermark) and Label</li></ul><p>to understand how this works and extend this concept later with a</p><ul><li>Hyperlink with custom tooltip and context-menu</li><li>Combobox and Label, and a </li><li>
+	Labeled Combobox and Textbox </li></ul>
+	<p>This concept is later extended with a second part that shows how one of the controls discussed here can be <a title="Second part of this article series" href="http://www.codeproject.com/Articles/332541/WPFControlCompositionPart2of2" target="_top">turned into a look-less custom control</a>.</p>
+	<h2>Compiling the code</h2><h3>StyleCop</h3><p>I use StyleCop in my projects to make the code readable in a uniform way. So, if you should get an error when compiling the project, you can either download and install StyleCop, or edit/remove the corresponding entries in each 
+<em>.csproj</em> file:</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Import</span> <span class="code-attribute">Project</span><span class="code-keyword">="</span><span class="code-keyword">$(ProgramFiles)\MSBuild\StyleCop\v4.7\StyleCop.Targets"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+<h2>Textbox (with Watermark) and Label Composition  </h2>
+<p>The Watermark textbox control behaves like a normal textbox with the addition of being labeled and displaying a watermark in the text portion. 
+The watermark disappears as soon as the user starts typing.</p>
+<p><img alt="332539/TextboxWithWatermark.png" src="textboxwithwatermark.png" height="112" width="650"></p>
+<p>This control is declared in the <em>TestWindow.xaml</em> like so:</p><pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">textbox:TextBoxWithWatermark</span> 
+    <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">"</span> <span class="code-attribute">Watermark</span><span class="code-keyword">="</span><span class="code-keyword">First and second given name"</span> <span class="code-attribute">LabelTextBox</span><span class="code-keyword">="</span><span class="code-keyword">Name:"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span> </pre>
+    <p>The <code>Text</code> property can be used to read and write the text entered in the textbox. You can use this just like the <code>Text</code> property on the standard textbox control.</p>
+    <p>The <code>Watermark</code> property can be used to set the text that is shown in the textbox when the user has not entered anything, yet.</p><p>The <code>LabelTextBox</code> property sets the text 
+    of the label that is shown above the textbox.</p><p>Normally, none of the above properties are this easily available, because the control composition leads to hiding internal elements. The solution is in the XAML of the 
+<code>TextBoxWithWatermark</code> user control. This is where internal properties (content property of label) and external properties (<code>LabelTextBox</code>) are bound such that both appear to be one.</p><pre><span class="code-keyword">&lt;</span><span class="code-leadattribute">Label</span> <span class="code-attribute">Content</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=LabelTextBox, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TextBoxWithWatermark, AncestorLevel=1}}"</span>
+        <span class="code-attribute">HorizontalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Left"</span> <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Bottom"</span>
+        <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">0"</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">0"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+<p>The above XAML code is contained in the 
+<em>TextBoxWithWatermark.xaml</em> file. The binding statement in the Content of the label control binds to the <code>LabelTextBox</code> Dependenncy Property of the 
+<code>TextBoxWithWatermark</code> control. This is backed by the following standard dependency property code pattern:</p><pre><span class="code-keyword">private</span> <span class="code-keyword">static</span> readonly DependencyProperty LabelTextBoxProperty =
+  DependencyProperty.Register(<span class="code-string">"</span><span class="code-string">LabelTextBox"</span>, typeof(string), typeof(TextBoxWithWatermark));
+<span class="code-keyword">public</span> string LabelTextBox
+{
+   get { <span class="code-keyword">return</span> (string)GetValue(TextBoxWithWatermark.LabelTextBoxProperty); }
+   set { SetValue(TextBoxWithWatermark.LabelTextBoxProperty, <span class="code-keyword">value</span>); }
+}</pre><p>So, in a nutshell: We declare a <code>TextBoxWithWatermark</code> control in the demo window and bind to its dependency properties. And the DPs of the 
+<code>TextBoxWithWatermark</code> control bind to each property of the corresponding control in the composition.</p><p>Voila. Other than that, nothing else is needed to get an XAML value through 
+a user control (<code>TextBoxWithWatermark</code>) to the (Label) original control.</p><p>I adopted this particular way of 
+implementing the watermark from elsewhere: <a href="http://www.dotnetspark.com/kb/1716-create-watermark-textbox-wpf-application.aspx" target="_top">Create Watermark TextBox in WPF Application</a>. The original approach proposed to use a textbox with a transparent background and have the textbox shine through that transparent background. This caused a problem in ExpressionDark since the background is black and WPF uses a black cursor on a transparent background. I fixed this problem by:</p><ul><li>removing the transparent background on the textbox</li><li>putting the textblock on top of the textbox (declare the textblock after the textbox) and</li><li>setting the textblock to <code>IsHitTestVisible=false</code> (to route all inputs to the textbox).</li></ul><h2>Hyperlink with custom tooltip and Context-Menu </h2>The Hyperlink control behaves like a normal Hyperlink except that this one is optimized 
+for web hyperlinks. It shows the URL in its tooltip and the user can use a context menu on it to:<p>
+
+</p><ul><li>Copy &amp; Paste the URL </li><li>To navigate to the URL (instead of clicking the underlined portion) </li></ul>
+<p><img alt="332539/WebHyperlink.png" src="webhyperlink.png" height="292" width="550"></p>
+<p>This control is declared in the <em>TestWindow.xaml</em> like so:</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">hyperlink:WebHyperlink</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">Exposing inner Control properties for binding in WPF"</span>
+        <span class="code-attribute">NavigateUri</span><span class="code-keyword">="</span><span class="code-keyword">http://stackoverflow.com/questions/4169090/exposing-inner-control-properties-for-binding-in-wpf"</span>
+        <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">1"</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">1"</span> <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">6, 3"</span> <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+<p>We can check the XAML portion of the <code>WebHyperlink</code> control to find that it is quite similar to the 
+<code>TextBoxWithWatermark</code> control.</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBlock</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=Text, RelativeSource={RelativeSource FindAncestor, AncestorType=hyperlink:WebHyperlink, AncestorLevel=1}}"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+<p>We have a <code>Text</code> property that is bound to the <code>Text</code> property of a textblock, which is placed inside the content portion of a standard hyperlink control. 
+The same appears to be true for the <code>NavigateUri</code> property on the Hyperlink control.</p>
+<p>The Hyperlink control also contains a <code>RequestNavigate</code> event which is triggered when a user clicks on the hyperlink. This executes this code:</p>
+<pre lang="cs"><span class="code-keyword">private</span> <span class="code-keyword">void</span> Hyperlink_RequestNavigate(<span class="code-keyword">object</span> sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+{
+    Process.Start(<span class="code-keyword">new</span> ProcessStartInfo(e.Uri.AbsoluteUri));
+}</pre>
+<p>A similar code is executed if the <code>NavigateToUri</code> command is executed. Note that the target of the navigation is supplied as command parameter:</p>
+<pre lang="cs"><span class="code-keyword">private</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> Hyperlink_CommandNavigateTo(<span class="code-keyword">object</span> sender, ExecutedRoutedEventArgs e)
+{
+    <span class="code-keyword">if</span> (sender == <span class="code-keyword">null</span> || e == <span class="code-keyword">null</span>) <span class="code-keyword">return</span>;
+
+    e.Handled = <span class="code-keyword">true</span>;
+
+    WebHyperlink whLink = sender <span class="code-keyword">as</span> WebHyperlink;
+
+    <span class="code-keyword">if</span> (whLink == <span class="code-keyword">null</span>) <span class="code-keyword">return</span>;
+
+    Process.Start(<span class="code-keyword">new</span> ProcessStartInfo(whLink.NavigateUri.AbsoluteUri));
+}</pre>
+<p>The context menu binds via commanding (plus parameter) to the Hyperlink control. You can take this as an example of how commands can be more flexible 
+by using command parameters. Interesting is also the <code>CommandTarget</code> bit.</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">ContextMenu</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Copy Url to Clipboard"</span>
+            <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static hyperlink:WebHyperlink.CopyUri}"</span>
+            <span class="code-attribute">CommandParameter</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ElementName=PART_Hyperlink, Path=NavigateUri}"</span>
+            <span class="code-attribute">CommandTarget</span><span class="code-keyword">="</span><span class="code-keyword">{Binding PlacementTarget,
+            RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Open Target in Browser"</span>
+            <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static hyperlink:WebHyperlink.NavigateToUri}"</span>
+            <span class="code-attribute">CommandTarget</span><span class="code-keyword">="</span><span class="code-keyword">{Binding PlacementTarget,
+            RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ContextMenu</span><span class="code-keyword">&gt;</span></pre>
+<p>The <code>CommandTarget</code> bit is necessary because the command would otherwise not be executed. The command would not be executed because the context menu has the 
+keyboard focus and is not in the same visual and logical tree as the hyperlink is.</p>
+<h4>References</h4>
+<ul>
+<li><a href="http://msdn.microsoft.com/en-us/library/ms752308.aspx#Four_main_Concepts">Four Main Concepts in WPF Command Binding</a></li>
+<li><a href="http://www.codeproject.com/Articles/332539/%20%20%20%20http://wpftutorial.net/RoutedCommandsInContextMenu.html">How to Solve Execution Problems of RoutedCommands in a WPF ContextMenu</a></li>
+</ul>
+<p>Whether the additional functions are useful or not is another matter. But just imagine the work we would have if we had to declare this each time we want to use a hyperlink.</p>
+<h2>Combobox and Label Composition</h2>
+<p>The <code>ComboBoxWithLabel</code> control behaves like a normal <code>ComboBox</code> but it comes with the addition of a label placed on top of it.</p>
+<p><img alt="332539/ComboboxWithLabel.png" src="comboboxwithlabel.png" height="100" width="638"></p>
+<p>Composing a control with a combobox (or any other control with an <code>ItemsControl</code> at its core) means a little bit more work because there are a few dependency properties that are useful. Nevertheless, the control exhibits the same XAML binding mechanisms as we have seen before:</p>
+<pre lang="xml">SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, " + 
+          "AncestorType=local:ComboBoxWithLabel, AncestorLevel=1}, Path=SelectedItem}"
+private static readonly DependencyProperty SelectedItemProperty = 
+  ComboBox.SelectedItemProperty.AddOwner(typeof(ComboBoxWithLabel));
+
+public object SelectedValue
+{
+  get { return (object)GetValue(ComboBoxWithLabel.SelectedValueProperty); }
+  set { SetValue(ComboBoxWithLabel.SelectedValueProperty, value); }
+}</pre>
+<p>The data displayed in the comboboxes is loaded from an <code>ObjectDataProvider</code>defined in the resources section of the 
+<code>TestWindow</code> class. The <code>ObjectDataProvider</code> itself receives its data from a static method declared in the collections class. This static method generates a dictionary based on an enumeration.</p>
+<h2>Combobox and Textbox with Label Composition </h2>
+<p><img alt="332539/ComboboxWithTextMarkAndLabel.png" src="comboboxwithtextmarkandlabel.png" height="184" width="635"></p>
+<p>These samples are really just compositions of the combobox with label and the textbox with watermark and label samples discussed above. so, assuming that you have read and understood the above, there is not much new here, except that we have yet another composition of controls that might be useful being placed as one solid composition. You can use this to review the binding pattern 
+one more time. Go back to the samples discussed above if you find this to be too complex to understand.</p>
+<h2>Conclusions </h2>Simple control composition is an affective method for re-using UI code multiple times. It ensures that similar controls look and behave similar even if they occur a few hundred times in a large application. Adding special behaviors 
+or properties to existing controls has never been easier.<p>
+</p><p>Please take a moment time to rate this article and give me your feedback.</p>
+<h2>Further Developments </h2><p>The controls in this article cannot be themed in the sense that they are look less. Although, they can be themed if they are made up of theme-able controls. The Combobox with Label control is, for example, theme-able as long as each theme contains a <code>ControlTemplate </code>for a Combobox control and a <code>ControlTemplate</code> for a Label control. But the control is not look-less because the Label will always appear on top of the Combobox.</p>
+<p>Worse still, the watermark of the textbox control discussed above may even be invisible because its color cannot be defined in a style or 
+<code>ControlTemplate</code>. </p>
+<p><a href="http://www.codeproject.com/Articles/332541/WPFControlCompositionPart2of2" target="_top">Part two of this article series</a> shows how simple controls can be themed by developing the watermark textbox control 
+into a skin-able control and adding three demo themes to the demo application.</p><h2>History      </h2><ul><li> 
+        20-February 2012: Initial creation.</li><li>16-March 2012: Small patch in source code (Binding to 
+	<code>WebHyperlink</code> <code>Uri</code> and <code>Text</code> dependency properties works now)</li></ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+
+</body></html>

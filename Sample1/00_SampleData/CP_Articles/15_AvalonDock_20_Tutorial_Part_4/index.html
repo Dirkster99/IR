@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>AvalonDock [2.0] Tutorial Part 4 - Integrating AvalonEdit Options - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="Integrate AvalonEdit with text editing options into AvalonDock [2.0]; Author: Dirkster99; Updated: 31 Jan 2014; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 31 Jan 2014">
+<meta name="Keywords" content="WinXP, Vista, C#, Windows, .NET, Architect, Dev, WPF, Design, Intermediate, C#4.0, Win7, Win8,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/570324/AvalonDock-Tutorial-Part-Integrating-AvalonE">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Applications">Applications</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/570324/AvalonDock-Tutorial-Part-Integrating-AvalonE?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="cko0cNUzNz7Qb1vXEYsMG6O3pbKHfPDZpulNyBCxr0fv7FjNEmrRurOyloIKejx9EDTYThF1qQz8qrI9RH3r6LF1qasHAmexZDVaGn9Y3Q+1UI7nNMGwSo+bS8z2345oXgp6RVGxrtRHA7aQgW5Fc1D9DZk3n/dfwJId5hATZR/gTuejS6bX1ItUI8ThJg/JDrIkhfV+lH1DO+/I5xHzCzq+MiJ8AJSbHV4TwLGS1B8cgVjrX6J0Ax3s/MnZVWfzJrtPTAVY1P9j3YaQGyln+EV7LysBno51gz3iNMIyxPUdegmAUOT65Wf1+eNxpRnL8AC+0M6LJOEjM4KOqiM7Kcevsbr6TFmHqXi8GyQpCyUwkjQEuwYETkQa+yP/PkVRvaU5QqkzXvUTCl515RwPfhUCN8Hb6mp4HRx3j8OfjJRuTUIvW0DwmOUOo5wIeQJVxZjYBKTD+qO/nYSK2VJgT/s7VhL/n58BL2I1SmRckMjgL0wiCnmL7a6JXVN8bxjc2H33rDfnRWVNgSysZBwC7YRi0B5HFZ8eKG8he4L0CBItcXun1aqqXMqhVHYZvY65u37LTQ5Yv1i+DougGX2HW8WmjccMGcGMkwG3lC5sqVyqx3JtBRZE0lzqxmdNXYIncwvrSQtJYMgMH86wpXWot9WG/bk9Qgg8feJ+SeCHz/Exm0d2CEvKJGZzXMIV1t3MZZi3K/BMiV7iVU/acE5Q0hVASeEjLWMmn1myeUkx3jnUFRDBXPXqtqY4N3KleQX7GJprtvSRBv7sfaZ7RogpJGuHL1FBJqBq4YXQkUbZAmeEYEtf+rRKSYl6IDzpaGRBGNv545n7VfHUlrdFznzTQCrgPiJSugl3t2RTshlsjBy3Sg9jQv3wYwSoyIQQbbOS8wpOhlmyFIUOSeTtbseBUDIIVK6d+aR0XuI4tYpKN0RBNKDceevBKWgyC5EJdlNtKbg7nvjIIRGt8+4ZeTRY+k359JJhvMMgWhmH1xtMbqcr5x4BuB/8Kj25ak7kEvEw22H3D1Enm0N4J+vOLIREtSCa1P+T4CrW7u/EQnSbWssKc52vskCucRp2Z1ezzuYO9hJO10qpyE9Vii78N2qHsHLg393b+XEe0MBmemdn4QsWJKKN8csq2upXfd1Xkeb83dYd9dGoodRzaFMX6rrLLPa0s8am4jje9EWKBY7LkNFKDRIjTTKkEokqdKhwsGz7uC0krYUbMSkHknm0ww16uD2g3cMwpJHt04y5gDeZcrXO4Mpfw+BoDCJy8G9bJAm2138KEaza25mWq7vJt/WBWUH2D2hbcG0SRhd+IoGr0aIu/07L+VpxHgAVRrcORIWrsaWzgaBuUXE5voBtZj3cyf5gW/e0LgdC7IFGg9t8uKbJay1GsrhoDBCOOCGDhoixMgd2LbRFEsjKiR/1V2F8UnHWvuINRtZFMxF9dfKVMOVhpkmob4betDDt6AbLFHqxw4BfSU066guuZB749dMfv+EclLP/w6aNN4FXQsA0vxou1y6znjQC0KhWwlnsr1y8LDB71fHNaBA2ieCltOgK97UHBJ8rZdeEpu3bioK5roaRACyjaGY8NuNH9l4glA18RCsgXrK+F7fMcc1ltcY98dzhlza9m4b57y3ngfLK7dXhhb+utTw20jCaIaJbAzvCJsgRYUKlEIGnwX1gXo8B3KzzyPgXl7AqRKWz+uHb4aaA2spj48WBSHfjmDrJiJrQrehc9s7C8X5wb+zEUBCSSCQjsUzaWyNAJ2gA0Uau6P5zRDUoub4b7o71Jymm7AiakiF9q8SOtgLgPY20l8zIooL/YL1LLciBUtm/n2eAZYEytclGQCNHM52Uc1tMD0zPkwVR/c1jQY7o4oqSS/TmDwgwcNYDrQth04a2NSLuzf/x707h4+dtBzTTsHG9LFLHstSHtBmfrkmeKtbWXXHK1c76a6w2E/4jV5TmTD7iZjPfhjEuTTy9xPUaOLSbyciBx7GE9zO4zMEBTJJXGuY6Metb4QiTZPQZE3rMaVZvOE48LnIQMk3v8JgL75EVv/x9fr7s3g0zyc0+jTggQqRlRZdStbWMueZlsctacLXN9pnN8hIFD70MVf/exWn2mEq2TeNjEnJ1Rt4H8mKK1k7prk63xeHhHXNqjZgBIlCkdLXEiNQJxOJeCJthsyTq8dSPiRZ359Lwk2vBO3LJ+g88ormS11UKtQ2r2zPP/3MFJcMal+D59ZMcUCCriPdf4T2Ckkr3tOEL71FdOsvdypez148u2DCUwVejQBzHBHyaSG6i0tZ0O3jFDmEuXC0R0eZOc7LOstnxuUrKqExd6fLUmAsMyTohjM+gM7nNwSxBPeatzalLYrS0MiJxbP5a3bPMlPmgmPiupaz5Lw4zUjl3+CUUkDNvnoWkLAre08sfwDDAQWb/bOfqL4NwFM32sLWcC/zK0NG+2dzsJKdlv4GHmsBGes7EzixwratoGJsf/Ao/j5FFkn6EQ7PY5px2cX0nYKkKkRcejXsInJgjbDUAqkag43HJSB3qlaENcHDtJ+L3+p2BUpe9q5er2X7QRZUIeoll19sCMtEp7ZcDXsXUE3p04puQqSeQumcztL+NazF5pounxApRB/K3/Ka6ahHXdzIg1V3qL1WkZf4L0lOrYOSjG8w=" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">AvalonDock [2.0] Tutorial Part 4 - Integrating AvalonEdit Options</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2014-01-31 20:12:00">
+							            1 Feb 2014</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 119px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 0px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">5.00</span> (<span itemprop="ratingCount" class="count">7</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><span title="0 votes">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="7 votes, 100.0%" title="7 votes, 100.0%" border="0px" height="20px" width="20pxpx"></div><span title="7 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">5.00/5 - 7 votes</div><div class="small-text align-center subdue">μ 5.00, σ<sub>a</sub> 1.10 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">Integrate AvalonEdit with text editing options into AvalonDock [2.0]</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul><li><a href="version_04_edi.zip">Download Version_04_Edi.zip</a>&nbsp;</li></ul><h2>Introduction&nbsp;</h2><p>The AvalonDock [2.0] series of articles continues and you are reading part 4. In this installment we are going to talk about using text related options in AvalonEdit. This includes the usage of WordWrap and the display of line numbers, -and continues to show how AvalonEdit can be setup toward text style rules, such as, using or not using spaces, tabs, their size etc.</p><p><img src="targetscreenshot.png" height="376" width="600">&nbsp;</p>
+
+<h3>Prerequisite&nbsp;&nbsp;</h3>
+
+<p>Be sure to download and continue the sample from the previous tutorial's step 3 [1] if you want to follow this article as I talk us through it.</p>
+
+<h3>Word Wrap and Line Number Indicator</h3>
+
+<p>In this section we are going to explore how word wrap and the display of line numbers can be switched on and off in AvalonEdit. This switching is done via a command handler that will accept five different parameters defined through an enumeration and we use CLR properties to give the view a chance for displaying the current state of each setting. We adjust our document viewmodel with new properties first, add a new command, and bind to the new properties later on.&nbsp;</p>
+
+<p>Add a <code>WordWrap </code>and <code>ShowLineNumbers </code>boolean property into the <em><strong>FileViewModel </strong></em>class (I am showing only the WordWrap since ShowLineNumbers is very similar)&nbsp;</p>
+
+<pre lang="cs"><span class="code-preprocessor">#region</span> WordWrap
+<span class="code-comment">//</span><span class="code-comment"> Toggle state WordWrap
+</span><span class="code-keyword">private</span> <span class="code-keyword">bool</span> mWordWrap = <span class="code-keyword">false</span>;
+<span class="code-keyword">public</span> <span class="code-keyword">bool</span> WordWrap
+{
+  <span class="code-keyword">get</span>
+  {
+    <span class="code-keyword">return</span> <span class="code-keyword">this</span>.mWordWrap;
+  }
+
+  <span class="code-keyword">set</span>
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.mWordWrap != value)
+    {
+      <span class="code-keyword">this</span>.mWordWrap = value;
+      <span class="code-keyword">this</span>.RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">WordWrap"</span>);
+    }
+  }
+}
+<span class="code-preprocessor">#endregion</span> WordWrap</pre>
+
+<p>Add a <code>WordWrap </code>and <code>ShowLineNumbers </code>toggle command in the Workspace class. This command accepts a <code>ToggleEditorOption</code> enumeration that is also defined in the namespace of the Workspace class. The command will be extended further below in this article. So, here is the enumeration:&nbsp;</p><pre>  <span class="code-keyword">public</span> <span class="code-keyword">enum</span> ToggleEditorOption
+  {
+    WordWrap = <span class="code-digit">0</span>,
+    ShowLineNumber = <span class="code-digit">1</span>,
+    ShowEndOfLine = <span class="code-digit">2</span>,
+    ShowSpaces = <span class="code-digit">3</span>,
+    ShowTabs = <span class="code-digit">4</span>
+  }
+</pre><p>
+And here is the code for the new command:</p>
+
+<pre lang="cs"><span class="code-preprocessor">#region</span> ToggleEditorOptionCommand
+RelayCommand _toggleEditorOptionCommand = <span class="code-keyword">null</span>;
+<span class="code-keyword">public</span> ICommand ToggleEditorOptionCommand
+{
+  <span class="code-keyword">get</span>
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>._toggleEditorOptionCommand == <span class="code-keyword">null</span>)
+    {
+      <span class="code-keyword">this</span>._toggleEditorOptionCommand = <span class="code-keyword">new</span> RelayCommand((p) =&gt; OnToggleEditorOption(p),
+                                                         (p) =&gt; CanToggleEditorOption(p));
+    }
+
+    <span class="code-keyword">return</span> <span class="code-keyword">this</span>._toggleEditorOptionCommand;
+  }
+}
+
+<span class="code-keyword">private</span> <span class="code-keyword">bool</span> CanToggleEditorOption(<span class="code-keyword">object</span> parameter)
+{
+  <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.ActiveDocument != <span class="code-keyword">null</span>)
+    <span class="code-keyword">return</span> <span class="code-keyword">true</span>;
+
+  <span class="code-keyword">return</span> <span class="code-keyword">false</span>;
+}
+
+<span class="code-keyword">private</span> <span class="code-keyword">void</span> OnToggleEditorOption(<span class="code-keyword">object</span> parameter)
+{
+  FileViewModel f = <span class="code-keyword">this</span>.ActiveDocument;
+
+  <span class="code-keyword">if</span> (parameter == <span class="code-keyword">null</span>)
+    <span class="code-keyword">return</span>;
+
+  <span class="code-keyword">if</span> ((parameter <span class="code-keyword">is</span> ToggleEditorOption) == <span class="code-keyword">false</span>)
+    <span class="code-keyword">return</span>;
+
+  ToggleEditorOption t = (ToggleEditorOption)parameter;
+
+  <span class="code-keyword">if</span> (f != <span class="code-keyword">null</span>)
+  {
+    <span class="code-keyword">switch</span> (t)
+    {
+      <span class="code-keyword">case</span> ToggleEditorOption.<strong>WordWrap</strong>:
+          f.WordWrap = !f.WordWrap;
+        <span class="code-keyword">break</span>;
+
+      <span class="code-keyword">case</span> ToggleEditorOption.<strong>ShowLineNumber</strong>:
+          f.ShowLineNumbers = !f.ShowLineNumbers;
+        <span class="code-keyword">break</span>;
+
+      <span class="code-keyword">default</span>:
+        <span class="code-keyword">break</span>;
+    }
+  }
+}
+<span class="code-preprocessor">#endregion</span> ToggleEditorOptionCommand</pre>
+
+<p>No we add a <code>WordWrap </code>and <code>ShowLineNumbers </code>button in MainWindow.xaml to give the user an interface. Using the ToggleEditorOption enumeration requires to declare its namespace in XAML:
+</p>
+
+<pre lang="XML">xmlns:vm="clr-namespace:Edi.ViewModel" </pre>
+
+<p>Here is the declaration for both buttons:&nbsp;&nbsp;&nbsp;</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">ToggleButton</span> <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">Click this button to switch word wrap on or off"</span>
+              <span class="code-attribute">CommandParameter</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static vm:ToggleEditorOption.WordWrap}"</span>
+              <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ToggleEditorOptionCommand}"</span>
+              <span class="code-attribute">IsChecked</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ActiveDocument.WordWrap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/ShowWordWrap32.png"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Togglebutton</span><span class="code-keyword">&gt;</span>
+
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">Togglebutton</span> <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">Click this button to switch display of line numbers on or off"</span>
+              <span class="code-attribute">CommandParameter</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static vm:ToggleEditorOption.ShowLineNumber}"</span>
+              <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ToggleEditorOptionCommand}"</span>
+              <span class="code-attribute">IsChecked</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ActiveDocument.ShowLineNumbers, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/ShowLineNumbers32.png"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">togglebutton</span><span class="code-keyword">&gt;</span>
+</pre>
+
+<p>Add a <code>WordWrap </code>and <code>ShowLineNumbers </code>binding into the AvalonEdit statement in the MainWindow.xaml:
+</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span>
+<span class="code-attribute">Document</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Document, UpdateSourceTrigger=PropertyChanged}"</span>
+<span class="code-attribute">SyntaxHighlighting</span><span class="code-keyword">="</span><span class="code-keyword">{Binding HighlightDef}"</span>
+<span class="code-attribute">IsModified</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=IsDirty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"</span>
+<span class="code-attribute">IsReadOnly</span><span class="code-keyword">="</span><span class="code-keyword">{Binding IsReadOnly}"</span>
+<span class="code-attribute">WordWrap</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=WordWrap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"</span>
+<span class="code-attribute">ShowLineNumbers</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=ShowLineNumbers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"</span><span class="code-keyword">&gt;</span>
+
+        ...
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">avalonEdit:TextEditor</span><span class="code-keyword">&gt;</span></pre>
+
+<h3>Add Edit Text Options support</h3>
+
+<p>This section gives an introduction to setting up some basic text options, such as, 
+the usage of spaces and tabs. </p>
+
+
+<p>Add a <code>TextOptions </code>property into the FileViewModel class
+(note the declaration in the constructor of the TextEditorOptions class - it replaces tabs with two spaces and switches tabs off in the editor):&nbsp; </p>
+
+<pre lang="cs"><span class="code-preprocessor">#region</span> TextEditorOptions
+    <span class="code-keyword">private</span> ICSharpCode.AvalonEdit.TextEditorOptions mTextOptions
+      = <span class="code-keyword">new</span> ICSharpCode.AvalonEdit.TextEditorOptions()
+      {
+        <strong>ConvertTabsToSpaces= <span class="code-keyword">false</span></strong>,
+        <strong>IndentationSize = <span class="code-digit">2</span></strong>
+      };
+
+    <span class="code-keyword">public</span> ICSharpCode.AvalonEdit.TextEditorOptions TextOptions
+    {
+      <span class="code-keyword">get</span>
+      {
+        <span class="code-keyword">return</span> <span class="code-keyword">this</span>.mTextOptions;
+      }
+
+      <span class="code-keyword">set</span>
+      {
+        <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.mTextOptions != value)
+        {
+          <span class="code-keyword">this</span>.mTextOptions = value;
+          <span class="code-keyword">this</span>.RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">TextOptions"</span>);
+        }
+      }
+    }
+<span class="code-preprocessor">#endregion</span> TextEditorOptions</pre>
+
+<p>We can use the same ToggleEditorOptionCommand as we used before by extending the corresponding enumeration and handling the new cases in <code>OnToggleEditorOption </code>method listed above:
+&nbsp;</p>
+
+<pre lang="cs"><span class="code-keyword">case</span> ToggleEditorOption.ShowSpaces:
+  f.TextOptions.ShowSpaces = !f.TextOptions.ShowSpaces;
+  <span class="code-keyword">break</span>;
+
+<span class="code-keyword">case</span> ToggleEditorOption.ShowTabs:
+  f.TextOptions.ShowTabs = !f.TextOptions.ShowTabs;
+  <span class="code-keyword">break</span>;
+
+<span class="code-keyword">case</span> ToggleEditorOption.ShowEndOfLine:
+  f.TextOptions.ShowEndOfLine = !f.TextOptions.ShowEndOfLine;
+  <span class="code-keyword">break</span>;</pre>
+
+
+<p>
+Now lets add the toggle buttons into the MainWindow.xaml toolbar.
+You will notice that we can bind directly to the TextOptions properties's sub-property. This spares us implementing another FileViewModel property for each setting.&nbsp;</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">ToggleButton</span> <span class="code-attribute">IsChecked</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ActiveDocument.TextOptions.ShowEndOfLine, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span>
+  <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ToggleEditorOptionCommand}"</span>
+  <span class="code-attribute">CommandParameter</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static vm:ToggleEditorOption.ShowEndOfLine}"</span>
+  <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">Highlighted end of line in text (toggle on/off)"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/ShowEnter32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ToggleButton</span><span class="code-keyword">&gt;</span>
+
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">ToggleButton</span> <span class="code-attribute">IsChecked</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ActiveDocument.TextOptions.ShowSpaces, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span>
+  <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ToggleEditorOptionCommand}"</span>
+  <span class="code-attribute">CommandParameter</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static vm:ToggleEditorOption.ShowSpaces}"</span>
+  <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">Highlight spaces characters in text (toggle on/off)"</span><span class="code-keyword">&gt;</span>
+
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/ShowSpaces32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ToggleButton</span><span class="code-keyword">&gt;</span>
+
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">ToggleButton</span> <span class="code-attribute">IsChecked</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ActiveDocument.TextOptions.ShowTabs, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span>
+  <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ToggleEditorOptionCommand}"</span>
+  <span class="code-attribute">CommandParameter</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static vm:ToggleEditorOption.ShowTabs}"</span>
+  <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">Highlight tab characters in text (toggle on/off)"</span><span class="code-keyword">&gt;</span>
+
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/ShowTab32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ToggleButton</span><span class="code-keyword">&gt;</span> 
+</pre>
+
+<p>Add a text options property in MainWindow.xaml binding</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span>
+<span class="code-attribute">Document</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Document, UpdateSourceTrigger=PropertyChanged}"</span>
+<span class="code-attribute">SyntaxHighlighting</span><span class="code-keyword">="</span><span class="code-keyword">{Binding HighlightDef}"</span>
+<span class="code-attribute">IsModified</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=IsDirty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"</span>
+<span class="code-attribute">IsReadOnly</span><span class="code-keyword">="</span><span class="code-keyword">{Binding IsReadOnly}"</span>
+<span class="code-attribute">WordWrap</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=WordWrap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"</span>
+<span class="code-attribute">ShowLineNumbers</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=ShowLineNumbers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"</span>
+<span class="code-attribute">Options</span><span class="code-keyword">="</span><span class="code-keyword">{Binding TextOptions}"</span><span class="code-keyword">&gt;</span>
+        ...
+
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">avalonEdit:TextEditor</span><span class="code-keyword">&gt;</span> </pre>
+
+<h2>Conclusions</h2><p>It is not too hard to use MVVM with 
+AvalonDock [2.0] and AvalonEdit. The next part will introduce a more advanced 
+feature like scaling of the font via combobox in the scrollbar space (as
+ you might have seen it in Visual Studio 2010). After that we shall look at 
+theming and explain how items, such as, hyperlinks can be themed using a technique that I call themable highlighting.</p><p>I would like to see your feedback. Please tell me if you have additional input, -if you find something wrong, or miss-leading.</p>
+
+<ul><li>[1]<a href="http://www.codeproject.com/Articles/570313/AvalonDock-2-0-Tutorial-Part-3-AvalonEdit-in-Avalo"><br>AvalonDock [2.0] Tutorial Part 1 - Adding a Tool Window<br>AvalonDock [2.0] Tutorial Part 2 - Adding a Start Page<br>AvalonDock [2.0] Tutorial Part 3 - AvalonEdit in AvalonDock</a>
+<br><a href="http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi">
+AvalonDock [2.0] Tutorial Part 5 - Load/Save Layout with De-Referenced DockingManager
+<br><br>
+</a></li><a href="http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi">
+</a></ul><a href="http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi">
+
+</a><ul><a href="http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi">
+</a><li><a href="http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi">[</a>2]<br><a href="http://edi.codeplex.com/">EDI from http://edi.codeplex.com/</a><br><br>
+</li>
+
+<li>[3]<a href="http://www.codeproject.com/Articles/42490/Using-AvalonEdit-WPF-Text-Editor">Using AvalonEdit (WPF Text Editor)</a><br><br>
+</li>
+
+<li>[4]<a href="http://avalondock.codeplex.com/">AvalonDock</a><br></li>
+</ul>
+
+
+
+<h2>History</h2>
+<ul><li>31.03.2013 Created first version of this article<br>
+</li></ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						<h2>License</h2>
+						<div id="LicenseTerms"><p>This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx" rel="license">The Code Project Open License (CPOL)</a></p></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+
+</body></html>

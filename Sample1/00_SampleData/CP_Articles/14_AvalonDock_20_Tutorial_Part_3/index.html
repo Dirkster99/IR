@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>AvalonDock [2.0] Tutorial Part 3 - AvalonEdit in AvalonDock - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="How to integrate AvalonEdit into AvalonDock [2.0] using MVVM; Author: Dirkster99; Updated: 31 Jan 2014; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 31 Jan 2014">
+<meta name="Keywords" content="WinXP, Vista, C#, Windows, .NET, Architect, Dev, WPF, Design, Intermediate, C#4.0, Win7, Win8,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/570313/AvalonDock-Tutorial-Part-AvalonEdit-in-Avalo">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Applications">Applications</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/570313/AvalonDock-Tutorial-Part-AvalonEdit-in-Avalo?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="W+5koJH1GtXVyLLNiNE96lXwEvsUJOr4CP49936yspEuXm2b+H+BwrTnIHMYXto6hVLLCXGFQkUB/KOLpnQvBql2+779fxs8cr65oU4cf9bO7hb0GckMw47Os0yt3+P3fa8RZQmCw3ZZEt08plrwcrHSolK2ypjz/NOlDsg1dyyWCNNNlECB9YYU/p+qlh0toj2165VXy5U1AFD/TqzlonB60psXtI/wEoushM6yg7b1ix55VsSNCBlo6VeyIbwUYmTTSrbQz6CydL7ND3kAmlU2YE0NdvWRdsTd3w2tndTZrJ5P9z3yhun9+YsyDt9qHFtt4dHFGdmvwB+O9tFPfiZsfvoxvajkmp1rcyRQjlc3wHyVVM6NLTtx1vMh/7M4TFKV52SEYdmCBLS/sxoe+zWkR+bq5CY4X9WXyNMXGscyIAJGJ5k+d1OXa1n2mi62uBNp7CxGKI4w3HVdqX1TiPDOA+QDSd/EoTUkQsS26Q6wXhkKEcgAML6Iyvjt+rxnB5rXKGYwjLTB6cqkxSpEg8Tra2Op+pw5OCCEoxtTJUVk8xeJC1kmbF0/8uR5ryvjowhIEiX0DvLcTXKks5WCrTlCFXZlMOyHSRA74CYvP9ME+MmjQIGTyIw+DT8afrFW00OYqkLxZUDDFM+SkCrQE7g/gsRxEDLIx0kdg4RGYhzJ4EyPrOBwqIMqlQLtvK7+PQcYYR7Y8ePOBb9G8G0AIa79u0y96snLLeKTYrmQXLeTcWWUpEAZAzRGFSGURpt02JfowsTpXiGCdPmVybftSWhfi106ArEUJkLh6EnrkCXKvhfK7+bhOcWvnbE4Q2vAvEYBq48djN9kQEVggCIrMChmqwQGNSq42QzrDwNahQyQTNMlEw7dA62IwyHwtgDpty73j9WbL1ZoCc1ConbC3QoH6gEc90LHUxKlYgnmSK1aJ2xgn/rMEc3844xT/U83XR3X2nbIVnmlwKglZIKNtIXVc60uwiVBq0GHF04BtKDIIt0fiYppRkwdTVKQr0gUoeEod7tBiN4uvp2lr5DL11vSLNsupXeeudPAlVOvAU6RX1KD3EGipzUQHLczSIZhMOdu7zzbWZvx+SA0WFZG3mqVyd9/E+mH8SNQZ2D6LZ21L61LlfEtUZhmayjpKh2Hsh8LoK78Y/jcdyI521LYx1zXb6SaMg50Ou6RhOQLdgHchFNbtmYimDbzKmzFhOT8Xn2Ds/dgVkHeFZKgawexG3nU960u/1F2CDa6CJPu0hhn0fWqBWaREIU4LH36PgTKKbU3eN4YpdXganYO3jC0AMFnqoo7fhUQVgdTGd1S76ol70aistDo6inRRw9UlnHAcZOAYPOtedIm4oqgGWdAQCL/sLsJS+ij2J0xjH/Cet4tE0CNUEq1/y8fitADI1B7RN6LS1ZIz5xFb+gph4nE108zLaZ6BkGMumpULes2/8oizmDP8kcLIRHQfznHhAJs/SdTe/vjtM8n+ziVvE7O9FWIDu8Pci8yKDuUYfUPvm9fUORk4sX/IHpNhElr7kfx6CzU98wmQ0P9Yjfl9at0QyIRvIqBthl2JLYia8aewlIhKP2jmoitf/vPp+ynWCIYJtQIJsAAoF/KjHk+UZ1pjCP9mrtleKDxH4eId3CP8W/d+jbyvqB7c5lPNWlue5KglVeqnfx37z+OV6EcPAVgMCoPZO0SM8vN4serqGSMi3LHkMSEleln+B26Ehj9Olbsiodgwxtqol0sDBgW1T+xkX2rWFZoNcaJ/ZikswRW9KNak0SCbzrzi9q86n5GxvVgETPQa1uoZDQ7zGWkOTR3y9eMo7q6AJPZoyUwV4OYjpE7lfnOouvVKtxzgOTccVaR99FLNimMAZnAR+nYn8CvEzkaN0Vf/fwDMrRgzq38zl1rypsN9f6Nt+fAqsWHVMel0OdlDJx3jxU544IJOWsH7TXVIiVogpAijSSBceoCUlzQcycwMneBG0Jpv8EzxoUHQlu5XkC0aWG5VcO5HE8gwzLFf3eFX2tcFVT+b38FmzEXbMPZlFFO6ytAwJRiyIlpu8504cOUvh9QRAnA79qlrstXIEDXwHk/0fje4+4SD/YcApgeAXH1fzU6sWq/UOBA9lbPPZLw7AtuRv/fwlTzqjB618/kRepx3Q7JRFlBpJ7gS7Zm3WuwMiQm+uuamch5/JgYtsKZZQrHddxazB8lFBIB85XATs9ocsNNR24vtwuu6g52gCdK24WQvcGnLPSS9ffPaYlzDWkMe8yeMkVZTZrv49cV7cEZQ4f5IJ4rNtFfqWWECfgcmbACOLmwLl4AcbGUi1963/2HzFG9GR66zFALs3LtT5FXxkxFKhSU7jeoXSTZOzMt4eASdyExM1WrqglQJWnoQiauv9GBAp+6zETQQmq5DL9aWQY/i2cTGKwdFXvaytvBECDa+UZlsNKl6xPyYYqf9oaPsUR3rzwcf4Kl+HMq9C5ta8NcA5ubGHjA6LRXOkI3PaGWRKgmDs8wHTAeMKpjrCqI/IMN+md1b6Wrhft5IAGN/VAYobkPTdxTaS/ZWw4w9hb4NceObnVUpvdA76ury6RKimNRtXvq4ycYvuLNdOUsEUsbHN25qdVbWSsSO/NcYZMqn8O+qSUIUouv/dcgxB2Evvwzho+McL8Ibbs=" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">AvalonDock [2.0] Tutorial Part 3 - AvalonEdit in AvalonDock</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2014-01-31 20:03:00">
+							            1 Feb 2014</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 119px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 0px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">5.00</span> (<span itemprop="ratingCount" class="count">5</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><span title="0 votes">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="5 votes, 100.0%" title="5 votes, 100.0%" border="0px" height="20px" width="20pxpx"></div><span title="5 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">5.00/5 - 5 votes</div><div class="small-text align-center subdue">μ 5.00, σ<sub>a</sub> 1.10 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">How to integrate AvalonEdit into AvalonDock [2.0] using MVVM</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul><li><a href="version_03_edi.zip">Download Version_03_Edi.zip</a>&nbsp;</li></ul><h2>Introduction &nbsp;</h2><p>I have been spending a reasonable amount of time getting experience with AvalonDock [2.0] and the MVVM pattern in WPF [2]. This series of articles is written in the hope that I can pass some of these experiences on to those who code. My first two articles [1] on this subject were focused on using a custom tool window (Recent Files TW with pinable list) and a custom document control (Start Page). I am going to progress this series by showing how one can integrate the well known AvalonEdit editor from SharpDevelop into AvalonDock [2.0] without bending or even breaking the MVVM pattern. This series is then progressed by showing particular AvalonDock [2.0]/AvalonEdit features and how we can get them to work with MVVM in mind.
+</p>
+
+<h2>Preparation</h2>
+
+<p>You can re-create all steps that I have gone through, if you want to understand all details I am showing here. This section describes the preperation steps necessary to follow me as I talk us through it.</p>
+
+<li>You can recreate the application outlined in the <a href="http://www.codeproject.com/Articles/483507/AvalonDock-2-0-Tutorial-Part-1-Adding-a-Tool-Windo">1st tutorial step</a> or download the Version_01_Edi.zip file from there. Either way, this should give you a starting point for an AvalonDock based application that we are seeking to extend.<br>&nbsp;</li><li>The preparation for AvalonEdit includes downloading the source code from SharpDevelop, extracting AvalonEdit, and integrating it into the Edi sample application. Here is what you need to prepare for getting AvalonEdit into AvalonDock [2.0]:
+<ul>
+
+<li>Download SharpDevelop-master.zip from <a href="https://github.com/icsharpcode/SharpDevelop">https://github.com/icsharpcode/SharpDevelop</a>
+<ul>
+</ul>
+
+<ul>	
+<li><p>Find the AvalonEdit Sub-Project at <code></code></p><pre>SharpDevelop-master\src\Libraries\AvalonEdit</pre> and copy it into the Edi solution.
+				
+</li><li><pre>Copy SharpDevelop-master\src\Main\GlobalAssemblyInfo.cs</pre> into the <pre>Edi\AvalonEdit</pre> directory.
+<br>&nbsp;</li>
+
+<li>Open the AvalonEdit project in Visual Studio and remove the broken reference to the <code>GlobalAssemblyInfo.cs</code> file in the Properties section of the Project's Solution Explorer entry.
+<br>&nbsp;</li>
+
+<li>Click on the project and select Add&gt;Existing item to add the <code>GlobalAssemblyInfo.cs</code> file that you just copied into the extracted AvalonEdit project.
+<br>&nbsp;</li>
+
+<li>Review the project properties and reset the binaries output folder from <pre>..\..\..\..\bin\</pre> to something more appropriate like like: <pre>bin\</pre> </li></ul>
+
+<ul>Consider removing the <pre>DOTNET4</pre> symbol from the project properties, if you want to develop with a different .Net framework.
+</ul>
+
+<ul>Close the project</ul>
+
+<ul>Open the Edi solution</ul>
+
+<ul>Add the AvalonEdit project via context menu on Solution&gt;Add&gt;Exisiting Project... and add the <code>ICSharpCode.AvalonEdit.csproj</code>.</ul>
+
+<ul>Add a reference from the main application project Edi into the <code>ICSharpCode.AvalonEdit.csproj</code> project.
+
+<br><br><li>Build the solution (it should build successfully).&nbsp; </li>
+</ul>
+
+<p>Completing this step successfully means that we re-configured AvalonEdit such that it compiles in an AvalonDock project. Next we are going edit the sample project such that it will use AvlaonEdit as text editing component.</p>
+
+<h2>Integrate AvalonEdit into the AvalonDock [2.0] based Application</h2>
+
+<p>
+An MVVM based WPF application has usually at least three levels (View, ViewModel, and Model) where the last layer is sometimes part of the ViewModel classes. The AvalonDock sample application already contains a view and viewmodel class for text editing, so we simply replace it with something more advanced than the Microsoft standard textbox. The next sub-sections list changes required to adjust the view and the viewmodel.
+&nbsp;</p>
+
+<h3>The View</h3>
+
+<p>Open the Edi solution and browse to <code>View/MainWindow.xaml</code>. This is the main window that you will see when you start the application. Adding AvalonEdit into this view requires a namespace reference and of course the XAML tag itself. So we add a namespace reference (at about line 10).
+</p>
+
+<code>xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"</code>
+
+<p>Next we add the XAML tag itself. Locate the TextBox entry that refers to the view that is currently configured for usage with the <code>FileViewModel</code> class.
+</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">pane:PanesTemplateSelector.FileViewTemplate</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBox</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding TextContent, UpdateSourceTrigger=PropertyChanged}"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">pane:PanesTemplateSelector.FileViewTemplate</span><span class="code-keyword">&gt;</span> </pre>
+
+<p>Replace the XAML tag above with the AvalonEdit reference listed below:</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">pane:PanesTemplateSelector.FileViewTemplate</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span>
+      <span class="code-attribute">Document</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Document, UpdateSourceTrigger=PropertyChanged}"</span>
+    <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">pane:PanesTemplateSelector.FileViewTemplate</span><span class="code-keyword">&gt;</span> </pre>
+
+<h3>The ViewModel</h3>
+
+<p>
+Open the Edi solution and browse into the <code>ViewModel/FileViewModel.cs</code> class and review the <strong>TextContent </strong>property and replace this property with an AvalonDock specific <code>Document</code> property:
+</p>
+
+<pre lang="cs"><span class="code-preprocessor">#region</span> TextContent
+<span class="code-keyword">private</span> TextDocument _document = <span class="code-keyword">null</span>;
+<span class="code-keyword">public</span> TextDocument Document
+{
+  <span class="code-keyword">get</span> { <span class="code-keyword">return</span> <span class="code-keyword">this</span>._document; }
+  <span class="code-keyword">set</span>
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>._document != value)
+    {
+      <span class="code-keyword">this</span>._document = value;
+      RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">Document"</span>);
+      IsDirty = <span class="code-keyword">true</span>;
+    }
+  }
+}
+<span class="code-preprocessor">#endregion</span></pre>
+
+<p>
+The dependency property system in the .Net framwork is very efficient but Sending and receiving text changes through dependency properties (while your typing) can slow down an editor. This is why, the <code>TextDocument</code> class wraps around the editing text (instead of exposing the string directly through a binding). The <code>TextDocument</code> class that implements the <code>Document</code> binding exposes the text through a simple CLR property.
+</p>
+
+<p>
+The idea for communicating text between view and viewmodel is that the application can use the CLR Text property in the <code>TextDocument</code> class to write or read the text string when loading or saving the text data; -while leaving the editing to the editor. We will see later in this tutorial that this approach does require extra work to stay with MVVM (when selecting text). But it is a good design measure to implement an efficient WPF application that deals with great amounts of data. Therefore, this point is worth the extra note.
+</p>
+
+
+<p>Next we need to edit the text load and save methods that are already implemented in the sample application. The load method is actually in the <code>Filepath </code>property of the <code>FileViewModel </code>class. Edit the Filepath property to make it use the new <code>Document</code> property:&nbsp;</p>
+
+<pre lang="cs"><span class="code-preprocessor">#region</span> FilePath
+<span class="code-keyword">private</span> <span class="code-keyword">string</span> _filePath = <span class="code-keyword">null</span>;
+<span class="code-keyword">public</span> <span class="code-keyword">string</span> FilePath
+{
+  <span class="code-keyword">get</span> { <span class="code-keyword">return</span> _filePath; }
+  <span class="code-keyword">set</span>
+  {
+    <span class="code-keyword">if</span> (_filePath != value)
+    {
+      _filePath = value;
+      RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">FilePath"</span>);
+      RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">FileName"</span>);
+      RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">Title"</span>);
+
+      <span class="code-keyword">if</span> (File.Exists(_filePath))
+      {
+        <span class="code-keyword">this</span>._document = <span class="code-keyword">new</span> TextDocument();
+
+        <span class="code-keyword">using</span> (FileStream fs = <span class="code-keyword">new</span> FileStream(<span class="code-keyword">this</span>._filePath,
+                                   FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+          <span class="code-keyword">using</span> (StreamReader reader = FileReader.OpenStream(fs, Encoding.UTF8))
+          {
+            <span class="code-keyword">this</span>._document = <span class="code-keyword">new</span> TextDocument(reader.ReadToEnd());
+          }
+        }
+
+        ContentId = _filePath;
+      }
+    }
+  }
+}
+<span class="code-preprocessor">#endregion</span></pre>
+
+<p>The save text method is in the <code>Workspace.cs</code> file. Locate the Save method and replace it with the code below:&nbsp;</p>
+
+<pre lang="cs"><span class="code-keyword">internal</span> <span class="code-keyword">void</span> Save(FileViewModel fileToSave, <span class="code-keyword">bool</span> saveAsFlag = <span class="code-keyword">false</span>)
+{
+  <span class="code-keyword">if</span> (fileToSave.FilePath == <span class="code-keyword">null</span> || saveAsFlag)
+  {
+    <span class="code-keyword">var</span> dlg = <span class="code-keyword">new</span> SaveFileDialog();
+    <span class="code-keyword">if</span> (dlg.ShowDialog().GetValueOrDefault())
+      fileToSave.FilePath = dlg.SafeFileName;
+  }
+
+  File.WriteAllText(fileToSave.FilePath, fileToSave.Document.Text);
+  ActiveDocument.IsDirty = <span class="code-keyword">false</span>;
+}</pre>
+
+<p>
+AvalonEdit also supports standard WPF Application level commands, such as:
+</p>
+
+<ul><li>Copy, Cut, Paste, Delete, Undo, Redo and Select All </li></ul>
+
+<p>The .Net Framwork Designers from Microsoft have <a href="http://msdn.microsoft.com/de-de/library/system.windows.input.applicationcommands.aspx">defined these ApplicationCommands</a> with the intention that control and application developers should re-use them whenever they can. Using these commands in our application requires, therefore, nothing less but adding the images in the icons folder plus the corresponding button definitions in the tool bar section of the MainWindow.xaml view:
+</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">ToolBarTray</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">1"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span> <span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">ToolBar</span>  <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Stretch"</span> <span class="code-attribute">ToolBarTray.IsLocked</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+            <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span><span class="code-keyword">&gt;</span>
+
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Button</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Copy"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+            <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Copy32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Button</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Button</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Cut"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+            <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Cut32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Button</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Button</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Paste"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+            <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Paste32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Button</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Button</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Delete"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+            <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Delete32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Button</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Separator</span> <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">3"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Button</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Undo"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+          <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Undo32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Button</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Button</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Redo"</span> <span class="code-attribute">SnapsToDevicePixels</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+          <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Redo32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">32"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Button</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ToolBar</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ToolBarTray</span><span class="code-keyword">&gt;</span></pre>
+
+<p>This principle is so simple in its application that we can also implement a context menu by simply adding the XAML in the controls definition tag:</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span> <span class="code-attribute">Document</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Document, UpdateSourceTrigger=PropertyChanged}"</span><span class="code-keyword">&gt;</span>
+...
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor.ContextMenu</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">ContextMenu</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Cut"</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Cut"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Cut32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">16"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Copy"</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Copy"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Copy32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">16"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Paste"</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Paste"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Paste32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">16"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Delete"</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Delete"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Delete32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">16"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem</span><span class="code-keyword">&gt;</span>
+   <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">SelectAll"</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Select All"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">Separator</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Undo"</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Undo"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Undo32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">16"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">Command</span><span class="code-keyword">="</span><span class="code-keyword">Redo"</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Redo"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/Edit_Redo32.png"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">16"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem.Icon</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ContextMenu</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">avalonEdit:TextEditor.ContextMenu</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">avalonEdit:TextEditor</span><span class="code-keyword">&gt;</span></pre>
+
+<p>And thats it. Thats all there is to replace the standard WPF textbox with the AvalonEdit control in AvalonDock [2.0].
+</p>
+
+<h2>Add Syntax Highlighting</h2>
+
+<p>Coloring text based on rules of regular expressions or other search rules is usually refered to as syntax highlighting.
+The choice of syntax highlighting open source WPF editors with efficient editing is rather small to slim. The only editors that seem to fit the bill, is either the implementation of ScintillaNET (at CodePlex) or AvalonEdit from SharpDevelop. I prefer AvalonEdit since it was done from scratch in C# and WPF. 
+</p>
+
+<p>This section lists the items that are required to implement syntax highlighting in AvalonEdit. I implement a simple solution using just one highlighting pattern. I am assuming for the purpose of this sample that we want to edit and view XML only. Please review Edi [2] should you look for a more advanced solution with a reach choice of highlighting patterns.
+</p>
+
+<h3>The ViewModel</h3>
+
+<p>The AvalonEdit editor manages highlighting through the <code>IHighlightingDefinition</code> interface. A property of that type is, thus, required to enable the view to bind to it. Add a syntax highlighting property in the <strong><em>FileViewModel.cs</em></strong> class:
+&nbsp;</p>
+
+<pre lang="cs"><span class="code-preprocessor">#region</span> HighlightingDefinition
+<span class="code-keyword">private</span> IHighlightingDefinition _highlightdef = <span class="code-keyword">null</span>;
+<span class="code-keyword">public</span> IHighlightingDefinition HighlightDef
+{
+  <span class="code-keyword">get</span> { <span class="code-keyword">return</span> <span class="code-keyword">this</span>._highlightdef; }
+  <span class="code-keyword">set</span>
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>._highlightdef != value)
+    {
+      <span class="code-keyword">this</span>._highlightdef = value;
+      RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">HighlightDef"</span>);
+      IsDirty = <span class="code-keyword">true</span>;
+    }
+  }
+}
+<span class="code-preprocessor">#endregion</span></pre>
+
+<p>an add ...</p>
+
+<pre lang="cs"><span class="code-keyword">this</span>.HighlightDef = HighlightingManager.Instance.GetDefinition(<span class="code-string">"</span><span class="code-string">XML"</span>);</pre>
+
+in the FilePath property code for loading text files below the
+
+<pre lang="cs"><span class="code-keyword">this</span>._document = <span class="code-keyword">new</span> TextDocument();</pre>
+
+statement.
+
+<h3>The View</h3>
+
+<p>Add the <code>SyntaxHighlighting</code> binding in the View/MainWindow.xaml file:</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span>
+          <span class="code-attribute">Document</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Document, UpdateSourceTrigger=PropertyChanged}"</span>
+          <span class="code-attribute">SyntaxHighlighting</span><span class="code-keyword">="</span><span class="code-keyword">{Binding HighlightDef}"</span>
+          <span class="code-keyword">&gt;</span>
+          ...
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+
+<p>Now we can start the application and open any XML file to verify that XML can be viewed and edited with blue and red highlighting.&nbsp;</p>
+
+<img src="part3_screenshot.png" height="415" width="600"><br>
+
+<h2>Add more AvalonEdit features</h2>
+
+<p>
+The previous sections have shown how AvalonEdit can be used to edit text with syntax highlighting in AvalonDock [2.0]. I have stated that the <code>TextDocument</code> class based dependency property that wraps around the Text CLR property is to be used for sending text between the view and viewmodel. This design seems to be odd at first, but the implementation of the <code>IsDirty </code>property (which shows whether or not a text is edited) shows that we are still able to use bindings where appropriate.
+</p>
+
+<p>
+The <code>IsDirty </code>property described below is latter constrasted with the description of the <code>IsReadOnly</code> property which shows how we can use AvalonEdit as a viewer with highlighting capabilities, and also demonstrates how document tabs can be customized in AvalonDock [2.0].
+</p>
+
+<h3>Dirty Flag Support in the View</h3>
+
+<p>
+All editors that I use these days display an asterix '*' in its window or document title when the user has edited some content (text or graphics). This common feature is called a dirty flag which can be implemented as discussed here.
+&nbsp;</p>
+
+<p>Add the <code>IsModified </code>binding in the <code>View/MainWindow.xaml</code> file:</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span>
+  <span class="code-attribute">Document</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Document, UpdateSourceTrigger=PropertyChanged}"</span>
+  <span class="code-attribute">SyntaxHighlighting</span><span class="code-keyword">="</span><span class="code-keyword">{Binding HighlightDef}"</span>
+  <span class="code-attribute">IsModified</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=IsDirty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"</span>
+          <span class="code-keyword">&gt;</span>
+          ...
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+
+<h3>Dirty Flag Support in the ViewModel</h3>
+
+<p>Add the initializing IsDirty statement:</p>
+
+<code>this._isDirty = false;</code>
+
+<p>in the text loading code of the FilePath property in the FileViewModel class.</p>
+
+<p>Next, we need to override the Title property in the FileViewModel class as it is otherwise inherited from the PaneViewModel class. This inheritance is required to simplify the <code>RaisePropertyChanged("Title");</code> call in the IsDirty property code, which makes sure that the document Title is displayed with asterix when the text is edited.</p>
+
+<p>So, we need to add an override Title to the FileViewModel and add<code> RaisePropertyChanged("Title");</code> call into the IsDirty property as listed below:</p>
+
+<pre lang="cs"><span class="code-preprocessor">#region</span> Title
+<span class="code-keyword">public</span> <span class="code-keyword">string</span> Title
+{
+  <span class="code-keyword">get</span>
+  {
+    <span class="code-keyword">return</span> System.IO.Path.GetFileName(<span class="code-keyword">this</span>.FilePath) + (<span class="code-keyword">this</span>.IsDirty == <span class="code-keyword">true</span> ? <span class="code-string">"</span><span class="code-string">*"</span> :
+                                                                                <span class="code-keyword">string</span>.Empty);
+  }
+
+  <span class="code-keyword">set</span>
+  {
+    <span class="code-keyword">base</span>.Title = value;
+  }
+}
+<span class="code-preprocessor">#endregion</span>
+
+<span class="code-preprocessor">#region</span> IsDirty
+
+<span class="code-keyword">private</span> <span class="code-keyword">bool</span> _isDirty = <span class="code-keyword">false</span>;
+<span class="code-keyword">public</span> <span class="code-keyword">bool</span> IsDirty
+{
+  <span class="code-keyword">get</span> { <span class="code-keyword">return</span> _isDirty; }
+  <span class="code-keyword">set</span>
+  {
+    <span class="code-keyword">if</span> (_isDirty != value)
+    {
+      _isDirty = value;
+      RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">IsDirty"</span>);
+      RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">FileName"</span>);
+      RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">Title"</span>);
+    }
+  }
+}
+
+<span class="code-preprocessor">#endregion</span></pre>
+
+<p>Now opening a file and editing it should result in an asterix being displayed in the document tab title.</p>
+
+<img src="part3_screenshot_isdirtyflag.png" height="310" width="454"><br>
+
+<h2>Read Only Viewer support</h2>
+
+<p>I frequently encounter the case where I want to edit a file and its just not possible because the file is read-only, open in another application, or not accessible for some other reason. This inaccessability itself is usually not a problem once it is understood. My problem is usually a usability problem that stems from the wide range of possible implementations. Some editors will let you edit text and tell you that you cannot save it while your computer shuts down or you really have to leave in a hurry. Other editors, will not tell you anything just simply block the UI and display at as read-only (let the user wonder whats going on...).
+</p>
+
+<p>
+The solution in this section avoids the above situation by implementing a read-only text editing control (since this ensures that a file is at least read and write-able when the user started typing). And this behaviour is further improved by showing a lock symbol with tool tip in the document tab when a file cannot be opened in write mode.
+</p>
+
+<h3>IsReadOnly Support in the ViewModel</h3>
+
+<p>The <code>IsReadOnly </code>feature discussed in this section simply requires to add a boolean and a string property into the FileViewModel class. The former property tells the GUI do not edit this text document as it cannot be saved and the latter string property can be used to communicate the reason for this behaviour to the user (should there be a variety of reasons possible).&nbsp;</p>
+
+<pre lang="cs"><span class="code-preprocessor">#region</span> IsReadOnly
+<span class="code-keyword">private</span> <span class="code-keyword">bool</span> mIsReadOnly = <span class="code-keyword">false</span>;
+<span class="code-keyword">public</span> <span class="code-keyword">bool</span> IsReadOnly
+{
+  <span class="code-keyword">get</span>
+  {
+    <span class="code-keyword">return</span> <span class="code-keyword">this</span>.mIsReadOnly;
+  }
+
+  <span class="code-keyword">protected</span> <span class="code-keyword">set</span>
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.mIsReadOnly != value)
+    {
+      <span class="code-keyword">this</span>.mIsReadOnly = value;
+      <span class="code-keyword">this</span>.RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">IsReadOnly"</span>);
+    }
+  }
+}
+
+<span class="code-keyword">private</span> <span class="code-keyword">string</span> mIsReadOnlyReason = <span class="code-keyword">string</span>.Empty;
+<span class="code-keyword">public</span> <span class="code-keyword">string</span> IsReadOnlyReason
+{
+  <span class="code-keyword">get</span>
+  {
+    <span class="code-keyword">return</span> <span class="code-keyword">this</span>.mIsReadOnlyReason;
+  }
+
+  <span class="code-keyword">protected</span> <span class="code-keyword">set</span>
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.mIsReadOnlyReason != value)
+    {
+      <span class="code-keyword">this</span>.mIsReadOnlyReason = value;
+      <span class="code-keyword">this</span>.RaisePropertyChanged(<span class="code-string">"</span><span class="code-string">IsReadOnlyReason"</span>);
+    }
+  }
+}
+<span class="code-preprocessor">#endregion</span> IsReadOnly</pre>
+
+<h3>IsReadOnly Support in the View</h3>
+
+<p>
+Costummizing the document tag display in AvalonDock is rather straightforward once you know how to do it.
+Just add a <code>DocumentHeaderTemplate</code> tag into the DockingManager section in View/MainWindow.xaml:
+</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonDock:DockingManager.DocumentHeaderTemplate</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">StackPanel</span> <span class="code-attribute">Orientation</span><span class="code-keyword">="</span><span class="code-keyword">Horizontal"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBlock</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Title}"</span> <span class="code-attribute">TextTrimming</span><span class="code-keyword">="</span><span class="code-keyword">CharacterEllipsis"</span>
+             <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+  <span class="code-comment">&lt;!--</span><span class="code-keyword"><span class="code-comment"> Show IsReadOnly Icon in document tab if that properties' present and true </span>--&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">/Edi;component/Images/App/DocTab/Lock-icon.png"</span>
+         <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">3,0,0,0"</span>
+         <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image.Visibility</span><span class="code-keyword">&gt;</span>
+     <span class="code-keyword">&lt;</span><span class="code-leadattribute">PriorityBinding</span> <span class="code-attribute">FallbackValue</span><span class="code-keyword">="</span><span class="code-keyword">Collapsed"</span> <span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Binding</span> <span class="code-attribute">Path</span><span class="code-keyword">="</span><span class="code-keyword">Content.IsReadOnly"</span> <span class="code-attribute">Mode</span><span class="code-keyword">="</span><span class="code-keyword">OneWay"</span>
+                 <span class="code-attribute">Converter</span><span class="code-keyword">="</span><span class="code-keyword">{StaticResource BoolToVisibilityConverter}"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+     <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">PriorityBinding</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Image.Visibility</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image.ToolTip</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">PriorityBinding</span> <span class="code-attribute">FallbackValue</span><span class="code-keyword">="</span><span class="code-keyword">"</span><span class="code-keyword">&gt;</span>
+         <span class="code-keyword">&lt;</span><span class="code-leadattribute">Binding</span> <span class="code-attribute">Path</span><span class="code-keyword">="</span><span class="code-keyword">Content.IsReadOnlyReason"</span> <span class="code-attribute">Mode</span><span class="code-keyword">="</span><span class="code-keyword">OneWay"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">PriorityBinding</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Image.ToolTip</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Image</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">StackPanel</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">avalonDock:DockingManager.DocumentHeaderTemplate</span><span class="code-keyword">&gt;</span></pre>
+
+<p>I am using a priority binding with fallback here because I want to avoid binding errors on documents (like the StartPage) which do not support this property. I also do not want the StartPage to be editable or display the lock. So, I make this display optional as it is really not that impoartant if it is not displayed.</p>
+
+<p>Now, lets add a <code>IsReadOnly </code>binding to AvalonEdit tag to finish this off:</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span>
+          <span class="code-attribute">Document</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Document, UpdateSourceTrigger=PropertyChanged}"</span>
+          <span class="code-attribute">SyntaxHighlighting</span><span class="code-keyword">="</span><span class="code-keyword">{Binding HighlightDef}"</span>
+          <span class="code-attribute">IsModified</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=IsDirty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"</span>
+          <span class="code-attribute">IsReadOnly</span><span class="code-keyword">="</span><span class="code-keyword">{Binding IsReadOnly}"</span>
+          <span class="code-keyword">&gt;</span>
+          ...
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">avalonEdit:TextEditor</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+
+<img src="part3_screenshot_isreadonly.png" height="76" width="664"><br>
+
+<h2>Conclusions</h2>
+
+<p>This article has shown once again how WPF can be used to implement a complex application upon simple principles. We have focused in particular on the usage of the well known AvalonEdit text editor [3] in AvalonDock [4]. The last section with the lock symbol in the document tab has given us another hint towards designing interesting applications. We need to free our mind from the restrictions of past frameworks, learn new methods, and apply them with re-freshed creativity.
+</p>
+
+<h2>References</h2>
+
+</li>
+<li>[1]<br><a href="http://www.codeproject.com/Articles/483507/AvalonDock-2-0-Tutorial-Part-1-Adding-a-Tool-Windo"> AvalonDock [2.0] Tutorial Part 1 - Adding a Tool Window</a><a href="http://www.codeproject.com/Articles/483533/AvalonDock-2-0-Tutorial-Part-2-Adding-a-Start-Page"><br>
+AvalonDock [2.0] Tutorial Part 2 - Adding a Start Page</a><a></a><a target="_top" href="http://www.codeproject.com/script/Articles/ArticleVersion.aspx?waid=67837&amp;aid=570324"></a><br>
+<a href="http://www.codeproject.com/Articles/570324/AvalonDock-2-0-Tutorial-Part-4-Integrating-AvalonE" target="_top">AvalonDock [2.0] Tutorial Part 4 - Integrating AvalonEdit Options</a><br>
+
+<a href="http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi" target="_top">AvalonDock [2.0] Tutorial Part 5 - Load/Save Layout with De-Referenced DockingManager</a><br><br>
+</li>
+
+<li><a>[2]</a><a href="http://edi.codeplex.com/"> EDI from http://edi.codeplex.com/</a><a href="https://github.com/Dirkster99/EDI"></a></li><li>[3]  <a href="http://www.codeproject.com/Articles/42490/Using-AvalonEdit-WPF-Text-Editor">Using AvalonEdit (WPF Text Editor)</a> </li><li>[4]  <a href="http://avalondock.codeplex.com/">AvalonDock</a>
+	
+</li>
+
+
+
+<h2>History</h2><ul><li>31.03.2013 Published first version of this article</li></ul>
+</ul></li>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+
+</body></html>

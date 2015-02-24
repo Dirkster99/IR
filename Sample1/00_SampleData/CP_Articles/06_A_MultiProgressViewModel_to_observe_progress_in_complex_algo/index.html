@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>A MultiProgressViewModel to observe progress in complex algorithms - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="I have posted a recent article on the ProgressViewModel to show a software design that can be used for background processing in C# 4.0. This article extends that design with the ability to ouput more than one progress.; Author: Dirkster99; Updated: 20 Jan 2012; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 20 Jan 2012">
+<meta name="Keywords" content="Windows, Architect, Dev, WPF, Intermediate, C#4.0, Threading,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/317199/A-MultiProgressViewModel-to-observe-progress-in-co">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Controls">Controls</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/317199/A-MultiProgressViewModel-to-observe-progress-in-co?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">A MultiProgressViewModel to observe progress in complex algorithms</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2012-01-20 08:44:00">
+							            20 Jan 2012</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 119px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 0px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">5.00</span> (<span itemprop="ratingCount" class="count">3</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><span title="0 votes">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="3 votes, 100.0%" title="3 votes, 100.0%" border="0px" height="20px" width="20pxpx"></div><span title="3 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">5.00/5 - 3 votes</div><div class="small-text align-center subdue">μ 5.00, σ<sub>a</sub> 1.10 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">I have posted a recent article on the ProgressViewModel to show a software design that can be used for background processing in C# 4.0. This article extends that design with the ability to ouput more than one progress.</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+<li><a href="htmltitleparser.zip">Download HTML title parser - 43.9 KB</a></li>
+<li><a href="sampledata.zip">Download sample data - 2.79 MB</a></li>
+</ul>
+<h2>Introduction</h2>
+<p>Managing asynchronous tasks and connecting them with a responsive GUI has been a challenge of the past. The arrival of multi-core processors 
+and the Parallel Task library in C# have given us something to improve algorithms towards speed and efficiency. The Async CTP and C# 5.0 are still 
+not in production and it is therefore a worthwhile journey to find a stable <code>ProgressViewModel</code> that can be applied in C# 4.0. I developed this ViewModel 
+in another CodeProject article called <strong>A reusable ProgressViewModel to observe progress with MVVM</strong>.</p>
+<p>This article takes the previously shown design and extends it, such that multiple progresses can be managed within this pattern.</p>
+<h3>StyleCop</h3>
+<p>I use StyleCop in my projects to make the code readable in a uniform way. So, if you should get an error when compiling the project, you can either download and install StyleCop, or edit/remove 
+the corresponding entries in each <em>.csproj</em> file:</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Import</span> <span class="code-attribute">Project</span><span class="code-keyword">="</span><span class="code-keyword">$(ProgramFiles)\MSBuild\StyleCop\v4.5\StyleCop.Targets"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span></pre>
+<h2>Background</h2>
+<p>I am developing an application where a batch like processing is required. N items are selected and each item is processed (in sequence) in an asynchronously executing thread. 
+To simulate this situation, I have extended the demo application such that not only HTML files in a given directory are parsed but also all HTML files in all sub-directories below 
+the <em>Path</em> directory.</p>
+<p><img alt="HTMLTitleParser" src="mainwindow.png" height="386" width="600"></p>
+<p>The progress section has two progress indicators. The <em><strong>n of m</strong></em> label and the progress bar on the right-top side of the MainWindow. 
+The former indicates the directories parsed with the total number of directories, while the latter progress bar indicates (as before) the progress of parsing HTML files in any given directory.</p>
+<p>Download the attached <em>SampleData</em> if you do not have a directory with HTML files and sub-directories with more HTML files on your system. Click on the expander 
+in the lower part of the first MainWinidow, point the application to the uncompressed folder, and click the <em>Process HTML</em> button to get some processing going.</p>
+<h2>Using the Code</h2>
+<p>The extension of the <code>ProgressViewModel</code> discussed here is (in a nutshell) in the <code>MultiProgressVM</code> class where I replaced the simple properties:</p>
+<ul class="property">
+<li><code>ProgressMin</code></li>
+<li><code>ProgressMax</code></li>
+<li><code>ProgressValue</code>, and</li>
+<li><code>IsProgressVisible</code></li>
+</ul>
+<p>with arrays:</p>
+<ul>
+<li><code>ProgressMin[]</code></li>
+<li><code>ProgressMax[]</code></li>
+<li><code>ProgressValue[]</code>, and</li>
+<li><code>IsProgressVisible[]</code></li>
+</ul>
+<p>The class constructor accepts an <code>int</code> number which controls the size of these arrays (default is one). The View can then implement multiple progress indicators 
+by binding to an item in each array of properties. I wanted to keep this extension separate from the first approach because I wanted to make sure that we can see 
+the differences afterwards and I would still like to use the approach from the first <code>ProgressViewModel</code> article.</p>
+<table class="ArticleTable">
+<tbody>
+<tr>
+<td valign="top"><img alt="SolutionExplorer.png" src="solutionexplorer.png" height="361" width="232"></td>
+<td valign="top"><p>A project overview with the Visual Studio 2010 Solution Explorer shows that I added the selected classes in comparison to the previously posted 
+article on the <code>ProgressViewModel</code>.</p>
+<p>I added one more class for each object in each layer (except for the View and Result class). This shows, one more time, the layered nature of the architecture used here.</p>
+<p>The binding in the View is changed from:</p>
+<ul>
+<li><code>IsProgressVisible</code>  to <code>IsProgressVisible[index]</code></li>
+</ul>
+<p>to indicate the corresponding item in the array.</p>
+<p>A similar change can be seen in the code-behind of the <code>ProcessHTMLDirectory</code> method in the <code>MultiProcessHTML</code> class. Here, a statement, such as:</p>
+<pre lang="cs"><span class="code-keyword">this</span>.ProgressMax = files.Length;</pre>
+<p>is replaced with:</p>
+<pre lang="cs"><span class="code-keyword">this</span>.SetMaxValue(<span class="code-digit">1</span>, files.Length);</pre>
+<p>to let the bound UI know that these values have indeed changed.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>ProcessHTMLDirectory</code> method in the <code>MultiProcessHTML</code> class iterates through an inner and outer loop. The inner loop goes through each file 
+in a given directory while the outer loop iterates on each directory within the given directory.</p>
+<p>There is really not much more to say about this, other than highlighting the above differences and noting that the <code>ProgressViewModel</code> is now managing two 
+progress indicators, where it used to have one. Please make sure that you have read my first article on the <code>ProgressViewModel</code> if you find the above explanation rather too short.</p>
+<h2>Points of Interest</h2>
+<p>I was not sure whether arrays can actually be bound to UI elements. The short answer is yes, but we can no longer update values through a CLR property, 
+since C# does not support named indexers, and we are required to execute <code>OnPropertyChanged()</code> when a value changes. So, implementing a separate method 
+per arrayed property and setting the setter of each arrayed property to <code>private</code> has done the trick in my case (and I thought that implementing a separate class 
+with an indexer is besides the point and not worth the effort).</p>
+<p>Seeing the new <em><strong>n of m</strong></em> progress indicator makes me wonder about <strong><em>estimation progress indicators</em></strong> of the type: Remaining time: x minutes. 
+One simple way to do this would be to log the time it takes to execute one inner loop and simply multiply the result with the number of inner loops left. 
+This would work well if each loop requires (on average) the same amount of progressing.</p>
+<p>It would not work good if the effort required for processing varies greatly from inner loop to loop. Obviously, getting reliable estimates is a separate issue in that case. 
+Maybe this is a topic for an article three in this series...</p>
+<p>Please take a moment of your time to give me your feedback as a vote and comment.</p>
+<h2>History</h2>
+<ul>
+<li>20 January 2012: First version.</li>
+</ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+
+</body></html>

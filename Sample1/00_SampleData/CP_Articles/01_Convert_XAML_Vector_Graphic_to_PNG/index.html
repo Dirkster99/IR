@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Convert XAML Vector Graphic to PNG - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="An introduction to the usage of vector graphics as a source of bitmap graphics.; Author: Dirkster99; Updated: 23 Oct 2012; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 23 Oct 2012">
+<meta name="Keywords" content="C#, Windows, .NET, Dev, WPF, Design, Beginner, C#4.0, .NET4,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/422523/Convert-XAML-Vector-Graphic-to-PNG">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#XAML">XAML</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/422523/Convert-XAML-Vector-Graphic-to-PNG?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">Convert XAML Vector Graphic to PNG</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2012-10-23 10:42:00">
+							            23 Oct 2012</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 114px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 5px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.79</span> (<span itemprop="ratingCount" class="count">8</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="1 vote, 12.5%" title="1 vote, 12.5%" border="0px" height="2px" width="20pxpx"></div><span title="1 vote">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="7 votes, 87.5%" title="7 votes, 87.5%" border="0px" height="20px" width="20pxpx"></div><span title="7 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.79/5 - 8 votes</div><div class="small-text align-center subdue">μ 4.79, σ<sub>a</sub> 0.89 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">An introduction to the usage of vector graphics as a source of bitmap graphics.</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+<li>C# Visual Studio 2010 sources:&nbsp;<a href="xamltopng.zip">Download XAMLtoPNG.zip</a> </li>
+<li>Sample data:</li>
+<ul><li><a href="tangoproject.zip">Download TangoProject.zip</a></li>
+<li><a href="openiconlibrary.zip">Download OpenIconLibrary.zip</a>&nbsp;</li><li><a href="xamltopng_sample.zip">Download XAMLToPNG_Sample.zip</a></li>
+</ul>
+</ul>
+<h2>Introduction&nbsp;&nbsp;</h2>
+<p>I found vector graphics in the Extensible Application Markup Language&nbsp;(XAML) and determined that it is quit useful to produce icons based 
+on vector graphics since these vector graphics contain nice gradiants and other scalable items that look nice in all sorts of resolutions.</p>
+<p>Clearly,&nbsp;vector graphics do not replace a graphics designer and producing nice 16x16 pixels icons may still require manual work.&nbsp;But scalable graphics can produce impressive results beyond that size&nbsp;(eg.: 32x32 or 256x256 pixels).</p>
+<p>There are many vector graphics formats.&nbsp;But the two most popular formats that can be used for icons these days are:</p>
+<ul>
+<li>Extensible Application Markup Language&nbsp;(XAML)</li>
+<li>Scalable Vector Graphic&nbsp;(SVG)</li>
+</ul>
+<p>Please review the References section for more details on open source tools that support these technologies.</p>
+<p>I was interested in finding a way for constructing an icon set from XAML based icons. Therefore,&nbsp;I have downloaded a sample project and wrapped a command 
+line tool around it&nbsp;[2]. The result is nothing too fancy or novel but simply a command line tool that can be used to convert XAML into any PNG size of bitmap files. This tool can, among other things, be part of a build process and generate localized images based on a language/culture preference.</p>
+<p>To prove the concept I have added two sample data projects&nbsp;(one originating from SVG) and discovered a cool SVG editor called InkScape on the way&nbsp;[3].</p>
+<p>"Why doing this conversion when WPF supports XAML natively?" you may ask. Well the answer is simple once you have tried to put a number 
+of XAML based images (say 40) into their corresponding containers (say we use 40 XAML based images in 40 toolbar buttons), because you will find that 
+rendering will take a lot longer and your applications response time will slow down considerably. Thats because vector graphics consume a lot more resources 
+for their rendering than pixel based graphics do. We can of course use vector graphics in our WPF applications but this direct usage should be limited. 
+So, while we can savely introduce vector graphics as a base of our images (icons) it is still some way to go before we can use vector graphics within our actual run-time code. </p>
+<h2>How to convert XAML to PNG with the Sample Data&nbsp;</h2>
+<p>Download the <strong>XAMLtoPNG.zip</strong> file and store it in a dedicated folder. Create a new sub-folder named <strong>Data</strong> 
+in that dedicated folder and download the sample data zip files attached to this article:</p>
+<ul><li>OpenIconLibrary.zip</li><li>TangoProject.zip</li></ul>
+<p>into that folder. Now, uncompress each zip file into their sub-directory such that the contents are stored in a seperated sub-folder. 
+Your folder structure should look something like this:</p>
+<pre lang="xml">- XAMLtoPNG
+  +- XAMLtoPNG
+     +- Properties
+  
+- Data
+  +- TangoProject
+     +- PNG
+     +- XAML
+  
+  +- OpenIconLibrary
+     +- PNG
+     +- XAML</pre>
+<p>Browse into the <strong>XAMLtoPNG</strong> Visual Studio 2010 project file and compile the project with <em><strong>Rebuild All</strong></em>. 
+Make sure there is at least a Debug version of the executable, because you can use this version if you use <em><strong>Windows Explorer</strong></em> 
+to browse into the <strong><em>OpenIconLibrary</em></strong> or <em><strong>TangoProject</strong></em> directory. Review and Execute the <em><strong>Convert.bat</strong></em> file 
+in each directory.</p>
+<p>This should be all that is required to test drive the conversion from XAML to PNG. Inspect the PNG sub-folders to view the results.</p>
+<h2>Using the code</h2>
+
+<p>The code of the <strong>XMLtoPNG </strong>tool is rather small and Laurent Bugnion [2] already explains why he uses STA (single threaded apartment) in his source code. I could, of course, have removed this and could have easily made the complete command line tool be STA threaded using the appropriate <code>[STAThread]</code> property in the <code>Program</code> class. But I thought it would be more interesting to leave things as they are and add some features instead. So, I added a command line parser in the <code>Params</code> class with the ability to Zoom and resize the PNG image in the output file.</p>
+
+<p>You can use the <code>-XDPI</code> and <code>-YDPI</code> switches to zoom in and out of an image. The default size for these values is 96 DPIs and works OK for many images that I have tried.</p>
+
+<p>You can also use the <code>-XSize</code> and <code>-YSize</code> parameters to define the pixel size of the resulting PNG file being written as the result of the conversion process.</p>
+
+<p>The <code>-ScaleMode</code> can be either <code>Target</code> or <code>Original</code>. It determines whether a graphic should be scalled based on the intended output size in pixels or based on the input using only DPIs as a zoom factor. In my experience I am using only the default <code>-ScaleMode Target</code> and get along quit nicely with that. But I left this open for everyone to pick their favourite.</p>
+
+<p>Last, but not least, there are <code>-Input</code> and <code>-Output</code> parameters which determine the XAML input and the location of the PNG output. The <code>-Input</code> parameter can point to a single XAML file or to a directory containing XAML files. And the same can be true for the <code>-Output</code> parameter (refer to the sample <em><strong>Convert.bat</strong></em> files for more details).&nbsp;</p>
+
+<p>This way, we can either convert a complete directory of XAML files into PNG files or convert single files. The ouput PNG file is output at the same location as the XAML file if the output parameter is not supplied.</p>
+
+<p>The minimal required parameter is the <code>-Input</code> parameter pointing to an XAML input file.&nbsp;</p><h2>IMPORTANT NOTICE </h2><p>Use the <strong>XAMLtoPNG </strong>command line tool only to generate files in a location where temporary files are stored because the tool will overwrite existing PNG files without any further questions. The program is safe to use but I do not want anyone to loose their precious PNG files. So, just keep the icon sets that you generate with the tool in a 
+separate folder and everything should be fine.</p>
+
+
+
+<h2>How the code works</h2>
+
+<p>
+So, how does the conversion work under the hood? First, of all, there is
+either a <code>Params</code> object being constructed out of the command
+line parameters or there is an error being indicated in the main entry
+point of the Program class:
+</p>
+
+<pre lang="cs">  <span class="code-keyword">string</span> strError;
+Params progArgs;
+<span class="code-keyword">int</span> iRet = Params.ParseCmdLine(args, <span class="code-keyword">out</span> progArgs, <span class="code-keyword">out</span> strError);
+
+<span class="code-keyword">if</span> (iRet != <span class="code-digit">0</span>)
+{
+  Console.WriteLine(strError);
+  <span class="code-keyword">return</span> iRet;
+}
+
+<span class="code-keyword">if</span> (progArgs.InputFiles.Count == <span class="code-digit">0</span>)
+{
+  Console.WriteLine(<span class="code-string">"</span><span class="code-string">No XAML files found for conversion."</span>);
+  <span class="code-keyword">return</span> <span class="code-digit">0</span>;
+}
+</pre>
+
+<p>
+The <code>progArgs</code> object contains a file input <code>progArgs.InputFiles</code>
+and a file output <code>progArgs.OutputFiles</code> property which represent collections
+of (string) path references to files. This collection is iterated upon to convert each
+input file in each loop.
+</p>
+
+<pre lang="cs"><span class="code-keyword">for</span> (<span class="code-keyword">int</span> i = <span class="code-digit">0</span>; i &lt; progArgs.InputFiles.Count; i++)
+{
+  <span class="code-keyword">string</span> inputFile = progArgs.InputFiles[i];
+  <span class="code-keyword">string</span> outputFile = progArgs.OutputFiles[i];
+
+  <span class="code-keyword">try</span>
+  {
+    <span class="code-keyword">using</span> (Stream stream = File.OpenRead(inputFile))
+    {
+      <span class="code-keyword">using</span> (Stream streamOut = File.OpenWrite(outputFile))
+      {
+        XamlToPngConverter converter = <span class="code-keyword">new</span> XamlToPngConverter();
+        converter.Convert(stream, progArgs.XSize, progArgs.YSize,
+                                  progArgs.XDPI, progArgs.YDPI, progArgs.ThisScale, streamOut);
+  
+        streamOut.Close();
+      }
+    }
+  }
+  <span class="code-keyword">catch</span> (Exception ex)
+  {
+    Console.WriteLine(<span class="code-string">"</span><span class="code-string">Error converting:"</span>);
+    Console.WriteLine(inputFile);
+    Console.WriteLine(<span class="code-string">"</span><span class="code-string">into:"</span>);
+    Console.WriteLine(outputFile + <span class="code-string">"</span><span class="code-string">\n"</span>);
+    Console.WriteLine(ex.ToString());
+  }
+}
+</pre>
+
+<p>The <code>progArgs.XSize, progArgs.YSize, progArgs.XDPI, progArgs.YDPI, progArgs.ThisScale</code>
+parameters in the above main loop are either the default value set in the constructor of the
+<code>Params</code> class or the value supplied via command line as described above.
+</p>
+
+
+
+<p>Now looking into the <code>Convert</code> method of the <code>XamlToPngConverter</code> class
+we can see that a new <code>Thread</code> object named <code>pngCreationThread</code> is being created:
+</p>
+
+<code>
+Thread pngCreationThread = new Thread((ThreadStart) delegate()
+</code>
+
+<p>This <code>Thread</code> is executed as Single Threaded Apartment (STA) because WPF requires this
+when rendering is executed. The <code>Start</code> statement starts the thread in the background and
+the <code>Join</code> statement dis-continues the calling thread until the background thread is finished.
+</p>
+
+<code>
+pngCreationThread.IsBackground = true;
+pngCreationThread.SetApartmentState(ApartmentState.STA);
+pngCreationThread.Start();
+pngCreationThread.Join();
+</code>
+
+<p>Now, lets have a look at what the background thread does. Reading the XAML is just one line:</p>
+
+<code>
+element = XamlReader.Load(xamlInput) as FrameworkElement;
+</code>
+
+<p>
+where the <code>FrameworkElement</code> class is a <code>System.Windows.FrameworkElement</code> which is
+the base of a lot of controls (Page, Image, Panel) in WPF:
+http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.aspx#inheritanceContinued
+</p>
+
+<p>
+This is why we require that the input XAML must contain one of these control classes
+(or an inherited class) as the XAML root tag. I have used the <code>Canvas</code> class
+in the sample data projects above as a root tag. And it works with that because the
+<code>Canvas</code> class inherits from the <code>Panel</code> class.
+</p>
+
+<p>
+The conversion itself is implemented with the following statements:
+</p>
+
+<pre lang="cs">Size renderingSize = <span class="code-keyword">new</span> Size(width, height);
+element.Measure(renderingSize);
+Rect renderingRectangle = <span class="code-keyword">new</span> Rect(renderingSize);
+element.Arrange(renderingRectangle);
+
+BitmapSource xamlBitmap = RenderToBitmap(element, width, height, dpiX, dpiY, thisScale);
+
+PngBitmapEncoder enc = <span class="code-keyword">new</span> PngBitmapEncoder();
+enc.Frames.Add(BitmapFrame.Create(xamlBitmap));
+enc.Save(pngOutput);
+</pre>
+
+<p>
+The size of the input element (and thus the output) is set in the call to the
+<code>Arrange</code> method of the <code>FrameworkElement</code>.
+The <code>RenderToBitmap</code> method returns a <code>BitmapSource</code> object
+which is added as a frame into the the <code>PngBitmapEncoder</code> object.
+The <code>PngBitmapEncoder</code> object is then saved as PNG output file.
+</p>
+
+<p>
+The <code>RenderToBitmap</code> method is essentially the core of the business where
+the output bitmap gets rendered. It size can either be based on the original size of
+the input (this may be larger or smaller than the input) or be based on the output
+(this works like a vertical and horizontal stretch with 96 DPIs).
+</p>
+
+<pre lang="cs"><span class="code-keyword">switch</span> (thisScale)
+{
+  <span class="code-keyword">case</span> ScaleTO.OriginalSize:
+    bounds = VisualTreeHelper.GetDescendantBounds(target);
+    <span class="code-keyword">break</span>;
+  <span class="code-keyword">case</span> ScaleTO.TargetSize:
+    bounds = <span class="code-keyword">new</span> Rect(<span class="code-digit">0</span>, <span class="code-digit">0</span>, width,height);
+    <span class="code-keyword">break</span>;
+  <span class="code-keyword">default</span>:
+    <span class="code-keyword">throw</span> <span class="code-keyword">new</span> ArgumentException(<span class="code-keyword">string</span>.Format(<span class="code-string">"</span><span class="code-string">The scaling mode: {0} is not supported."</span>, thisScale.ToString()));
+}
+</pre>
+
+<h2>How the XAML works&nbsp;</h2>
+
+<p>
+The previous sections has put some light on the issue of how the C# code
+(mostly written by Laurent Bugnion) [2] works. In this section I would like
+to give some hints on how the XAML can be used to design icons without
+much effort but a descent look.
+</p>
+
+<p>
+Please download and uncompress the <code>XAMLToPNG Sample.zip</code> file
+to follow this small tutorial. The XAML files contained in this zip file
+where downloaded from from XAMLALOT [4] (see URL comment in XAML to find
+the source). Each outter convas tag from XAMLALOT has a width and height
+property which I have removed since I wanted to scale the images any way
+I would like. I have used KAXAML [1] to edit the XAML code that I have
+downloaded but you could also use any XML editor.
+</p>
+
+<p>Lets have a look at the <code>01_mail forward</code> sub-directory
+to get started. Lets open the <code>mail-forward.Canvas.XAML</code>
+file.</p>
+
+<img src="kaxam_mail-forward.canvas.png" height="390" width="542">
+
+<p>
+The symbol in this file consists of a mail letter and an arrow. Now each
+object in this XAML file is stored in a canvas or path tag. So, by simply
+removing tags we can use KAXAML to remove elements from the original file.
+</p>
+
+<p>
+We can, for example, remove the canvas tag between the lines [148 - 193]
+and end up with a nice mail symbold that has no arrow (I forgot to remove the shadow of the arrow here - do not forget that when you do it).
+</p>
+
+<img src="kaxml_mail-forward.canvas1.png" height="506" width="491">
+
+<p>
+This is how I extracted the arrow in the <code>ForwardArrow.Canvas.xaml</code> file.
+</p>
+
+<img src="mail-forward-arrow.png" height="240" width="262">
+
+<p>
+...and I also used a render transform statement in the
+<code>ForwardArrow.Canvas.xaml</code> file to have that arrow point upwards,
+which could be used for a symbol that might denote an upload or start-up process...
+&nbsp;</p>
+
+<img src="upward-arrow.png" height="210" width="262">
+
+<p>
+The letter symbol in the <code>00_letter.Canvas.xaml</code> was created in a similar
+way. I Extract the letter symbol from the <code>mail-forward.Canvas.XAML</code> file
+discussed above.
+</p>
+<p>
+The protect symbol in the <code>01_protect.Canvas.xaml</code> file was extracted from
+the <code>network-wireless-encrypted.Canvas.xaml</code> file.
+</p>
+
+<table border="0">
+<tbody><tr>
+<td>
+<img src="protectedmail.png" height="637" width="210">
+</td>
+<td>
+And last but not least, the content of both files <code>00_letter.Canvas.xaml</code>
+and <code>01_protect.Canvas.xaml</code> was moved into one final file
+<code>03_letter-protect.Canvas.xaml</code>. In which I also colored the protect
+symbol green (denoting something like a protected Email - whatever that could be).<br><br>The green color gradient of the final image was stollen from the XAML
+file in the <code>00_Go up</code> sub-directory. It is a good practice of mine to
+copy colors from other files in the same icon set because this makes it more likely
+that the result is pleasantly consistent with the rest of the icon set.
+</td>
+</tr>
+</tbody></table>
+
+<h2>More Resources</h2><p>The abundance of SVG and XAML resources on the Internet is amazing. There are a few nice icon sets from various Linux destributions [4] or other efforts that make the usage of nice icons a common thing even for home grown past time developed software.<br><br>Any of these sources can be used as a starting point. A vector editor listed in [1] or [3] can be used to edit XAML or SVG images.</p><h2>Convert SVG to XAML</h2><p>SVG images can be converted with 'SharpVectors - SVG# Reloaded' [3] into XAML (see the OpenIconLibrary.zip
+<em>Readme.txt</em> file for details). Getting a canvas based XAML requires some Search and Replace, using, for example, Notepad++.<br><br>But another tool that works without additional hazle is XAMLTune [3]. I downloaded it and was able to convert the original tango project SVG files into XAML that can directly be loaded into KAXAML. Here is a small guide to convert SVG to XAML using XAMLTune:</p><ul><li>Download and extract the zip file (I used XamlTune v0.3.zip)<br><br>Notice the 'svg2xaml' and 'XamlTune.App' sub-folders in that zip file. The executable in the former is used to convert SVG formatted files into XAML, while the later can be used to make XAML look good.</li><li>Now download a sample SVG project, for example, the Tango project from here:<br><a href="http://tango.freedesktop.org/releases/tango-icon-theme-0.8.90.tar.gz">http://tango.freedesktop.org/releases/tango-icon-theme-0.8.90.tar.gz</a>&nbsp;</li><li>Extract the files from the tango project and convert them using a command line like this (you probably have to adjust the paths):<br><code>svg2xaml\svg2xaml.exe /r .\tango-icon-theme-0.8.90\scalable</code><br><br>(scalable is the sub-folder from the tango project that contains the SVG source files)</li><li><p>I was able to convert all but one SVG file from Tango into PNGs and XAML files. This enabled me to open the XAML in the <em><strong>KAXAML</strong></em> editor without any further edits. In <em><strong>KAXAML </strong></em>there is a XAMLScrubber function that can be used to re-formate the XAML into a nice readable format.&nbsp;</p><br>I was unable to get the XAMLTune.exe to run - it crached on me a few times - but the conversion tool SVG2XAML.exe seems to work stable and with very useful XAML output.</li></ul><p><br>You can even use the Visual Studio 2010 Express designer to edit XAML images and I guess that I am telling nothing new when I say that there is a considerable range of commercial products if you need to spend some money (Expression Blend, Photoshop etc..).<br><br>Dive into it and let me know how this works for you. I find it very pleasant to edit vectors and design icons based on these whether the origin from SVG or XAML does not matter to me at all.</p>
+
+<h2>Points of Interest</h2>
+<p>A XAML to PNG conversion tool, as the one posted in this articel, might be interesting, because it may ease other people into using vector graphics 
+as a base of their icon art instead of using only bitmap images. More to the point, this conversion process could be part of a build process, if there is any need for that. 
+And this ability in turn could enable whole new ways of doing graphics designs in the future.</p>
+<h2>References</h2>
+<ul>
+
+<li>[1]<br>KAXAML <a href="http://kaxaml.codeplex.com/">http://kaxaml.codeplex.com</a><br>XDraw <a href="http://xdraw.codeplex.com/">http://xdraw.codeplex.com/</a><br>&nbsp;</li>
+<li>[2]<br>Converting and customizing XAML to PNG with server-side WPF<br><a href="http://blog.galasoft.ch/archive/2008/10/10/converting-and-customizing-xaml-to-png-with-server-side-wpf.aspx">http://blog.galasoft.ch/archive/2008/10/10/converting-and-customizing-xaml-to-png-with-server-side-wpf.aspx</a>by Laurent Bugnion<br>&nbsp;</li>
+
+<li>[3]<br>SVG Resources InkScape - Draw Freely<br><a href="http://inkscape.org/">http://inkscape.org/</a> <br><br>Graphic in XAML and WPF<br><a href="http://www.codeproject.com/Articles/22716/Graphic-in-XAML-and-WPF">http://www.codeproject.com/Articles/22716/Graphic-in-XAML-and-WPF</a> <br><br>SVG Image Control<br><a href="http://www.codeproject.com/Articles/92434/SVGImage-Control">http://www.codeproject.com/Articles/92434/SVGImage-Control</a><br><br>XAMLTune - A svg to xaml conversion library and XAML formatter that cleans and refines xaml<br><a href="http://xamltune.codeplex.com/">http://xamltune.codeplex.com/</a><br><br>SharpVectors - SVG# Reloaded<br><a href="http://sharpvectors.codeplex.com/">http://sharpvectors.codeplex.com/</a><br><br>C# SVG rendering engine<br><a href="http://svg.codeplex.com/">http://svg.codeplex.com/</a></li>
+
+<li>[4] Open Icon Library Standard Package<br><a href="http://openiconlibrary.sourceforge.net/">http://openiconlibrary.sourceforge.net</a><br><br>Tango icons<br><a href="http://commons.wikimedia.org/wiki/Tango_icons">http://commons.wikimedia.org/wiki/Tango_icons</a><br><br>Markus Egger's XAMLALOT<br><a href="http://www.xamalot.com/">http://www.xamalot.com/</a></li><li>[5] A tool to convert XAML to images in Visual Studio.<br>http://xamlimageconverter.codeplex.com/ </li>
+</ul>
+<h2>History&nbsp;</h2>
+<ul>
+<li>16.07.2012 - Posted first version of the article.&nbsp;</li>
+<li>17.07.2012 - Cleaned up minor problems code and extended article</li><li>30.07.2012 - Added small sub-section on converting SVG to XAML </li>
+</ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+</body></html>

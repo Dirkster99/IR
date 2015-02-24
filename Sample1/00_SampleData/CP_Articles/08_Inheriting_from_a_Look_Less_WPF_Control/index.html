@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Inheriting from a Look Less WPF Control - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="This article explains how to take advantage from look-less WPF controls through inheritance; Author: Dirkster99; Updated: 11 Apr 2013; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 11 Apr 2013">
+<meta name="Keywords" content="C#3.0, .NET3.5, C#, Windows, .NET, Architect, Dev, XAML, WPF, Design, Intermediate, C#4.0, expression, .NET4, Blend, .NET4.5,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/575645/Inheriting-from-a-Look-Less-WPF-Control">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Controls">Controls</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/575645/Inheriting-from-a-Look-Less-WPF-Control?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="093lzKyhTxzc27znKKPoOxn4PS0R0m9tbByTfNxlA0UpFFjKiVCOSLeXpcAVmvchOGPKtaHR9+CEYBvoo3lxFYWEJa26ySB8UyTG71X1DzpIbVxjJ3QpAlHZaYIh/knIgTrPbVWtd3UWYZUHRaP2SQmoiXyN7vXaTQCagQMmmREJ3hejIPjryVmG91fdQSSuy+vV1+WvM+ccxYHwAxdfmMDIBltON96npnGKcM+a4gsdgDscuQ8bIo54xYSXoM3++Lh9S2BtXIJ1orHrGIy0DjowXOOs/mskXmwhQ8wjMq+z2OcH+42tw9+32fZOSbh0wTHK35epKEaZXm3kGZd5ZsZSE/CHZ+cXIKkLPoLoImEvPGMKrz7FhGCQHTB/lIw6gFlKDqaEkFGGkljR25KWKjhMHom03hDraTimWiuaLf/GdOODcw64TuE9NUjjHnwf5/Y/OvtOrjtCcgqfTTMMcWaWcWFPKu+yAR8CH2m40e9+xIn9QIiqbpBx+SBqqtoHtYN1di5mXY+rdtA69P57xuZhj5wq+17ogar7IvhSnpFLDpeoGcauusOQbzrWz2e64MKAO5uI5pQSSMwpxVwlfAL4q+d+GHHhN8rNzvmViyNMLlcz6Z/6V6d1NNXWIVWh4ogVmrxCjgT0XKWdY7sXYFsmksjf4MYl11ukUhQ4XLJ4o3KM4u+7FRhfrwS9btN930gwwUHi/TWW7BiI3piMiiJ6lK24ki1jKe3VSZyXMCCcZe5YA/cEEKvy9Iy+cJZv7wQai8POKfSwzm57xVXqo0buqvtabfda8e3GgpaKIbxFjVV0CHqBuwrXaaYjRZJamKVMa8DsRB7EysGnlmraqMiDn+Syv5JRFkJQUEvyRyuKH2Zp7k86MJwQGi2heGpoW7or18wc1FmmQZr5unI1juXVJSmCQhmbwCHjbn1i/HwUvwaKJbbKcW4HFXmbaUem+nTmiNWGNw0RvFxE0ceF5J7J0+UIX3CokWtCRsieJBokv319jHJ49x/8W0BwsSxI24bfAIdaIvmj1kZ7QTXUrj+41F3zgbNkD4WLrLZ+MXpma32Gbvr0/t3VjA2xnYXT01oaRYolN8pdM33A1Mp5pWUfBBSx3VCSrb9PnGmKrLDOthACk9RwvRRdHj0UdtaZAxqB0XLCHvcmjE/s+KLNljwsqnRmLWER6NPxAGUFqVQcfpG+EQbYVfH9BesUdirBQER+OCX9m94rmDpapzw35Dm7wYFWDdRND38Q3mF4u3MQgIEZbQEixNH4SDuNMj3dSsjtT1jtEvZQCd0xq5VVRlZXWH0b3PKLNnTw2inq1UE8bnQGKzVUAsL6UXaou7+e2wBtUgvD3V6h+DV0UNg2kUVKSz3tYUaEl+yfWPNaV1LQtdYtYO106wRuHbzqizNg4fJ6R5MP6PhhEP1cijYHnTH14s5FoDKysd0Iq0v5lIVQMS/0L6MGre1CSwSMWv+LOlz3XeiilFXqSUtETAYzdI0Adg3BiUVpe9o6fIni9xJ3zP+rK5yFsXxl22vXHH9uf2tOgMEsN+y6EuJ0wdywCoGUq6H0QA0lYXNEIbhTBw+FvjB9OKc/Tk8FXsLovCZFQU/nWh0oYejC9E+YzgkSXhWqv0M3PXpyqcHxmQPnSlWenkCasSfeVnkCueB/nVtE8G5+cd36OwNvL3fgEfxd5H/lYxH/IZCsUBNzDVvPMm3lZ1lREz6W/9NXG60oH5qiBCS6Tk73X7mx5yZlF2demYAeMv5u+VyZuz+YqVD0NkGl8CYYGWNpDbia3shzJjzo1JH8GAqRrmNTVwGj7s35bTgVip+3j9OiKRYQWQFrJ7ofb46OXbWCmz6WCnvonzFv12Fgx60Hmen7P+SSmYdPHwsBiPNBgHpvbmhyA2nZB8vfrxLL25ptqB/FHrmw2V0Zib6Q68AFzBT5eEYfuOeo6ccC3K9071SJIgG66vGnwtlKKFGBWXRV24i6XJzZjPHd9QL+z+/aKIEOgajcruiHwtOT5epyQpcv1cPHguKc7v6VrieRPOF/E49tkKqqffx0ryWV/SNuttfjioor4Hi4rPWa00Fza7eSDRB1XqGKsqollFh1FDqN546vVnGe3VVkwe7nk71HnaKoP/lUUADGu2dF51FSReggSdBLntgNCc6CQ2TEibpVHBO6e4gwS7E0JZ7js/oyRRX9W/ZnrsE0/KVmRyHlRm6ePk2mzi4XlNLsZDZK09iT9AxhkMctkUgrUmAo0m8PtjqvmQIoy2M8GobPaw4abMRy2kizg2pBVVulKnbJUop5QIiWC9MVsF7rf9X1mL/piEe+fb4vsnerxXoiPTON9DVHUAIyk5aV7ghEFv8TmcGGsD5isqdO2Jx873s5zMWhzdgWjTG1fCJEzSmKV9+gaQJpqVSalpF3QAlx5SYVu5Awv7KOKVtbL7eW6KN4juQvn2Fi8QQrATe+JXsaYBEVIBOwOfTIIL3/YYAtHR02TVXyjUTL4t0rW4nSIW2lXc1qXi0sERQp8N8Knhn3UExBctzUXajlA0CJC7iJTXLu9ej/zx6IcQBeCgoGFiv7ZCeYs5i/3X+nYFWWuonyXTI=" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">Inheriting from a Look Less WPF Control</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2013-04-11 09:48:00">
+							            11 Apr 2013</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 119px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 0px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">5.00</span> (<span itemprop="ratingCount" class="count">5</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><span title="0 votes">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="5 votes, 100.0%" title="5 votes, 100.0%" border="0px" height="20px" width="20pxpx"></div><span title="5 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">5.00/5 - 5 votes</div><div class="small-text align-center subdue">μ 5.00, σ<sub>a</sub> 1.10 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">This article explains how to take advantage from look-less WPF controls through inheritance</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+<li><a href="unitcombobox_step0.zip">Download UnitCombobox_Step0.zip</a></li><li><a href="unitcombobox_step1.zip">Download UnitCombobox_Step1.zip</a></li>
+<li><a href="labelwithcontextmenu.zip">Download LabelWithContextMenu.zip</a>&nbsp;</li><li><a href="unitcombolib_sample.zip">Download UnitComboLib_Sample.zip</a></li></ul>
+<h2>Introduction</h2><p>We all know how developing software with nice GUI often requires us to use available controls and add some value here and there. 
+Developing controls based on the Windows Presentation Foundation (WPF) with the Model View ViewModel (MVVM) pattern is no different, 
+except that we can use a technology that gives us a lot of flexibility towards 
+designing a GUI that can be changed in many aspects even after the software 
+developer has finished his job. The solution presented in this article builds on 
+[1] and goes a step further by enhancing an available control (I picked Combobox [2] as sample) with a gotcha.</p>
+<p><img src="errorindicator.png" height="102" width="270"> <img src="fahrenheitliste.png" height="123" width="175"> <img src="celsiuslist.png" height="116" width="164"></p>
+
+<p>The solution presented in this article can be applied to any look-less WPF control. You should therefore, view this article as a template for future enhancements that you might be making to the existing set of controls that are at your disposal. The presented sample is so 'simple' that you could implement the same functionality by just changing the control template of the standard control. There are, however, situations in which this is not sufficient [8] where we need to add or change more than just what is presented here. You should, therefore, see this as 
+an introduction to a concept that you can apply later on to other more complex situations.</p><p>The article is presented in two parts, the next section is going to examine the general steps that are required to get us started. The next sections build on the first with a specific sample implementation.
+&nbsp;</p>
+
+<h2>Getting Started&nbsp;</h2>
+
+<p>This section contains a general guide that lists steps necessary to implement a control that inherits from another WPF control. You can safely skip to the next section if you are familiar with the general concept.</p>
+
+<p>The first step is to create a new WPF Application project called "UnitCombobox" in Visual Studio 2010 or later. Then add a Class Library project named "UnitComboLib" to this solution.
+&nbsp;</p>
+
+<p>
+Next we add the class that inherits from the WPF <code>ComboBox</code> class [2]. You can use a VS 2010 extension to add a new custom control [3] (which will essentially add a new <em>XAML</em> and <em>.cs</em> file) 
+or you can add the <em>XAML</em> and <em>.cs</em> file manually. Either way, your control 
+should be called: <code>UnitCombobox</code> and the corresponding files should be called <em>UnitCombobox.xaml</em> and <em>UnitCombobox.cs</em>.</p>
+<p>The <em>UnitCombobox.xaml</em> file should have this content:</p>
+<pre lang="xml"><span class="code-keyword">&lt;!--</span><span class="code-keyword"><span class="code-comment"> You need to associates this file in your generic.xaml file </span>--&gt;</span>
+
+ <span class="code-keyword">&lt;</span><span class="code-leadattribute">Style</span> <span class="code-attribute">TargetType</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type local:UnitCombobox}"</span><span class="code-keyword">&gt;</span>
+   &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Template"</span>&gt;
+     &lt;Setter.Value&gt;
+       &lt;ControlTemplate TargetType=<span class="code-string">"</span><span class="code-string">{x:Type local:UnitCombobox}"</span>&gt;
+         &lt;Border Background=<span class="code-string">"</span><span class="code-string">{TemplateBinding Background}"</span>
+             BorderBrush=<span class="code-string">"</span><span class="code-string">{TemplateBinding BorderBrush}"</span>
+             BorderThickness=<span class="code-string">"</span><span class="code-string">{TemplateBinding BorderThickness}"</span>&gt;
+         <span class="code-keyword">&lt;/</span><span class="code-leadattribute">Border</span><span class="code-keyword">&gt;</span>
+       <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ControlTemplate</span><span class="code-keyword">&gt;</span>
+     <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter.Value</span><span class="code-keyword">&gt;</span>
+   <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter</span><span class="code-keyword">&gt;</span>
+ <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Style</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;/</span><span class="code-leadattribute">ResourceDictionary</span><span class="code-keyword">&gt;</span></pre>
+<p>...and the <em>UnitCombobox.cs</em> file should have this content to get us started:</p>
+<pre lang="C#"><span class="code-keyword">using</span> System;
+<span class="code-keyword">using</span> System.Collections.Generic;
+<span class="code-keyword">using</span> System.Linq;
+<span class="code-keyword">using</span> System.Text;
+<span class="code-keyword">using</span> System.Windows;
+<span class="code-keyword">using</span> System.Windows.Controls;
+<span class="code-keyword">using</span> System.Windows.Data;
+<span class="code-keyword">using</span> System.Windows.Documents;
+<span class="code-keyword">using</span> System.Windows.Input;
+<span class="code-keyword">using</span> System.Windows.Media;
+<span class="code-keyword">using</span> System.Windows.Media.Imaging;
+<span class="code-keyword">using</span> System.Windows.Navigation;
+<span class="code-keyword">using</span> System.Windows.Shapes;
+
+<span class="code-keyword">namespace</span> UnitComboLib
+{
+  <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> Follow steps 1a or 1b and then 2 to use this custom control in a XAML file.
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> Step 1a) Using this custom control in a XAML file that exists in the current project.
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> Add this XmlNamespace attribute to the root element of the markup file where it is 
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> to be used:
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">     xmlns:MyNamespace="clr-namespace:UnitComboLib"
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> Step 1b) Using this custom control in a XAML file that exists in a different project.
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> Add this XmlNamespace attribute to the root element of the markup file where it is 
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> to be used:
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">     xmlns:MyNamespace="clr-namespace:UnitComboLib;assembly=UnitComboLib"
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> You will also need to add a project reference from the project where the XAML file lives
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> to this project and Rebuild to avoid compilation errors:
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">     Right click on the target project in the Solution Explorer and
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">     "Add Reference"-&gt;"Projects"-&gt;[Browse to and select this project]
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> Step 2)
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> Go ahead and use your control in the XAML file.
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">     <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">MyNamespace:UnitCombobox</span><span class="code-summarycomment">/</span><span class="code-summarycomment">&gt;</span>
+</span>  <span class="code-summarycomment">///</span><span class="code-comment">
+</span>  <span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span>  <span class="code-keyword">public</span> <span class="code-keyword">class</span> UnitCombobox : Control
+  {
+    <span class="code-keyword">static</span> UnitCombobox()
+    {
+      DefaultStyleKeyProperty.OverrideMetadata(<span class="code-keyword">typeof</span>(UnitCombobox), 
+              <span class="code-keyword">new</span> FrameworkPropertyMetadata(<span class="code-keyword">typeof</span>(UnitCombobox)));
+    }
+  }
+}</pre>
+<p>Now you have to add a reference to the standard .NET Framework assemblies "WindowsBase", "PresentationCore", 
+"PresentationFramework", and "System.XAML" into the "UnitComboLib" project if you started with an empty Class Library project.</p>
+<p>Next, we have to reference the new XAML file in a "<em>Themes/Generics.XAML</em>" file:</p>
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">ResourceDictionary</span> <span class="code-attribute">xmlns</span><span class="code-keyword">="</span><span class="code-keyword">http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>
+                    <span class="code-attribute">xmlns:x</span><span class="code-keyword">="</span><span class="code-keyword">http://schemas.microsoft.com/winfx/2006/xaml"</span><span class="code-keyword">&gt;</span>
+
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">ResourceDictionary.MergedDictionaries</span><span class="code-keyword">&gt;</span>
+    <strong><span class="code-keyword">&lt;</span><span class="code-leadattribute">ResourceDictionary</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">UnitComboLib;component/UnitCombobox.xaml"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span></strong>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ResourceDictionary.MergedDictionaries</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ResourceDictionary</span><span class="code-keyword">&gt;</span></pre>
+
+<p>...and add a <code>ThemeInfo</code> reference in the <em>AssemblyInfo.cs</em> file of the "UnitComboLib" library:</p>
+
+<pre lang="C#">[assembly: ThemeInfo(
+    ResourceDictionaryLocation.None, <span class="code-comment">//</span><span class="code-comment"> where theme specific resource dictionaries are located
+</span>
+    <span class="code-comment">//</span><span class="code-comment"> (used if a resource is not found in the page, or application resource dictionaries)
+</span>    ResourceDictionaryLocation.SourceAssembly <span class="code-comment">//</span><span class="code-comment"> where the generic resource dictionary is located
+</span>
+  <span class="code-comment">//</span><span class="code-comment"> (used if a resource is not found in the page, 
+</span>  <span class="code-comment">//</span><span class="code-comment"> app, or any theme specific resource dictionaries)
+</span>)]</pre>
+
+<p>You might already know from [1] (part 2) that these two additions are required to let the .NET 
+Framework know that we are creating an assembly that contains one or more definitions of a look-less control. The framework will use this information to look into the "<em>Themes/Generics.xaml</em>" file to find at least a standard generic definition for a control, if all else fails (e.g.: we missed to define the XAML in an application's resource dictionary files).
+</p>
+
+<p>Now that is all that is needed to define a look-less control (without inheritance) in WPF. So, let's test how we are doing so far:
+</p>
+
+<p>Add a reference from the <em>UnitCombobox</em> project into the <em>UnitComboLib</em> project. Open the <em>MainWindow.xaml</em> file and enter the following content:
+</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Window</span> <span class="code-attribute">x:Class</span><span class="code-keyword">="</span><span class="code-keyword">UnitCombobox.MainWindow"</span>
+        <span class="code-attribute">xmlns</span><span class="code-keyword">="</span><span class="code-keyword">http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>
+        <span class="code-attribute">xmlns:x</span><span class="code-keyword">="</span><span class="code-keyword">http://schemas.microsoft.com/winfx/2006/xaml"</span>
+        <span class="code-attribute">Title</span><span class="code-keyword">="</span><span class="code-keyword">MainWindow"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">350"</span> <span class="code-attribute">Width</span><span class="code-keyword">="</span><span class="code-keyword">525"</span>
+        
+        <span class="code-attribute"><strong>xmlns:unitcmb</strong></span><strong><span class="code-keyword">="</span><span class="code-keyword">clr-namespace:UnitComboLib;assembly=UnitComboLib"</span><span class="code-attribute"></span></strong>
+        <span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Grid</span><span class="code-keyword">&gt;</span>
+    <strong><span class="code-keyword">&lt;</span><span class="code-leadattribute">unitcmb:UnitCombobox</span> <span class="code-attribute">HorizontalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Left"</span> <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span>
+                          <span class="code-attribute">MinWidth</span><span class="code-keyword">="</span><span class="code-keyword">100"</span> <span class="code-attribute">MinHeight</span><span class="code-keyword">="</span><span class="code-keyword">23"</span>
+                          <span class="code-attribute">BorderBrush</span><span class="code-keyword">="</span><span class="code-keyword">Black"</span> <span class="code-attribute">BorderThickness</span><span class="code-keyword">="</span><span class="code-keyword">1"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span></strong>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Grid</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Window</span><span class="code-keyword">&gt;</span></pre>
+<p>...which should be equivalent to this:</p>
+<ul>
+	<li><a href="unitcombobox_step0.zip">Download UnitCombobox_Step0.zip</a></li>
+</ul>
+<p>...and the result should look something like this:</p>
+<p><img src="screenshot_looklesscontrolfromscratch.png" border="0"></p>
+<p>Doin' good so far. Now, you might wonder why this control is so empty and does not look like a combobox at all. That is because the XAML is empty. Its skin - so to speak - contains nothing but the standard border which can be activated with the code 
+in the <em>MainWindow.XAML</em> file.</p>
+
+<p>The next subsection lists the generic steps that are necessary to bring more life into this by implementing inheritance from a standard WPF control.
+</p>
+
+<h3>Implementing Inheritance</h3>
+
+<p>Inheriting from a look-less WPF control includes of course the trivial inheritance C# language construct  that we can add into the <em>UnitCombobox.cs</em> file. 
+So, just replace the Control statement with the <code>ComboBox</code> statement:</p>
+<pre lang="cs"><span class="code-keyword">public</span> <span class="code-keyword">class</span> UnitCombobox : Control 
+<span class="code-keyword">public</span> <span class="code-keyword">class</span> UnitCombobox : ComboBox</pre>
+<p>Now let's take a long hard look at [2] and evaluate the Syntax section and the <code>TemplatePartAttribute</code> tags there in particular: </p>
+
+<pre lang="C#">[TemplatePartAttribute(Name = <span class="code-string">"</span><span class="code-string">PART_Popup"</span>, Type = <span class="code-keyword">typeof</span>(Popup))]
+[LocalizabilityAttribute(LocalizationCategory.ComboBox)]
+[TemplatePartAttribute(Name = <span class="code-string">"</span><span class="code-string">PART_EditableTextBox"</span>, Type = <span class="code-keyword">typeof</span>(TextBox))]
+[StyleTypedPropertyAttribute(Property = <span class="code-string">"</span><span class="code-string">ItemContainerStyle"</span>, StyleTargetType = <span class="code-keyword">typeof</span>(ComboBoxItem))]
+<span class="code-keyword">public</span> <span class="code-keyword">class</span> ComboBox : Selector</pre>
+
+<p>The above tags should be added to the definition of the derived class. </p><p>These tags define that any implementation of the <code>ComboBox</code> control will have to define at least a "PART_Popup" and a "PART_EditableTextBox" component. Their particular type is indicated by this "PART_" naming convention.
+</p>
+
+<p>Now, you might wonder where on earth can I get these from and how difficult is this? Its actually not too difficult, yet. Just look up the XAML in [4] and paste both XAML sections in inverse 
+order in the <em>UnitCombobox.xaml</em> file. The resulting solution should look as indicated in <a href="unitcombobox_step1.zip">Download UnitCombobox_Step1.zip</a> and the result should look like this:
+</p>
+
+<img src="screenshot_looklesscontrolfromscratch_step1.png" border="0">
+
+<p>Yeah, that looks more like a combobox. And this is about it as far as inheritance goes. In a nutshell, that 
+is all there is to inheriting from a look-less WPF control. I hope this little guide has got you started. Come back as often as you like to get started with another cool control. The remainder of this article explains how I extended that WPF Combobox control to add a unit popup control that can be used to suggest standard values based on a given unit.
+</p>
+
+<h2>The UnitCombobox Control - Step 1</h2>
+
+<p>
+I recently set out to implement a similar zoom control as the editor of the Visual Studio 2010/2012 sports in its left bottom corner. It occurred to me that the control (even in VS 2012) has a percent character in its text portion and that it seems to be somewhat redundant there. Clearly, users can simply add an integer number and the control will translate that information back into the percentage view as we are now used to it from Office and countless other such zooming applications.
+</p>
+
+<img src="zoomcontrolinvisualstudio.png" border="0">
+
+<p>
+But my point is this: Why is the '%' character part of the text portion when WPF offers a simple mechanisms, such as, displaying a label at the exact same position? Clearly, everyone could find an improvement in that since developers do not have to worry about special parse routines and user can just enter whatever number they like. The answer to this is (most likely) history. We are so used to these that we stopped questioning - have not (yet) implemented WPF full circle and often don't see little improvements like this.
+</p>
+
+<p>
+So, my first idea was to display the "%" character in a label next to the text portion and be done with that. But that idea was quickly extended by another idea where I wanted to make the label interactive and give the user a choice as to whether they want to scale there display in terms of font size (points) or percentages relative to a font size of 12 points. The control in my head looked something like this:
+</p>
+
+<img src="extensionsketch.png" border="0">
+
+<p>
+So, I implemented a few preliminary sketches in order to get into this idea.
+</p>
+
+<p>This let me to a little side show where I investigated the usage and conversion of units in general. I briefly thought about implementing a general tool that would let you select among different units of a system (say length) and use and convert among things like Metrics and British-American System of Units. But I 
+quickly postponed that idea in favor of perusing my original goal.
+</p>
+
+<p>
+This preliminary evaluation showed that popping up the context menu on simple mouse over (instead of a click) was a no go since it could be 
+really annoying if someone went into the text portion to input text and took the mouse cursor over to the drop down section to select a default value. This workflow may not occur so often but it was already in testing 
+annoying enough to make me believe that is better to offer the additional popup context menu on a left mouse click. Which let me to look further into these ideas (where I like the Web-Link look and feel best):&nbsp;
+</p><p>
+
+</p><p><img src="weblink.png" height="166" width="277"></p><p>
+
+<img src="weblinkcontextmenu.png" height="125" width="276"></p><p><img src="boxpointer.png" height="127" width="212"></p><p><img src="boxpointercontextmenu.png" height="172" width="337"></p>
+<ul>
+	<li><a href="labelwithcontextmenu.zip">Download LabelWithContextMenu.zip</a>&nbsp;</li>
+</ul>
+<p>I developed a <code>ContextMenuBehaviour</code> behaviour [5] class for the above solution. This behavior can be attached to any <code>FrameworkElement</code> and be connected with a custom context menu that is shown on mouse click. So, this little extension lets use context menus on WPF items, such as, labels that where never designed to show a menu on left mouse click, -changing the mouse cursor on mouse over or the background color of the label is 'simple' XAML styling 
+that you can find the <em>View/DistanceConvert.xaml</em> files of the project.
+</p><p><img src="contextmenuwithlabelsolution.png" height="305" width="219">&nbsp;</p>
+
+<p>Here is for example the XAML code for web-link which is based on a textblock inside a label:</p>
+
+<pre lang="XML"><span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBlock</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding SelectedItem.DisplayNameShort}"</span> <span class="code-attribute">Name</span><span class="code-keyword">="</span><span class="code-keyword">LabelTextBlock"</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBlock.Style</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Style</span> <span class="code-attribute">TargetType</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type TextBlock}"</span><span class="code-keyword">&gt;</span>
+    &lt;Style.Triggers&gt;
+      &lt;Trigger Property=<span class="code-string">"</span><span class="code-string">IsMouseOver"</span> Value=<span class="code-string">"</span><span class="code-string">true"</span>&gt;
+        &lt;Setter Property=<span class="code-string">"</span><span class="code-string">TextDecorations"</span> Value=<span class="code-string">"</span><span class="code-string">Underline"</span> /&gt;
+        &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Cursor"</span> Value=<span class="code-string">"</span><span class="code-string">Hand"</span> /&gt;
+      <span class="code-keyword">&lt;/</span><span class="code-leadattribute">Trigger</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Style.Triggers</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Style</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;/</span><span class="code-leadattribute">TextBlock.Style</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">TextBlock</span><span class="code-keyword">&gt;</span></pre>
+
+<p>The <code>Command</code>, <code>Unit</code>, and <code>ViewwModel</code> packages in the above solution contain the well known <code>RelayCommand</code> class [6], a set of unit conversion classes, and the ViewModel classes necessary to drive the label-contextmenu control. You will see similar packages in the final solution, so you might want to revisit this project if you want to analyze a detail that is otherwise hard to understand in the final project.
+</p>
+
+<p>
+The above solution contains a converter that is used to convert between the entered string in the textbox and the back end <code>double</code> value in the <code>UnitViewModel</code> class. It turned out later that we do not need this converter since the WPF framework does inject a standard converter if none is supplied in this case.
+</p>
+
+<p>
+I ended up removing the converter solution, because it turned out that the user guidance with error feedback on entering specific values was too complicated to implement with a converter. Therefore, the final solution follows this approach [7] that suggest to implement the logic in the ViewModel using the <code>IDataErrorInfo</code> interface.</p>
+
+<p>So, lets have a look at the final solution in the next section.</p>
+
+<h2>The UnitCombobox Control - Step 2</h2>
+<ul>
+	<li><a href="unitcombolib_sample.zip">Download UnitComboLib_Sample.zip</a></li>
+</ul>
+<p><img src="comboboxweblinkpointer.png" height="159" width="316"></p><h2><img src="comboboxweblinkpointercontextmenu.png" height="160" width="430"></h2><p>
+
+</p><p>The final solution contains a combobox with an editable text portion and the clickable label which sports the context menu described in the previous section.</p>
+
+<p>
+An important assumption on this control is that the back end of the application does in fact work with Degree Celsius rather than any other unit of temperature. This Celsius Degree value is, therefore, shown in the test application and is computed in the <code>UnitViewModel</code> (you might want to use a different unit instead):
+</p>
+
+<pre lang="C#"><span class="code-keyword">public</span> <span class="code-keyword">double</span> TemperatureCelsius
+{
+  <span class="code-keyword">get</span>
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.SelectedItem != <span class="code-keyword">null</span>)
+    {
+      <span class="code-keyword">double</span> d = <span class="code-keyword">this</span>.mUnitConverter.Convert(<span class="code-keyword">this</span>.SelectedItem.Key,
+                                             <span class="code-keyword">this</span>.mValue, Itemkey.TemperaturCelsius);
+
+      <span class="code-keyword">return</span> d;
+    }
+
+    <span class="code-comment">//</span><span class="code-comment"> Fallback to default if all else fails
+</span>    <span class="code-keyword">return</span> Unit.Temperature.ConverterTemperature.DefaultTemperatureCelsius;
+  }
+}</pre>
+
+<p>The key to understanding this control from scratch is in the <em>Themes/Generic.xaml</em> file. This file is evaluated when the system looks for the generic skin of the control (if none other is supplied) [1]. 
+The <em>Generic.xaml</em> file includes the <em>UnitCombobox.xaml</em> file which contains the actual skin of the derived combobox control. 
+The XAML is almost identical to the ControlTemplate example [4]. The interesting and unique part of this solution is the label definition with 
+its textblock (and triggers as described previously):</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Label</span> <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">0"</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">1"</span>
+       <span class="code-attribute">Padding</span><span class="code-keyword">="</span><span class="code-keyword">0"</span>
+       <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">1,0,3,0"</span>
+       <span class="code-attribute">BorderThickness</span><span class="code-keyword">="</span><span class="code-keyword">0"</span>
+       <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding SelectedItem.DisplayNameLong}"</span>
+       <span class="code-attribute">HorizontalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Left"</span>
+       <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span> <span class="code-attribute">VerticalContentAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Center"</span>
+       <span class="code-attribute">behav:ContextMenuBehaviour.MenuList</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ElementName=contextMenuOnUniLabel1}"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Label.ContextMenu</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">ContextMenu</span> <span class="code-attribute">Name</span><span class="code-keyword">="</span><span class="code-keyword">contextMenuOnUniLabel1"</span> <span class="code-attribute">ItemsSource</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=UnitList}"</span> <span class="code-attribute">Placement</span><span class="code-keyword">="</span><span class="code-keyword">Bottom"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">ContextMenu.ItemContainerStyle</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Style</span> <span class="code-attribute">TargetType</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type MenuItem}"</span><span class="code-keyword">&gt;</span>
+          &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Command"</span> 
+               Value=<span class="code-string">"</span><span class="code-string">{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}, 
+                          Path=DataContext.SetSelectedItemCommand}"</span>/&gt;
+          &lt;Setter Property=<span class="code-string">"</span><span class="code-string">CommandParameter"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Key}"</span>/&gt;
+          &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Header"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding DisplayNameLongWithShort}"</span> /&gt;
+        <span class="code-keyword">&lt;/</span><span class="code-leadattribute">Style</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ContextMenu.ItemContainerStyle</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ContextMenu</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Label.ContextMenu</span><span class="code-keyword">&gt;</span>
+
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBlock</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding SelectedItem.DisplayNameShort}"</span> <span class="code-attribute">Name</span><span class="code-keyword">="</span><span class="code-keyword">LabelTextBlock"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBlock.Style</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Style</span> <span class="code-attribute">TargetType</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type TextBlock}"</span><span class="code-keyword">&gt;</span>
+      &lt;Style.Triggers&gt;
+        &lt;Trigger Property=<span class="code-string">"</span><span class="code-string">IsMouseOver"</span> Value=<span class="code-string">"</span><span class="code-string">true"</span>&gt;
+          &lt;Setter Property=<span class="code-string">"</span><span class="code-string">TextDecorations"</span> Value=<span class="code-string">"</span><span class="code-string">Underline"</span> /&gt;
+          &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Cursor"</span> Value=<span class="code-string">"</span><span class="code-string">Hand"</span> /&gt;
+        <span class="code-keyword">&lt;/</span><span class="code-leadattribute">Trigger</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Style.Triggers</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Style</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;/</span><span class="code-leadattribute">TextBlock.Style</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">TextBlock</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Label</span><span class="code-keyword">&gt;</span></pre>
+<p>This label is bound to a <code>UnitViewModel</code> object when the control is instanciated in the <em>MainWindow.xaml</em> class (shown in the next listing below). 
+The <code>SelectedItem</code> property is the corresponding property based on the <code>ListItem</code> class. The context menu items are populated from the <code>UnitList</code> 
+collection in the <code>UnitViewModel</code> object. The behaviour drives the left mouse click on the label as described before and the style in the textblock section 
+gives the user an indication that he hovers over something that might be click-able.</p>
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">unit:UnitCombobox</span> <span class="code-attribute">DataContext</span><span class="code-keyword">="</span><span class="code-keyword">{Binding SizeUnitLabel}"</span>
+                   <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">1"</span>
+                   <span class="code-attribute">Padding</span><span class="code-keyword">="</span><span class="code-keyword">0"</span>
+                   <span class="code-attribute">BorderThickness</span><span class="code-keyword">="</span><span class="code-keyword">1"</span>
+                   <span class="code-attribute">BorderBrush</span><span class="code-keyword">="</span><span class="code-keyword">Transparent"</span>
+                   <span class="code-attribute">ItemsSource</span><span class="code-keyword">="</span><span class="code-keyword">{Binding SelectedItem.DefaultValues}"</span>
+                   <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ValueTip}"</span>
+                   <span class="code-attribute">IsEditable</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+                   <span class="code-attribute">HorizontalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Stretch"</span> <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Top"</span>
+                   <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">0"</span> <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">0"</span> <span class="code-attribute">Grid.ColumnSpan</span><span class="code-keyword">="</span><span class="code-keyword">3"</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">unit:UnitCombobox.Text</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Binding</span> <span class="code-attribute">Path</span><span class="code-keyword">="</span><span class="code-keyword">StringValue"</span> <span class="code-attribute">Mode</span><span class="code-keyword">="</span><span class="code-keyword">TwoWay"</span> <span class="code-attribute">ValidatesOnDataErrors</span><span class="code-keyword">="</span><span class="code-keyword">True"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">unit:UnitCombobox.Text</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">unit:UnitCombobox</span><span class="code-keyword">&gt;</span></pre>
+<p>The code above is pretty much standard XAML for using comboboxes. Interesting here is the ToolTip binding which is used to give the user an initial hint towards he expectations on the input side of things.  And the <code>ValidatesOnDataErrors="True"</code> bit tells WPF that a value to the string property <code>StringValue</code> may be assigned but has to be verified on each edit as Josh Smith already documented in his article [7]. Errors in validation are then highlighted with the WPF standard red frame and a corresponding tooltip.
+</p>
+
+<p>
+The <code>UnitViewModel</code> class is the main ViewModel class of the <code>UnitCombobox</code> control. It is 
+instantiated via the <code>AppViewModel</code> class in the UnitCombobox tet application project.
+</p>
+
+<p>
+The <code>UnitViewModel</code> class is the main ViewModel class of the <code>UnitCombobox</code> control. It is 
+instantiated via the <code>AppViewModel</code> class in the UnitCombobox test application project.
+</p>
+
+<p>
+The <code>SetSelectedItemCommand ICommand</code> property in the <code>UnitViewModel</code> class fires off the command that is executed whenever the user changes the display unit via the context menu entry. This command executes the <code>SetSelectedItemExecuted</code> method, which in turn:
+</p>
+
+<ul>
+<li>Finds the next selected unit in the <code>this.mUnitList</code> collection,</li>
+<li>Computes the conversion on the current double value (via the Unit package represented with the <code>mUnitConverter</code> field),</li>
+<li>and sets the current unit to the selected unit (<code>this.mSelectedItem = li;</code>).</li>
+</ul>
+
+<p>The <code>IsDoubleWithinRange</code> method in the <code>UnitViewModel</code> class checks whether the current value is ok or not and implements the corresponding action. 
+It is invoked via the <code>IDataErrorInfo</code> interface as pointed out previously [7].</p>
+<h2>Conclusions</h2>
+
+<p>
+This project has shown another angle on applying WPF to interesting user interface solutions. It turns out that deriving from existing WPF controls and enhancing their capabilities can be done by re-defining their XAML skin and supplying a corresponding ViewModel. This is of course not a limitation, we can always add dependency properties and other gotchas if required, but it is awesome to see the 
+possibilities that are based on these rather 'simple' extensions.
+</p>
+
+<p>
+I recently learned how to extend WPF controls through inheritance and wanted to pass this on to those who code. Please give me your feedback to find and correct possible errors. Let me know what you think about the control proposed here.
+</p>
+<h2>References </h2>
+<ul>
+  <li>[1] CodeProject Composition article:
+	<a href="http://www.codeproject.com/Articles/332539/WPFControlCompositionPart1of2" target="_top">http://www.codeproject.com/Articles/332539/WPFControlCompositionPart1of2
+    </a><a href="http://www.codeproject.com/Articles/332541/WPFControlCompositionPart2of2" target="_top">http://www.codeproject.com/Articles/332541/WPFControlCompositionPart2of2</a></li>
+
+  <li>[2] WPF Combobox Reference at MSDN:
+	<a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.combobox.aspx" target="_top">http://msdn.microsoft.com/en-us/library/system.windows.controls.combobox.aspx</a></li>
+
+  <li>[3] Custom Control with Resource Dictionary (WPF):
+	<a href="http://visualstudiogallery.msdn.microsoft.com/c9fb078c-cc42-401c-a6ea-1e670a55e450" target="_top">http://visualstudiogallery.msdn.microsoft.com/c9fb078c-cc42-401c-a6ea-1e670a55e450</a></li>
+
+  <li>[4] ComboBox ControlTemplate Example:
+	<a href="http://msdn.microsoft.com/en-us/library/vstudio/ms752094%28v=vs.90%29.aspx" target="_top">http://msdn.microsoft.com/en-us/library/vstudio/ms752094%28v=vs.90%29.aspx</a></li>
+
+  <li>[5] Pattern in Attached Behaviours:
+	<a href="http://www.codeproject.com/Articles/422537/Patterns-in-Attached-Behaviours" target="_top">http://www.codeproject.com/Articles/422537/Patterns-in-Attached-Behaviours</a></li>
+
+  <li>[6] WPF Apps With The Model-View-ViewModel Design Pattern:
+	<a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx" target="_top">http://msdn.microsoft.com/en-us/magazine/dd419663.aspx</a></li>
+
+  <li>[7] Using a ViewModel to Provide Meaningful Validation Error Messages:
+	<a href="http://joshsmithonwpf.wordpress.com/2008/11/14/using-a-viewmodel-to-provide-meaningful-validation-error-messages/" target="_top">http://joshsmithonwpf.wordpress.com/2008/11/14/using-a-viewmodel-to-provide-meaningful-validation-error-messages/</a> </li><li>[8]&nbsp;Making AvalonEdit MVVM compatible:
+	<a href="http://stackoverflow.com/questions/12344367/making-avalonedit-mvvm-compatible" target="_top">http://stackoverflow.com/questions/12344367/making-avalonedit-mvvm-compatible</a></li>
+</ul>
+<h2>History</h2>
+
+<ul>
+<li>10. April 2013 Initial creation.</li></ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+
+</body></html>

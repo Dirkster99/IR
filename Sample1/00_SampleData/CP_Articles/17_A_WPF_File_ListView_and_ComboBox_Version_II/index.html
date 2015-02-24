@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>A WPF File ListView and ComboBox (Version II) - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="This is an alternative for &quot;A WPF File ListView and ComboBox&quot;; Author: Dirkster99; Updated: 30 Jul 2014; Section: List Controls; Chapter: Desktop Development; Updated: 30 Jul 2014">
+<meta name="Keywords" content="C#, Windows, .NET, Dev, WPF, Intermediate, C#4.0,List Controls,Desktop Development,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/760603/A-WPF-File-ListView-and-ComboBox-Version-II">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/760603/A-WPF-File-ListView-and-ComboBox-Version-II?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">A WPF File ListView and ComboBox (Version II)</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2014-07-30 14:34:00">
+							            30 Jul 2014</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 118px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 1px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.95</span> (<span itemprop="ratingCount" class="count">12</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="1 vote, 8.3%" title="1 vote, 8.3%" border="0px" height="1px" width="20pxpx"></div><span title="1 vote">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="11 votes, 91.7%" title="11 votes, 91.7%" border="0px" height="20px" width="20pxpx"></div><span title="11 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.95/5 - 12 votes</div><div class="small-text align-center subdue">μ 4.96, σ<sub>a</sub> 1.06 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">This is an alternative for "A WPF File ListView and ComboBox"</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul>
+	<li><a href="filelistview_version_2.zip">Download FileListView_Version_2.zip</a></li>
+	<li><a href="filelistview_version_2_binaries.zip">Download FileListView_Version_2_Binaries.zip</a></li>
+	<li><a href="filelistview_version_2.1.zip">Download FileListView_Version_2.1.zip</a></li>
+</ul>
+
+<p><strong>The project is now maintained here</strong>: <a href="http://fsc.codeplex.com/" target="_top">http://fsc.codeplex.com/</a></p>
+
+<h2>Introduction &nbsp;</h2>
+
+<p>I was recently asked to add a 'File Tree Pane' into my editor (https://edi.codeplex.com/discussions/541888) and went looking for a good solution, because the component is really missing and it really bothers me too. The best solution I found, was written by Thomas Willwacher, as usual, here at CodeProject. I really like the concept that Thomas is using and reviewed the project in terms of integrating it in my editor, and while that is still too come, I found already some issues that would probably be difficult to fix in a project that is driven by an IoC (which I'd like to do next).</p>
+
+<p><img src="explorercontroldemo.png" height="191" width="349"> <img src="folderbrowserdialog.png" height="191" width="290"></p>
+
+<p>It is difficult to write this down correctly, so do not get me wrong here, I am really grateful that Thomas has posted his solution. Because I am not even sure whether I could have developed such a nice File Explorer concept to start with. But I saw architectural issues and I decided to get this done instead of putting it off. So, here is my take on this solution. I am posting it here in the hope that it is useful to others and that we might be able to develop this even further.</p>
+
+<h2>Background</h2>
+
+<p>The solution presented here is about a File Explorer control that can be used in a Tool Window. The user should be able to browse directories, list their files, filter on the listed files, and open files via double click, drag &amp; drop and context menu. The Drag &amp; Drop and Context menu part is not presented here since I do not think this would be hard to add. The solution presented here is just about the same test application that Thomas had posted in his article. I only added a directory browser control and developed the architecture from scratch with MVVM in mind.</p>
+
+<h2>Using the code</h2>
+
+<p>The current articles discusses the code in FileListView_Version2.zip in the download section. The FileListView_Version2.1.zip in the download section is a refactored version that is currently under development based on my observations and <a href="http://www.codeproject.com/script/Membership/View.aspx?mid=2474203">Leung Yat Chun</a>'s suggestions in the forum's section.&nbsp;</p>
+
+<p>Re-using the code of the provided solution requires that you reference the Dll assemblies (FileListView and FolderBrowser), and copy &amp; parts of the MainWindow.xaml code into your own view implementation. You will also need the code MainWindow.xaml.cs to create the necessary viewmodels. This is about all you need to re-use this solution in your own projects.</p>
+
+<h2>Points of Interest</h2>
+
+<p>The solution presented here contains 4 projects:</p>
+
+<ul>
+	<li>FileListView, FileListViewTest and</li>
+	<li>FolderBrowser, TestFolderBrowser.</li>
+</ul>
+
+<p>The FileListView project is the assembly that contains the meat of the File Explorer controls that this article is focusing on. The FolderBrowser project originates from a different CodeProject article [2] and was included here since I felt that I did not need a Recent Files selection but a Recent Locations selection. So, re-factored this solution, as well, and included the result here.</p>
+
+<p>The 'Test' projects in this solution contain a demo application that can be executed to check out how things work. The remainder of this article will focus on the FileListView project but feel free to ask questions/demand more information if you feel that I should document the FolderBrowser part in more detail.</p>
+
+<h2>The Views in the FileListView Project</h2>
+
+<p>The FileListView project is mainly partitioned in 3 views that are completely separated from each other.</p>
+
+<p><img src="viewclasses.png" height="127" width="630"></p>
+
+<h3>FilterComboBox</h3>
+
+<p>The FilterComboBox inherits from the ComboBox control [3] and should be fully theme-able since I'd like to support bright and dark skins. This is basically the control where you enter such filter as: '*.png', '*.*', or (I extended this) '*.png|*.jpg|*.jpeg'. This filter is then applied to the list of files when the user selects the filter or presses the enter key in the text portion of the combobox.</p>
+
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">fview:FilterComboBox</span> <span class="code-attribute">DataContext</span><span class="code-keyword">="</span><span class="code-keyword">{Binding FolderView.Filters}"</span>
+                      <span class="code-attribute">ItemsSource</span><span class="code-keyword">="</span><span class="code-keyword">{Binding CurrentItems}"</span>
+                      <span class="code-attribute">SelectedItem</span><span class="code-keyword">="</span><span class="code-keyword">{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"</span>
+                      <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding CurrentFilter, UpdateSourceTrigger=PropertyChanged}"</span>
+
+                      <span class="code-attribute">fvbehav:SelectionChangedCommand.ChangedCommand</span><span class="code-keyword">="</span><span class="code-keyword">{Binding SelectionChanged}"</span>
+                      <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Top"</span>
+                      <span class="code-attribute">HorizontalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Stretch"</span>
+                      <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">3"</span>
+                      <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">3"</span>
+                    <span class="code-keyword">/</span><span class="code-keyword">&gt;</span> </pre>
+
+<p>The above code shows how the FilterComboBox control is implemented in the MainWindow's Xaml. A noteworthy item is the <code>SelectionChangedCommand </code>behavior [4] which is basically a custom ComboBox behavior that binds itself to to the <code>KeyUp</code> and <code>SelectionChanged </code>event of the combobox. The behavior executes the bound <code>SelectionChanged</code> command in the FolderComboBoxViewModel when either event occurs. This in turn executes the <code>SelectionChanged_Executed</code> method which evaluates whether the currently entered path refers to a valid directory or not. The method raises the OnCurrentPathChanged event of the <code>FolderChangedEventArgs</code> type if the entered path was in fact in existence. This event is received by another viewmodel discussed further below.</p>
+
+<h3>FolderComboBox</h3>
+
+<p>The FolderComboBox control is the combobox that keeps the list of folders that a user can select as the base of his exploration. This includes the usual suspects, such as, Desktop, My Documents, and Drives but also contains a list of Recent Locations:</p>
+
+<p><img src="foldercombobox.png" height="251" width="196"></p>
+
+<p>The FolderComboBox makes also use of the SelectionChanged behavior discussed above. It is very similar to the FilterComboBox except for 2 additions:</p>
+
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Setter</span> <span class="code-attribute">Property</span><span class="code-keyword">="</span><span class="code-keyword">ItemTemplate"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Setter.Value</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">DataTemplate</span> <span class="code-attribute">DataType</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type vm:FSItemVM}"</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Grid</span> <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding FullPath}"</span> <span class="code-attribute">ToolTipService.IsEnabled</span><span class="code-keyword">="</span><span class="code-keyword">{Binding ShowToolTip}"</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Grid.ColumnDefinitions</span><span class="code-keyword">&gt;</span>
+          <span class="code-keyword">&lt;</span><span class="code-leadattribute">ColumnDefinition</span> <span class="code-attribute">Width</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Indentation}"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+          <span class="code-keyword">&lt;</span><span class="code-leadattribute">ColumnDefinition</span> <span class="code-attribute">Width</span><span class="code-keyword">="</span><span class="code-keyword">20"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+          <span class="code-keyword">&lt;</span><span class="code-leadattribute">ColumnDefinition</span> <span class="code-attribute">Width</span><span class="code-keyword">="</span><span class="code-keyword">100"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Grid.ColumnDefinitions</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Grid.RowDefinitions</span><span class="code-keyword">&gt;</span>
+          <span class="code-keyword">&lt;</span><span class="code-leadattribute">RowDefinition</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Grid.RowDefinitions</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">0"</span> <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">1"</span> <span class="code-attribute">Source</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=DisplayIcon}"</span> <span class="code-attribute">Width</span><span class="code-keyword">="</span><span class="code-keyword">16"</span> <span class="code-attribute">Height</span><span class="code-keyword">="</span><span class="code-keyword">16"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-leadattribute">TextBlock</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">0"</span> <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">2"</span> <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding DisplayName}"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Grid</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter.Value</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter</span><span class="code-keyword">&gt;</span></pre>
+
+<p>This ItemTemplate shows tha items display in the drop-down section of the ComboBox consist of an Image and a TextBlock. The ItemTemplate binds to instances of the ItemVM type which is part of the <code>ObservableCollection&lt;FSItemVM&gt; CurrentItems</code> collection in the FolderComboBoxViewModel.</p>
+
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Setter</span> <span class="code-attribute">Property</span><span class="code-keyword">="</span><span class="code-keyword">ItemContainerStyle"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">Setter.Value</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Style</span> <span class="code-attribute">TargetType</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type ComboBoxItem}"</span> <span class="code-attribute">BasedOn</span><span class="code-keyword">="</span><span class="code-keyword">{StaticResource {x:Type ComboBoxItem}}"</span><span class="code-keyword">&gt;</span>
+      &lt;Style.Triggers&gt;
+        &lt;DataTrigger Binding=<span class="code-string">"</span><span class="code-string">{Binding}"</span> Value=<span class="code-string">"</span><span class="code-string">{x:Null}"</span>&gt;
+          &lt;Setter Property=<span class="code-string">"</span><span class="code-string">IsEnabled"</span> Value=<span class="code-string">"</span><span class="code-string">False"</span> /&gt;
+          &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Template"</span>&gt;
+            &lt;Setter.Value&gt;
+              &lt;ControlTemplate TargetType=<span class="code-string">"</span><span class="code-string">{x:Type ComboBoxItem}"</span>&gt;
+                &lt;Separator Width=<span class="code-string">"</span><span class="code-string">0"</span> Height=<span class="code-string">"</span><span class="code-string">10"</span>/&gt;
+              <span class="code-keyword">&lt;/</span><span class="code-leadattribute">ControlTemplate</span><span class="code-keyword">&gt;</span>
+            <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter.Value</span><span class="code-keyword">&gt;</span>
+          <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter</span><span class="code-keyword">&gt;</span>
+        <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">DataTrigger</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Style.Triggers</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Style</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;/</span><span class="code-leadattribute">Setter.Value</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter</span><span class="code-keyword">&gt;</span></pre>
+
+<p>The 2nd interesting thing in the FolderComboBox control is the <code>ItemContainerStyle </code>which includes a <code>DataTrigger </code>that inserts a <code>Seperator </code>when the bound value is <code>null</code>. The above Xaml literally converts a value of null into a seperator entry in the drop down list. This little trick inserts a Seperator in the drop-down list that allows us to group items such that users cannot click into the extra space (since seperators are not hit test visible).</p>
+
+<h3>FListView</h3>
+
+<p>The FListView is basically an out of the box ListView with an attached behavior addition that converts a double click into a bound DoubleClickCommand in the FileListViewViewModel [5].</p>
+
+<h2>The ViewModels in the FileListView Project</h2>
+
+<p>This solution includes a few more viewmodels than the original version 1. There is basically 1 viewmodel for each of the three controls documented in the previous section. The FolderComboBoxViewModel and the FileListViewModel make use of the FSItemVM class to manage their file specific collections. The <strong>FolderListViewModel </strong>is the heart of the solution since it instantiates the other control specific viewmodels and manages their events when they say, hey:</p>
+
+<ul>
+	<li>...just selected a new Folder<br>
+	(OnCurrentPathChanged in FolderComboBoxViewModel and FileListViewModel)</li>
+	<li>...just selected a new Filter (OnFilterChanged in FilterComboBoxViewModel)</li>
+	<li>...just want to open a file (OnFileOpen in FileListViewModel)</li>
+</ul>
+
+<p><img src="viewmodelclasses.png" height="592" width="619"></p>
+
+<p>&nbsp;</p>
+
+<h2>Conclusions</h2>
+
+<p>&nbsp;</p>
+
+<p>Converting this project took me about 3-4 days of work but I think it was worth it since I have a much clearer understanding now and feel motivated to add other toys such as an async query and load of the FileListView. This could include a stop button shown in the Folder or Filter combobox to stop process that may take extra ordinary long when accessing slow devices.</p>
+
+<p>Over all I have learned a few more tricks looking deep into someone else's code, so I am once again grateful for being part of this community. And now I am looking forward to see what the community thinks about this.</p>
+
+<h2>Credits</h2>
+
+<p>The Class diagrams in this article were drawn with #Develop (http://www.icsharpcode.net/opensource/sd/).&nbsp; I would like to say thank you for the original article and code version and the tips from <a href="http://www.codeproject.com/script/Membership/View.aspx?mid=2474203">Leung Yat Chun</a> here at code project.</p>
+
+<h2>References&nbsp;</h2>
+
+<ul>
+	<li>[1] A WPF File ListView and ComboBox (Version I) by Thomas Willwacher<br>
+	http://www.codeproject.com/Articles/167873/A-WPF-File-ListView-and-ComboBox</li>
+	<li>[2] WPF Folder Browser by Erik Rude<br>
+	http://www.codeproject.com/Articles/352874/WPF-Folder-Browser</li>
+	<li>[3] Inheriting from a Look Less WPF Control<br>
+	http://www.codeproject.com/Articles/575645/Inheriting-from-a-Look-Less-WPF-Control</li>
+	<li>[4] Patterns in Attached Behaviors<br>
+	http://www.codeproject.com/Articles/422537/Patterns-in-Attached-Behaviours</li>
+	<li>[5] AttachedCommandBehavior V2 aka ACB<br>
+	http://marlongrech.wordpress.com/2008/12/13/attachedcommandbehavior-v2-aka-acb/</li>
+</ul>
+
+<h2>History</h2>
+
+<ul>
+	<li>16.04.2014 Initial creation</li>
+	<li>02.06.2014 Updated Version 2.1 to include metro design icons, a tree browser in the tool window area and much more (see Readme.txt files in zip archive) - next I'll either update the article or develop this even further <img src="smiley_smile.gif" alt="Smile | :)" align="top">  if I get the time to do either thing...</li>
+</ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+</body></html>

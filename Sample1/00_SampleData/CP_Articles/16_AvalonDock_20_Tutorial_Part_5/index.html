@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>AvalonDock [2.0] Tutorial Part 5 - Load/Save Layout with De-Referenced DockingManager - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="Save/Load AvolonDock layouts without DockingManager references.; Author: Dirkster99; Updated: 26 Feb 2014; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 26 Feb 2014">
+<meta name="Keywords" content="C#, Windows, .NET, Architect, Dev, XAML, WPF, Design, Intermediate, Threading,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/719143/AvalonDock-Tutorial-Part-Load-Save-Layout">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Applications">Applications</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/719143/AvalonDock-Tutorial-Part-Load-Save-Layout?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">AvalonDock [2.0] Tutorial Part 5 - Load/Save Layout with De-Referenced DockingManager</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2014-02-26 00:37:00">
+							            26 Feb 2014</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 117px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 2px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.90</span> (<span itemprop="ratingCount" class="count">10</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="1 vote, 10.0%" title="1 vote, 10.0%" border="0px" height="2px" width="20pxpx"></div><span title="1 vote">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="9 votes, 90.0%" title="9 votes, 90.0%" border="0px" height="20px" width="20pxpx"></div><span title="9 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.90/5 - 10 votes</div><div class="small-text align-center subdue">μ 4.90, σ<sub>a</sub> 1.00 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">Save/Load AvolonDock layouts without DockingManager references.</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<br><br>
+<ul class="download"><li><a href="version_05_edi.zip">Download Version_05_Edi.zip - 1.3 MB</a>&nbsp;</li><li><a href="version_05_loadsavecommand.zip">Download Version_05_LoadSaveCommand.zip</a></li><li><a href="version_05_loadsavecommand_prism.zip">Download Version_05_LoadSaveCommand_PRISM.zip</a>&nbsp;</li></ul>
+
+<h2>Introduction&nbsp;&nbsp;&nbsp;&nbsp;</h2><p>This article is split 2 major sections. The first section shows you how to load/save AvalonDock layouts on application start-up and shut-down. The second section builds on the presented approach and implements two more commands to persist and re-load layouts during the run-time of the program. Each section has its own associated down.</p><h2>Loading/Saving AvalonDock Layouts at Start-up/Shut-Down</h2><p>Please download and inspect the code in the Version_05_Edi.zip file to follow the discussion presented in this section.</p>
+
+<img src="layout1.png" width="300">
+<img src="layout2.png" width="300">
+
+<p>I recently helped a friend getting started with his AvalonDock developments and it occurred to me that many people have come to value the MVVM pattern, but not as many people actually know why it is important. That is, everyone seems to be aware of MVVM and how it de-couples layers but not many people seem to know why de-coupling is actually necessary in WPF.&nbsp; </p>
+
+<p>We know about separation of concerns and that kind of architectural mumbo-jambo but what if I just do not care and use WPF as I used WinForms? Just store a reference in the viewmodel and call an appropriate method or set a property when the application logic sees fit:
+&nbsp;</p>
+
+<pre lang="C++"><span class="code-keyword">public</span> DockingManager ADManager{ get; set; }
+
+<span class="code-comment">//</span><span class="code-comment"> Implement some processing logic like saving and loading layouts
+</span><span class="code-comment">//</span><span class="code-comment"> through a reference of the view element in the viewmodel
+</span><span class="code-keyword">public</span> <span class="code-keyword">void</span> UpdateLayout()
+{
+  <span class="code-keyword">this</span>.ADManager.UpdateLayout();
+  <span class="code-keyword">this</span>.ADManager. ...
+}
+</pre>
+
+<p>Mixing the WinForms style of programming with MVVM (as sketched above) is a no go. This style of programming can lead to an application that is unstable, not deterministic, and difficult to debug. This instability can typically occur since WPF applications implement more than 1 thread [2] and communicating between these threads can be a pain if you avoid using things like dependency properties, commanding via binding, (routed) events, routed commands, and all these other little things that set a WPF application apart from the rest of the computer science world.
+&nbsp;</p>
+
+<p>This article shows how you can use AvalonDock without referencing the <code>DockingManager</code> instance in your viewmodel or anywhere below it. This is a valuable exercise, especially for beginners, since removing hard references to parts of the view within the viewmodel ensures that threading problems resulting in unstable applications, are a thing of the past.
+&nbsp;</p>
+
+<p>The sample processing task used in this section of the article is to load and save the document layout at application start-up/shut-down. This valuable sample exercise is extended in the next major section futher below.</p>
+
+<h3>Preparation&nbsp;</h3>
+
+<p>This article is based on the solution of the last article that was published in step 4 of this tutorial [1]. You can either download the solution from the previous article and add each code piece as we step through the article or download the complete solution from this article to verify required code changes.<br><br>You should be aware of attached behaviours [3] to understand this article. Just look at the samples I've documented in the other article and come back when you get the hang of it. I am not going into the depth of attached behaviors here since I rather focus on its application with AvalonDock.</p>
+
+<h3>Using the Code</h3>
+
+<p>The heart of my solution is an attached behavior [3] on the <code>DockingManager</code> instance in the <code>MainWindow.xaml</code> code. This behavior reacts whenever the <code>DockingManager</code> instance fires the <code>Load</code> or <code>Unload</code> event.&nbsp; </p>
+
+<p>So, we can add the attached behavior in its associated namespace and folder, say
+<code>Edi.View.Behavior</code> (see sample code), call the new attached behavior class <code>AvalonDockLayoutSerializer</code>
+and paste the code from the sample solution into the file.</p><p><img src="version_05_edi_solution.png" height="401" width="272">&nbsp;</p>
+
+<p>Next we can adjust the <code>MainWindow.xaml</code> to make use of the new attached behavior class. Add a reference to the above namespace:
+</p>
+
+<pre lang="C++">xmlns:AVBehav=<span class="code-string">"</span><span class="code-string">clr-namespace:Edi.View.Behavior"</span>
+</pre>
+
+<p>...and use that reference in the XAML code like so:</p>
+
+<pre lang="C++">&lt;avalonDock:DockingManager
+  AnchorablesSource=<span class="code-string">"</span><span class="code-string">{Binding Tools}"</span> 
+  DocumentsSource=<span class="code-string">"</span><span class="code-string">{Binding Files}"</span>
+  ActiveContent=<span class="code-string">"</span><span class="code-string">{Binding ActiveDocument, Mode=TwoWay, Converter={StaticResource ActiveDocumentConverter}}"</span>
+  
+  AVBehav:AvalonDockLayoutSerializer.LoadLayoutCommand=<span class="code-string">"</span><span class="code-string">{Binding ADLayout.LoadLayoutCommand}"</span>
+  AVBehav:AvalonDockLayoutSerializer.SaveLayoutCommand=<span class="code-string">"</span><span class="code-string">{Binding ADLayout.SaveLayoutCommand}"</span>
+  
+  Grid.Row=<span class="code-string">"</span><span class="code-string">2"</span>&gt;
+</pre>
+
+<p>Note that we are no longer using the <code>x:Name="dockManager"</code> property in the above code. This code is used in virtually every AvalonDock (sample) code and it may lead to frustrating times if you are new to WPF&nbsp; So, removing this <code>x:Name</code> property may require you to remove corresponding code references to make this work.&nbsp;</p>
+
+<p>How precisely does the above code work? The attached behavior in <code>AvalonDockLayoutSerializer</code> can bind and execute a command for loading and saving of layout files. The <code>LoadLayoutCommand</code> command is executed when the <code>DockingManager</code> fires the <code>Load</code> event. The <code>Load</code> event is a standard WPF event indicating the instantiation of a view. The <code>Unload</code> event is also a standard WPF event indicating that a view is about to be destroyed. This event results in executing the <code>SaveLayoutCommand</code>.
+</p>
+
+<p>Both <code>LoadLayoutCommand</code> and <code>SaveLayoutCommand</code> are bound to a viewmodel property called <code>ADLayout</code> (of type <code>AvalonDockLayoutViewModel</code>) in the <code>Workspace</code> class. The <code>AvalonDockLayoutViewModel</code> class exposes the properties for the save/load layout commands.
+</p>
+
+<p>So, to complete this solution, we need to add the code for the <code>AvalonDockLayoutViewModel</code> class in the <code>Edi.ViewModel</code> namespace. And add the property in the <code>Workspace</code> class:
+</p>
+
+<pre lang="C++"><span class="code-keyword">private</span> AvalonDockLayoutViewModel mAVLayout = null;
+
+<span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span><span class="code-summarycomment">///</span><span class="code-comment"> Expose command to load/save AvalonDock layout on application startup and shut-down.
+</span><span class="code-summarycomment">///</span><span class="code-comment"> <span class="code-summarycomment">&lt;</span><span class="code-summarycomment">/</span><span class="code-summarycomment">summary</span><span class="code-summarycomment">&gt;</span>
+</span><span class="code-keyword">public</span> AvalonDockLayoutViewModel ADLayout
+{
+  get
+  {
+    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.mAVLayout == null)
+      <span class="code-keyword">this</span>.mAVLayout = <span class="code-keyword">new</span> AvalonDockLayoutViewModel();
+
+    <span class="code-keyword">return</span> <span class="code-keyword">this</span>.mAVLayout;
+  }
+}
+</pre>
+
+<p>There are also some utility properties like <code>Workspace.LayoutFileName</code>, <code>DirAppData</code>, and <code>Company</code> but these are simple string properties that are only there to avoid hard coded and redundant string definitions. You can locate these properties if you browse through the sample solution.
+</p>
+
+<p>
+I know I could use the blend interactivity dlls to replace the attached behavior in this article but I would like to make this exercise as simple and valuable as I can. So, research blend interactivity on your own if you think you know what this article is about.</p><p>You can also download my editor (<a href="https://edi.codeplex.com/" target="_top">https://edi.codeplex.com/</a>) if you want to see the behavior working in a more complex scenario.&nbsp;</p>
+
+<h2>Load/Save Layouts via Commands&nbsp;</h2><p><img src="layoutchangesample.png" height="510" width="660"> </p>
+
+<p>Summarizing the previous sections: We are using an attached behavior to listen to an event, convert it into a command, and execute it via command binding. These scenarios are simple to solve once the attached behavior pattern is well understood [3] and applied correctly.
+</p>
+
+<ol>
+<li>View.Event</li>
+<li>Attached Behavior</li>
+<li>Execute Command bound to viewmodel</li>
+<li>Execute corresponding viewmodel method</li>
+</ol>
+
+<p>There are also use cases that require save and load of AvalonDock layouts during the life time of an application. These use cases may call for a more involved implementation where:
+&nbsp;</p>
+
+<ol>
+<li>The viewmodel initiates the function </li>
+<li>The view implements the corresponding processing and returns a result </li>
+
+<li>The viewmodel completes the processing (for example, by storing the result in a database). </li>
+</ol>
+
+<p>I name the above scenario "round trip " because it involves the viewmodel starting some processing, requires the view to finish it, and the viewmodel to implement final steps of the processing. It is, therefore, more complex to implement this correctly. I did not have a good idea for a solution when I started to write this article but someone here at CodeProject (see forum below) came along and brought the Event Aggregator [4] pattern to my attention. And it turns out to be a good solution for exactly this type of problem as you can see in the <strong>Version_05_LoadSaveCommand.zip</strong> download.&nbsp;&nbsp;</p><p>This solution (see Version_05_LoadSaveCommand.zip) is based on MVVM Light and is a little bit more involved. You will see here that I dropped the AvalonDock and AvalonEdit projects and replaced them by a Nuget reference. There is also a Nuget references to MVVM Light since we use this framework to implement the Event Aggregator pattern.&nbsp;</p><p>The code is class-vise very similar to the initial implementation discussed in the first part of this article. But there are 2 new buttons in the user interface, which I will discuss next. </p><p><img src="saveloadlayouttoolbarbutton.png" height="47" width="159"></p><p>The <em><strong>Save Layout</strong></em>&nbsp; button is bound to the <code>ADLayout.SaveWorkspaceLayoutToStringCommand</code> property in the <code>ApplicationViewModel</code> class. The <code>ADLayout.SaveWorkspaceLayoutToStringCommand</code> property is implemented in the <code>AvalonDockLayoutViewModel</code> class same as in the previous solution. This command is bound to the &nbsp;&nbsp;&nbsp; <code>SaveWorkspaceLayout_Executed()</code> method with the following publisher code:</p>
+
+<pre lang="cs">Messenger.Default.Send(<span class="code-keyword">new</span> NotificationMessageAction&lt;<span class="code-keyword">string</span>&gt;(
+                       Notifications.GetWorkspaceLayout,
+                       (result) =&gt;
+                       {
+                         <span class="code-keyword">this</span>.current_layout = result;
+                       }));</pre>
+
+<p>This line&nbsp; creates a new <code>NotificationMessageAction&lt;string&gt;</code> object and sends it off to whoever subscripped to this type of message. The result of this message is a string, which is, when the result returns, set to the member string <code>current_layout</code>. But I am jumping ahead here. This does not make much sense until we have looked at the subscribers side of things - so lets look into MainWindow.xaml.cs to understand both sides of that story.</p>
+
+<p>The constructor of the <code>MainWindow</code> class in MainWindow.xaml.cs&nbsp; has this line:</p>
+
+<pre lang="cs">Messenger.Default.Register&lt;NotificationMessageAction&lt;<span class="code-keyword">string</span>&gt;&gt;
+  (<span class="code-keyword">this</span>, notication_message_action_recieved);</pre>
+
+<p>It is a subscription to notifications of the <code>NotificationMessageAction&lt;string&gt;</code> class and tells MVVM Light to execute the <code>MainWindow.notication_message_action_recieved</code> method whenever such a notification is send by a publisher. The method is then used to save the layout from the DockingManager and return it in the final execute statement as string parameter:</p>
+
+<pre lang="cs"><span class="code-keyword">string</span> xmlLayoutString = <span class="code-keyword">string</span>.Empty;
+
+<span class="code-keyword">using</span> (StringWriter fs = <span class="code-keyword">new</span> StringWriter())
+{
+  XmlLayoutSerializer xmlLayout = <span class="code-keyword">new</span> XmlLayoutSerializer(<span class="code-keyword">this</span>.dockManager);
+  xmlLayout.Serialize(fs);
+  xmlLayoutString = fs.ToString();
+}
+
+message.Execute(xmlLayoutString);</pre>
+
+<p>...now we have seen both sides of the story and so we can understand why <code>current_layout</code> is set with the Xml layout string of the <code>DockingManager</code> class.&nbsp;</p><p>You may notice that we have the <code>dockManager</code> reference in MainWindow.xaml back in place (we removed it in the above approach). This is also OK for an MVVM compliant design since the field is private (via <code>x:FieldModifier private</code>) and it is never passed anywhere outside of the MainWindow class.</p>
+
+<pre lang="cs">&lt;avalonDock:DockingManager AnchorablesSource=<span class="code-string">"</span><span class="code-string">{Binding Tools}"</span>
+ x:Name=<span class="code-string">"</span><span class="code-string">dockManager"</span> x:FieldModifier=<span class="code-string">"</span><span class="code-string">private"</span>
+ DocumentsSource=<span class="code-string">"</span><span class="code-string">{Binding Files}"</span>
+ ActiveContent=<span class="code-string">"</span><span class="code-string">{Binding ActiveDocument, Mode=TwoWay, Converter={StaticResource ActiveDocumentConverter}}"</span>
+ IsEnabled=<span class="code-string">"</span><span class="code-string">{Binding IsBusy, Converter={StaticResource BooleanNotConverter}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span>
+ AVBehav:AvalonDockLayoutSerializer.LoadLayoutCommand=<span class="code-string">"</span><span class="code-string">{Binding ADLayout.LoadLayoutCommand}"</span>
+ AVBehav:AvalonDockLayoutSerializer.SaveLayoutCommand=<span class="code-string">"</span><span class="code-string">{Binding ADLayout.SaveLayoutCommand}"</span>
+
+ Grid.Row=<span class="code-string">"</span><span class="code-string">2"</span>&gt;</pre>
+
+<p>The above reference is fine if it conforms to the requirements that it is private and is not passed to other classes outside of the view. But this is difficult and can be overseen (as I have done in an earlier version of the sample code). So, the best case MVVM implementation is still a view that does not need an <code>x:Name </code>property. But it is more then OK to have it carefully implemented when we have to face reality and such constrains limited time, effort, and so forth.</p><p>The sequence diagram below gives us a birds eye view and leads us to see the irony of that story. The irony is that a user starts a function in the <code>MainWindow</code> which sends itself a message to save the layout of the <code>DockingManager</code> that is contained in the <code>MainWindow</code>(!)</p><p>&nbsp;<img src="savelayoutsequence.png" height="403" width="516"></p><p>This particular case could of course be implemented easier. But imagine that the DockingManager may be contained in a UserControl that is either placed into the MainWindow or into a different window. Or think about placing the Save Layout button into a completely different part of the GUI - an extra dialog or a seperate window. The above solution would work for all these cases and more, which is important as you discover advanced WPF features.</p><p>The <em><strong>Load Layout</strong></em> button is enabled as soon as the <code>current_layout</code> string in the <code>AvalonDockLayoutViewModel</code>  class is set to a value. You can change the arrangements of the displayed tool windows and click<em><strong> Load Layout </strong></em>to confirm that it really loads the previously saved layout.&nbsp; The function of that method is also implemented through the Event Aggregator discussed above. You should now be able to understand and verify its function. Just post a question if you still see open ends.</p><h2>Conclusions </h2><p>This article presents 3 solutions that should help you saving and loading the layout of the <code>DockingManager</code> class in your own application. The 2nd part, is based on <strong>MVVM Light</strong>, and would not be here unless someone here at CodeProject (see forum below) had contributed his idea. Thanks a lot for that.&nbsp;</p><p>Other frameworks, such as <strong>Caliburn.Micro</strong> or <strong>PRISM </strong>also support the Even Aggregation pattern. I developed the <strong>PRISM </strong>solution by re-engineering it from the MVVM Light solution. Feel free to send me your sample code if you feel like implementing an equivalent sample with Caliburn.Micro. Otherwise, I am off to the next step of the tutorial step and look forward to be in touch.&nbsp;</p><p>In any case, I am as always, looking forward to your feedback.</p>
+
+<h1>References&nbsp;</h1>
+
+<ul>
+<item>[1] Other parts of this tutorial<br>
+<ul>
+<item>AvalonDock [2.0] Tutorial Part 1 - Adding a Tool Window<br>
+  <a href="http://www.codeproject.com/Articles/483507/AvalonDock-2-0-Tutorial-Part-1-Adding-a-Tool-Windo" target="_top">http://www.codeproject.com/Articles/483507/AvalonDock-2-0-Tutorial-Part-1-Adding-a-Tool-Windo</a></item><br><br><item>AvalonDock [2.0] Tutorial Part 2 - Adding a Start Page<br>
+  <a href="http://www.codeproject.com/Articles/483533/AvalonDock-2-0-Tutorial-Part-2-Adding-a-Start-Page" target="_top">http://www.codeproject.com/Articles/483533/AvalonDock-2-0-Tutorial-Part-2-Adding-a-Start-Page</a></item></ul><ul><item><a href="http://www.codeproject.com/Articles/483533/AvalonDock-2-0-Tutorial-Part-2-Adding-a-Start-Page" target="_top"></a></item><item>AvalonDock [2.0] Tutorial Part 3 - AvalonEdit in AvalonDock<br>
+  <a href="http://www.codeproject.com/Articles/570313/AvalonDock-2-0-Tutorial-Part-3-AvalonEdit-in-Avalo" target="_top">http://www.codeproject.com/Articles/570313/AvalonDock-2-0-Tutorial-Part-3-AvalonEdit-in-Avalo</a></item><br><br><item>AvalonDock [2.0] Tutorial Part 4 - Integrating AvalonEdit Options<br>
+  <a href="http://www.codeproject.com/Articles/570324/AvalonDock-2-0-Tutorial-Part-4-Integrating-AvalonE" target="_top">http://www.codeproject.com/Articles/570324/AvalonDock-2-0-Tutorial-Part-4-Integrating-AvalonE
+  </a></item>
+</ul>
+</item>
+
+<item>[2] Threading Model<br><a href="http://msdn.microsoft.com/library/ms741870%28v=vs.110%29.aspx%20%20%5B">http://msdn.microsoft.com/library/ms741870%28v=vs.110%29.aspx<br><br>
+</a></item><a href="http://msdn.microsoft.com/library/ms741870%28v=vs.110%29.aspx%20%20%5B" target="_top">
+
+</a><item><a href="http://msdn.microsoft.com/library/ms741870%28v=vs.110%29.aspx%20%20%5B">[</a>3] Patterns in Attached Behaviors<br><a href="http://www.codeproject.com/Articles/422537/Patterns-in-Attached-Behaviours">http://www.codeproject.com/Articles/422537/Patterns-in-Attached-Behaviours
+</a></item></ul><ul><item><a href="http://www.codeproject.com/Articles/422537/Patterns-in-Attached-Behaviours"></a> [4] What Why And How: The Event Aggregator<br><a href="http://developingzack.blogspot.de/2012/09/what-why-and-how-event-aggregator.html">http://developingzack.blogspot.de/2012/09/what-why-and-how-event-aggregator.html</a></item>
+</ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						<h2>License</h2>
+						<div id="LicenseTerms"><p>This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx" rel="license">The Code Project Open License (CPOL)</a></p></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+
+</body></html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>AvalonDock [2.0] Tutorial Part 1 - Adding a Tool Window - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="How to create a new tool window in AvalonDock [2.0]; Author: Dirkster99; Updated: 31 Jan 2014; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 31 Jan 2014">
+<meta name="Keywords" content="WinXP, Vista, C#, Windows, .NET, Architect, Dev, WPF, Design, Intermediate, Win7, .NET4, .NET4.5,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/483507/AvalonDock-Tutorial-Part-Adding-a-Tool-Windo">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Applications">Applications</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/483507/AvalonDock-Tutorial-Part-Adding-a-Tool-Windo?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">AvalonDock [2.0] Tutorial Part 1 - Adding a Tool Window</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2014-01-31 19:47:00">
+							            1 Feb 2014</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 119px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 0px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">5.00</span> (<span itemprop="ratingCount" class="count">20</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><span title="0 votes">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="20 votes, 100.0%" title="20 votes, 100.0%" border="0px" height="20px" width="20pxpx"></div><span title="20 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">5.00/5 - 20 votes</div><div class="small-text align-center subdue">μ 5.00, σ<sub>a</sub> 1.10 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">How to create a new tool window in AvalonDock [2.0]</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+<li><a href="version_01_edi.zip">Download Version 1</a> </li>
+
+<li><a href="version_02_edi_recentfilestw.zip"></a><a href="version_02_edi_recentfilestw.zip">Download Version 02</a> </li>
+</ul>
+
+<h2>Introduction&nbsp;&nbsp;&nbsp;</h2>
+
+<p>"AvalonDock is a WPF controls library which can be used to create a docking layout system like that is present in Visual Studio. It supports fly-out panes, floating windows, multiple docking manager in same window, styles and themes and it can host WinForms controls."&nbsp; (citation from <a href="http://avalondock.codeplex.com/">http://avalondock.codeplex.com/</a>)</p>
+
+<p>AvalonDock is a very complete and stable open source project for .NET/WPF that offers this functionality and has been in the making for half a decade now. The current solution is a step forward as it was build from scratch, supports MVVM, is themable, and can be localized.</p>
+
+<p>AvalonDock was written by Adolfo Marinucci. I am in no way involved with the development of AvalonDock but felt that it was time to document some essential things. I am not sure whether I got everything completely right (since I am not the primary developer) but I am building on some experience and simply hope people will give me feedback here if I am making claims that are false.</p>
+
+<p>The first two parts of the tutorial are covering initial preparation steps and adding a Most Recent Files (MRU) tool window and a Start Page. There may be more parts on other AvalonDock subjects (theming, localization, AvalonEdit in AvalonDock 2.0) later. Those who cannot wait for later articles shall look at Edi (<a href="http://edi.codeplex.com/">http://edi.codeplex.com</a>) to see some of the things before I document them here. This article was in fact written with Edi.</p>
+
+<h2>Solution Preparation </h2>
+
+<ul>
+<li>Download AvalonDock sources from CodePlex (I used the end of 2012 build 98289): <a href="http://avalondock.codeplex.com/SourceControl/list/changesets">http://avalondock.codeplex.com/SourceControl/list/changesets</a>. </li>
+
+<li>Find the version 2.0 Sub-folder and remove all other sub-folders. </li>
+
+<li>Review the solution in the version 2.0 sub-folder and remove all projects except for AvalonDock.MVVMTestApp and AvalonDock. 
+<p>I ended up removing the sub-projects:</p>
+
+<ul>
+<li>AvalonDock.TestApp.csproj </li>
+
+<li>AvalonDock.WinFormsTestApp.csproj </li>
+
+<li>AvalonDock.Theme.VS2010 (theming resources library) </li>
+
+<li>AvalonDock.Themes.Aero (theming resources library) </li>
+
+<li>... and other theming projects. </li>
+</ul>
+
+<p>and was left with:</p>
+
+<ul>
+<li>AvalonDock (docking layout system library) </li>
+
+<li>AvalonDock.MVVMTestApp (Test apllication to be extended in this article) </li>
+</ul>
+</li>
+
+<li>Add a new WPF Application project with the application name that you want to develop based on AvalonDock (mine is Edi) and copy files from AvalonDock.MVVMTestApp into the new project. I also resorted some items into folders and namespaces as you can see if you review Version_01_Edi.zip. Your solution should look like this: 
+<p><img src="solutionexplorer.png" height="534" width="373"></p>
+</li>
+</ul>
+
+<h2>Let's get down to business</h2>
+
+<p>Open the solution and set the <strong>Edi</strong> project as Startup Project in Visual Studio.&nbsp;Hit the F5 key to check that the application runs OK.&nbsp;I have seen the following content in my case:</p>
+
+<p><img src="v01_edi.png" height="350" width="525">&nbsp;</p>
+
+<p>The initial test application framework consists (in my case) of an empty document panel and one tool window at the bottom. Play around with the menu and tool window to get familiar with the functionality that is already there. We are going to extend this functionality with a Start Page and a second Tool Window (both are mainly displaying a recent files list).</p>
+
+<h2>Add the Recent Files List Control</h2>
+
+<p>I have documented a way of developing (look-less) controls through composition and theming in an earlier article series (<a href="http://www.codeproject.com/Articles/332541/WPFControlCompositionPart2of2">http://www.codeproject.com/Articles/332541/WPFControlCompositionPart2of2</a>). An extended version of this library contains a listview which can hold hyperlinks which in turn are customized such that:</p>
+
+<ul>
+<li>Paths within the hyperlink are show with ellipsis at the center of the URL (based on: <a href="http://www.codeproject.com/KB/WPF/ArticleVersion.aspx" ?aid="467054&amp;av=668101&amp;msg=4381519#xx4381519xx&quot;">http://www.codeproject.com/script/Articles/ArticleVersion.aspx?aid=467054&amp;av=668101&amp;msg=4381519#xx4381519xx</a>). </li>
+
+<li>Each hyperlink control provides a custom context menu. </li>
+
+<li>Clicking on a hyperlink opens the linked file. </li>
+
+<li>Furthermore, a user is able to pin an entry. Pinning an entry means that a needle pin is visible and the entry does not get removed when other files are opened later on. </li>
+</ul>
+
+<p>The parts that implement the above requirements are:</p>
+
+<ul>
+<li>Hyperlink sub-folder: This is where the look-less hyperlink controls live. </li>
+
+<li>The MRU sub-folder: Contains MRU Model, ViewModel, and View components (based on: <a href="http://social.msdn.microsoft.com/Forums/en/wpf/thread/3308367d-0174-4389-9586-2875712bed73">http://social.msdn.microsoft.com/Forums/en/wpf/thread/3308367d-0174-4389-9586-2875712bed73</a>). The <em>PathTrimmingTextBlock</em> sub-folder. Contains a path trimming control for displaying path with ellipsis at the center (based on: <a href="http://www.codeproject.com/KB/WPF/ArticleVersion.aspx" ?aid="467054&amp;av=668101&amp;msg=4381519#xx4381519xx&quot;">http://www.codeproject.com/script/Articles/ArticleVersion.aspx?aid=467054&amp;av=668101&amp;msg=4381519#xx4381519xx</a>). </li>
+</ul>
+
+<p>Now I am not going too much into details on these items because I really want to focus on AvalonDock [2.0]. Please read the referenced articles if you really want to know more about the MRU implementation. And if that does not help, feel free to ask a question below the article.</p>
+
+<p>So back to our AvalonDock integration project. Download and extract the <em>Version_02_Edi_RecentFilesTW.zip</em> file. This should give you a working solution with a Recent Files tool window in it. Just execute File&gt;Open a few times to generate some hyperlink entries in the tool window and take a note of the extra MRU entries in the file sub-menu.</p>
+
+<p>How does this solution work and what is necessary to get it? That is discussed in the remainder of this article.</p>
+
+<h2>The Most Recent Files (MRU) Tool Window (ViewModel)</h2>
+
+<p>I like to use <code>RoutedUICommand</code>s whenever I can so I added the <code>AppCommand</code> class with a static constructor and the following commands:</p>
+
+<pre lang="text">LoadFile
+
+PinUnpin
+AddMruEntry
+RemoveMruEntry</pre>
+
+<p>The LoadFile command is executed when a user opens a file. It is necessary to open a file when a user clicks on an entry in the recent files list. The PinUnpin command reverses the state of a pin in the MRU. And the other two commands <code>AddMruEntry</code> and <code>RemoveMruEntry</code> are executed to add or remove an entry. You can determine their function by following their references from the <code>AppCommand</code> class into the <code>Workspace</code> class (The<code> <code><code></code></code>Workspace</code> class is similar to what others often call an ApplicationViewModel or MainViewModel. It is the root of all ViewModels in this project):&nbsp;&nbsp;</p>
+
+<pre lang="cs"><span class="code-keyword">public</span> <span class="code-keyword">void</span> InitCommandBinding(Window win)
+{
+  win.CommandBindings.Add(<span class="code-keyword">new</span> CommandBinding(AppCommand.LoadFile,
+  (s, e) =&gt;
+  {
+    <span class="code-keyword">if</span> (e == <span class="code-keyword">null</span>)
+      <span class="code-keyword">return</span>;
+
+    <span class="code-keyword">string</span> filename = e.Parameter <span class="code-keyword">as</span> <span class="code-keyword">string</span>;
+
+    <span class="code-keyword">if</span> (filename == <span class="code-keyword">null</span>)
+      <span class="code-keyword">return</span>;
+
+    <span class="code-keyword">this</span>.Open(filename);
+  }));
+
+  win.CommandBindings.Add(<span class="code-keyword">new</span> CommandBinding(AppCommand.PinUnpin,
+  (s, e) =&gt;
+  {
+    <span class="code-keyword">this</span>.PinCommand_Executed(e.Parameter, e);
+  }));
+
+  win.CommandBindings.Add(<span class="code-keyword">new</span> CommandBinding(AppCommand.RemoveMruEntry,
+  (s, e) =&gt;
+  {
+    <span class="code-keyword">this</span>.RemoveMRUEntry_Executed(e.Parameter, e);
+  }));
+
+  win.CommandBindings.Add(<span class="code-keyword">new</span> CommandBinding(AppCommand.AddMruEntry,
+  (s, e) =&gt;
+  {
+    <span class="code-keyword">this</span>.AddMRUEntry_Executed(e.Parameter, e);
+  }));
+}</pre>
+
+<p>Each MRU command executes the corresponding <code>Executed</code> method and the LoadFile command executes the <code>Open()</code> method in the Workspace class. Furthermore, the MRU is realized in a Workspace property called <code>RecentFiles</code>. It is this property whos data is visible in the GUI. But how does it get there and what is necessary to extend AvalonDock [2.0] to show it? Thats what we discuss next.</p>
+
+<h2>The Most Recent Files Tool Window (View)</h2>
+
+<p>Merging the versions contained in <em>V01_Edi.zip</em> and <em>V02_Edi_RecentFilesTW.zip</em> shows that I added a <code>RecentFilesView</code> in the <code>View</code> namespace. This is the view that AvalonDock [2.0] will show inside its tool window docking controls. It is bound to the <code>RecentFilesViewModel</code> whos property is located in the <code>Workspace</code> class.&nbsp;&nbsp;</p>
+
+<h3>The View </h3>
+
+<p>AvalonDock uses a <code>DataTemplateSelector</code> (<code>View.Pane.PanesTemplateSelector</code>) to determine the appropriate view whenever it sees a data item that needs a display. I extended this class by the <code>RecentFilesViewTemplate</code> property:</p>
+
+<pre lang="cs"><span class="code-keyword">public</span> DataTemplate RecentFilesViewTemplate
+{
+  <span class="code-keyword">get</span>;
+  <span class="code-keyword">set</span>;
+}</pre>
+
+<p>...and the corresponding statement in the <code>SelectTemplate</code> method:</p>
+
+<pre lang="cs"><span class="code-keyword">if</span> (item <span class="code-keyword">is</span> RecentFilesViewModel)
+  <span class="code-keyword">return</span> RecentFilesViewTemplate;</pre>
+
+<p>This code works hand in hand with this view extension in the <em>MainWindow.xaml</em> file:</p>
+
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">pane:panestemplateselector.recentfilesviewtemplate</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">datatemplate</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">view:recentfilesview</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">view:recentfilesview</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">pane:panestemplateselector.recentfilesviewtemplate</span><span class="code-keyword">&gt;</span></pre>
+
+<h3>The Style </h3>
+
+<p>A style <code>PanesStyleSelector</code> controls how fields in the viewmodel are mapped into AvalonDock's primary functions (such as, display a name of an item, or the command to execute for closing etc). Again we can extend the <code>View.Pane.PanesStyleSelector</code> class with an additional property:</p>
+
+<pre lang="cs"><span class="code-keyword">public</span> Style RecentFilesStyle
+{
+  <span class="code-keyword">get</span>;
+  <span class="code-keyword">set</span>;
+}</pre>
+
+<p>...and the corresponding logic in the <code>SelectStyle</code> method:</p>
+
+<pre lang="cs"><span class="code-keyword">if</span> (item <span class="code-keyword">is</span> RecentFilesViewModel)
+  <span class="code-keyword">return</span> RecentFilesStyle;</pre>
+
+<p>...which works hand in hand with this XAML in <em>MainWindow.xaml</em>:</p>
+
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">pane:panesstyleselector.recentfilesstyle</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-leadattribute">style</span> <span class="code-attribute">targettype</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type avalonDock:LayoutItem}"</span><span class="code-keyword">&gt;</span>
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Title"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.Title}"</span>/&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">IconSource"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.IconSource}"</span>/&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Visibility"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.IsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}"</span>/&gt;
+
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">ToolTip"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.FilePath}"</span>/&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">CloseCommand"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.CloseCommand}"</span>/&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">ContentId"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding Model.ContentId}"</span>/&gt;
+<span class="code-keyword">&lt;/</span><span class="code-leadattribute">style</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">pane:panesstyleselector.recentfilesstyle</span><span class="code-keyword">&gt;</span> </pre>
+
+<p>The very long line on the <code>Visibility</code> property (with the converter) is crucial to get the menu entry <em><strong>Tools</strong></em>&gt;<strong><em>RecentFiles</em></strong> to work. The preferred method for this is a command binding but we just set a Boolean property here (for the sake of simplicity). The Boolean property <code>IsVisible</code> is located in the derived class of the <code>RecentFilesViewModel</code>. That is, it is present in <code>RecentFilesViewModel </code>because it inherits it from the <code>Base.ToolViewModel</code> class.</p><p>The BoolToVisibilityConverter does the conversion between the Boolean and the <code>Visibility</code> property. This conversion is required since Boolean has 2 states (true, false) while <code>Visibility</code> has 3 (Visible, Hidden, Collapsed) states in WPF. Read, for example, the article referenced in [3] if you want know more about converters and their application in WPF.</p>
+
+<h2>The Recent Files Menu Entry </h2><p>
+
+</p><p>The Recent Files menu entry at <strong><em>File</em></strong>&gt;<em><strong>Recent Files</strong></em> is defined by this XAML code (taken from MainWindow.xaml):</p>
+
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem</span> <span class="code-attribute">ItemsSource</span><span class="code-keyword">="</span><span class="code-keyword">{Binding RecentFiles.MruList.ListOfMRUEntries}"</span> <span class="code-attribute">Grid.Row</span><span class="code-keyword">="</span><span class="code-keyword">0"</span> <span class="code-attribute">Header</span><span class="code-keyword">="</span><span class="code-keyword">Recent Files"</span>
+           <span class="code-attribute">Visibility</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=RecentFiles.MruList.ListOfMRUEntries, Mode=OneWay, Converter={conv:ZeroToVisibilityConverter}}"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">MenuItem.ItemContainerStyle</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Style</span> <span class="code-attribute">TargetType</span><span class="code-keyword">="</span><span class="code-keyword">MenuItem"</span><span class="code-keyword">&gt;</span>
+      &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Header"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding DisplayPathFileName, Mode=OneWay}"</span> /&gt;
+      &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Command"</span> Value=<span class="code-string">"</span><span class="code-string">cmd:AppCommand.LoadFile"</span> /&gt;
+      &lt;Setter Property=<span class="code-string">"</span><span class="code-string">CommandParameter"</span> Value=<span class="code-string">"</span><span class="code-string">{Binding PathFileName, Mode=OneWay}"</span> /&gt;
+    <span class="code-keyword">&lt;/</span><span class="code-leadattribute">Style</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem.ItemContainerStyle</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">MenuItem</span><span class="code-keyword">&gt;</span>
+</pre>
+
+<p>Here you can see at the <code>ItemsSource</code> binding that each entry is taken directly from <code>RecentFiles.MruList.ListOfMRUEntries</code>. Where <code>RecentFiles </code>is a property of the <code>Workspace</code> class and the <code>MruList </code>is a property of the <code>RecentFilesViewModel</code> viewmodel.
+
+So, the source of the menu item collection is really managed the <code>MRUListVM</code> class.</p><p>The command that is executed when a user clicks a recent files menu item is the LoadFile command which is implemented as a RoutedUICommand in the <code>AppCommand</code> class. But the AppCommand class provides just the commanding facility, the actual logic is implemented in the <code>InitCommandBinding </code>method in the <code>Workspace</code> class (see code listing on LoadFile further up in this article).</p><p>
+</p><h2>Customizing AvalonDock 2.0&nbsp;&nbsp;&nbsp;</h2>
+
+<p>Here is one of the many things that make AvalonDock such a cool control. Users are actually able to drag items out of the main window (for example a document on to a second monitor) and keep working with that. I have often seen people asking how can I configure my application to decide whether someone can actually drag an item off or not.</p>
+
+<p><img src="documentflyout.png" height="362" width="573"></p>
+
+<p>Add the following setting</p>
+
+<pre lang="xml"><span class="code-keyword">&lt;</span><span class="code-leadattribute">Setter</span> <span class="code-attribute">Property</span><span class="code-keyword">="</span><span class="code-keyword">CanFloat"</span> <span class="code-attribute">Value</span><span class="code-keyword">="</span><span class="code-keyword">False"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span> </pre>
+
+<p>into the style of an AvalonDock <code>LayoutItem</code> to disable the fly out functionality. You could even bind this property in your viewmodel to make this setting configurable at run-time.</p>
+
+<h2>Summary</h2>
+
+<p>...and there you have it. That's mainly all that is necessary to get a new tool window in AvalonDock. Lets give Adolfo Marinucci a big applause because I doubt that anyone could do something so complex in such a simple way.</p>
+
+<p>We finally have separation of concerns between view and viewmodel and there is a simple pattern to follow. Lets not forgot that docking and fly out functionality that AvalonDock offers out of the box. Now who thought that MVVM is too complex and too difficult to implement? Think again.</p>
+
+<p>In the next article we'll be looking at creating a new document - do not forget to give me your feedback on this article and go on to the next stage [1] whenever you feel like learning to add a start page to your application.</p>
+
+<h2>References</h2>
+
+<ul>
+<li>[1]<br>AvalonDock [2.0] Tutorial Part 2 - Adding a Start Page<br><a target="_top" href="http://www.codeproject.com/Articles/483533/AvalonDock-2-0-Tutorial-Part-2-Adding-a-Start-Page">http://www.codeproject.com/Articles/483533/AvalonDock-2-0-Tutorial-Part-2-Adding-a-Start-Page</a><br><br>AvalonDock [2.0] Tutorial Part 3 - AvalonEdit in AvalonDock<br><a target="_top" href="http://www.codeproject.com/Articles/570313/AvalonDock-2-0-Tutorial-Part-3-AvalonEdit-in-Avalo">http://www.codeproject.com/Articles/570313/AvalonDock-2-0-Tutorial-Part-3-AvalonEdit-in-Avalo</a><br><br>AvalonDock [2.0] Tutorial Part 4 - Integrating AvalonEdit<br><a target="_top" href="http://www.codeproject.com/Articles/570324/AvalonDock-2-0-Tutorial-Part-4-Integrating-AvalonE">http://www.codeproject.com/Articles/570324/AvalonDock-2-0-Tutorial-Part-4-Integrating-AvalonE</a><br><br>
+
+AvalonDock [2.0] Tutorial Part 5 - Load/Save Layout with De-Referenced DockingManager<br>
+<a target="_top" href="http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi">http://www.codeproject.com/Articles/719143/AvalonDock-2-0-Tutorial-Part-5-Load-Save-Layout-wi</a><br><br></li>
+
+
+
+<li>[2] AvalonDock<br><a target="_top" href="http://avalondock.codeplex.com/">http://avalondock.codeplex.com/</a><br><br></li>
+
+<li>
+[3]<br>Using ValueConverter and MultiValueConverter in WPF<br><a href="http://www.codeproject.com/Articles/298950/Using-ValueConverter-and-MultiValueConverter-in-WP" target="_top">http://www.codeproject.com/Articles/298950/Using-ValueConverter-and-MultiValueConverter-in-WP</a><a target="_top" href="http://avalondock.codeplex.com/"></a><br></li>
+</ul>
+
+<h2>History&nbsp;</h2>
+
+<ul>
+<li>24.20.2012 Initial creation. &nbsp;</li>
+
+<li>01.03.2013 Updated AvalonDock version and simplified article and source code. &nbsp;</li>
+</ul>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+
+</body></html>

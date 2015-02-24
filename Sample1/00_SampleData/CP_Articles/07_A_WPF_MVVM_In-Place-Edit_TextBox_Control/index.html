@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>A WPF MVVM In-Place-Edit TextBox Control - CodeProject</title> 
+	
+
+
+	
+
+<meta name="Description" content="Rename an item via textbox overlay as in Rename of Windows Explorer; Author: Dirkster99; Updated: 1 Aug 2014; Section: Windows Presentation Foundation; Chapter: Platforms, Frameworks &amp; Libraries; Updated: 1 Aug 2014">
+<meta name="Keywords" content="C#, Windows, .NET, HTML, WPF, Intermediate, ItemsControl,Windows Presentation Foundation,Platforms, Frameworks &amp; Libraries,Free source code, tutorials">
+<meta name="Author" content="Dirkster99">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow, NOODP">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+<link rel="canonical" href="http://www.codeproject.com/Articles/802385/A-WPF-MVVM-In-Place-Edit-TextBox-Control">
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<base target="_top">
+	<link rel="icon" href="favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+
+
+	
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox23">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="t.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	
+
+	
+<div class="alert-bar  overlay " style="display: none;">
+	<a href="#" class="close-notify">×</a>
+	<div>Sign up for our free weekly <a href="http://www.codeproject.com/feature/web-newsletter">Web Developer Newsletter</a>.</div>
+</div>
+
+	<table id="ctl00_Bn" style="width: 100%; height: 135px;" class="banner fluid" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="bottom">
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+		<td class="blank-background" rowspan="3" style="width: 250px; height: 135px;"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="logo250x135.gif" alt="Home" style="height: 135px; width: 250px; border-width: 0px;"></a></td>
+		<td class="blank-background align-right" style="width: 728px; height: 31px;"></td>
+		<td class="blank-background" style="height: 31px;">&nbsp;</td>
+	</tr>
+	<tr valign="middle">
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+		<td class="theme1-background ad"></td>
+		<td class="theme1-background" style="height: 94px;">&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td style="height: 14px;"></td>
+		<td style="height: 14px;" class="blank-background"></td>
+		<td style="height: 14px;"></td>
+	</tr>
+</tbody></table>
+
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="t.gif"></a>
+
+	
+	
+	
+
+	<div id="A" class="container-content-wrap fluid print"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+		<div class="clearfix">
+			<div class="float-left container-breadcrumb">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/8/Platforms-Frameworks-Libraries.aspx">Platforms, Frameworks &amp; Libraries</a> » <a href="http://www.codeproject.com/KB/WPF/"><span itemprop="articleSection">Windows Presentation Foundation</span></a> » <a href="http://www.codeproject.com/KB/WPF/#Controls">Controls</a></div>
+			</div>
+
+			<div class="align-left float-right padded-top" style="width">
+				
+			</div>
+
+			<div class="float-right article-nav">
+				
+				
+			</div>
+
+			<div class="align-right float-left">
+				
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td width="117px">
+
+			
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fluid tight"> 
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="http://www.codeproject.com/Articles/802385/A-WPF-MVVM-In-Place-Edit-TextBox-Control?display=Print" id="aspnetForm" style="margin: 0px; padding: 0px;">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name">A WPF MVVM In-Place-Edit TextBox Control</h1> 
+					    </div>
+
+                        <div style="height: 34px;">
+					        
+					        <div class="entry float-left">
+                                
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=7799028" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Dirkster99</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" content="2014-08-01 16:09:00">
+							            1 Aug 2014</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor: pointer; margin-top: 5px;">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-large" style="height: 21px; width: 119px; position: relative;">
+	<div class="clipped align-left float-left" style="height: 19px; width: 117px;">
+		<img src="stars-fill-lg.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height: 19px; width: 2px; position: relative;">
+		<img src="stars-empty-lg.png" style="border-width: 0px; position: absolute; top: 0px; right: 0px;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">4.92</span> (<span itemprop="ratingCount" class="count">6</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width: 150px ! important;">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="20px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="1 vote, 16.7%" title="1 vote, 16.7%" border="0px" height="4px" width="20pxpx"></div><span title="1 vote">4</span></td>
+<td class="chart-column"><div><img src="pollcol.gif" alt="5 votes, 83.3%" title="5 votes, 83.3%" border="0px" height="20px" width="20pxpx"></div><span title="5 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">4.92/5 - 6 votes</div><div class="small-text align-center subdue">μ 4.92, σ<sub>a</sub> 1.02 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    
+						    	
+
+						    	
+                            <div class="float-right" style="margin: 4px 20px 0px 0px;">
+						        
+                            </div>                    
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary">Rename an item via textbox overlay as in Rename of Windows Explorer</div>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+	<li><a href="fsc.zip">Download fsc.zip</a></li>
+</ul>
+
+<p><img src="scene2.png" height="480px" width="640px"><br>
+Figure 1 an artistic view on an overlay textbox adorner ("New Light") displayed over an item in a treeview control. The other box ("Invalid Character Input") sketches a pop-up control that is displayed when the user hits an unsupported key.</p>
+
+<h2>Introduction</h2>
+
+<p>The development of an <a href="http://edi.codeplex.com/wikipage?title=File%20Explorer%56referringTitle=list%20of%20features">Explorer tool window</a> that integrates the Windows file system into an editor required me to integrate a textbox overlay control to rename files and folders in the same fashion as Windows Explorer does it. I was not able to find an acceptable and complete WPF/MVVM implementation - just sketches here and there [1][2] - so I developed my own version and document it here in the hope that it might be useful for others.</p>
+
+<p>This article is structured in 2 blocks - <b><a href="#UsingtheCode">Using the Code</a></b> and <b><a href="#features">Features</a></b>. The first block describes the control from a technical point of view while the second part a lists requirements for this implementation.</p>
+
+<h2><a name="solution">Solution Overview</a></h2>
+
+<p><b><font color="#FF0000">The demo project attached to this article does actually rename files and folders.</font></b> The implementation is very stable but you should use extra care about testing this with folders and files in your file system. The actual control described here is the <b>InplaceEditBoxLib/Views/EditBox.*</b> control, which can be found in its folder within the downloadable source code.</p>
+
+<p><img src="solution.png" height="288" width="211"></p>
+
+<p>You can see that the solution contains 5 other projects besides the <b>InplaceEditBoxLib</b> project. These projects are based on a different project and article which can be found here: <a href="http://www.codeproject.com/Articles/760603/A-WPF-File-ListView-and-ComboBox-Version-II">A WPF File ListView and ComboBox (Version II)</a>. The scope of this article is on the <code>EditBox</code> control only, but you are of course more than welcome to ask questions about these parts also.</p>
+
+<h2><a name="UsingtheCode">Using the Code</a></h2>
+
+<p>The demo project attached to this article contains 2 demo applications in the <b>FileListViewTest</b> and <b>TestFolderBrowser</b> project. It is probably best to set either project as start-up project and execute it in Visual Studio before looking anywhere else.</p>
+
+<p>Be sure to double click on folders in the folder browser (view or dialog) or use the context menu to execute the <b><i>Rename</i></b> and <b><i>New folder</i></b> commands that demo the <b>EditBox</b> control for this article.</p>
+
+<p>The artistic image in Figure 1 gives an idea of the concept that is discussed in this article. The concept is that each item in an <code>ItemsControl</code> (which is the base of <code>TreeView</code>, <code>ListBox</code>, ... etc.) can be displayed with a custom control defined in <b>InplaceEditBoxLib.Views.EditBox</b> instead of using a <code>Label</code> or <code>TextBlock</code> control.</p>
+
+<p>This concept can be verified with the following XAML code for a <code>TreeView</code> definition (based on "FolderBrowser/FolderBrowser/Views/FolderBrowserView.xaml"):</p>
+
+<pre><span class="code-keyword">&lt;</span><span class="code-leadattribute">HierarchicalDataTemplate</span> <span class="code-attribute">ItemsSource</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Folders}"</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">StackPanel</span> <span class="code-attribute">Orientation</span><span class="code-keyword">="</span><span class="code-keyword">Horizontal"</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-attribute">...</span> <span class="code-keyword">&lt;/</span><span class="code-leadattribute">Image</span><span class="code-keyword">&gt;</span>
+
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">EditInPlace:EditBox</span>
+    <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=FolderName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span>
+    <span class="code-attribute">DisplayText</span><span class="code-keyword">="</span><span class="code-keyword">{Binding DisplayItemString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span>
+    <span class="code-attribute">ToolTip</span><span class="code-keyword">="</span><span class="code-keyword">{Binding FolderPath, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"</span>
+    <span class="code-attribute">Focusable</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+                                   
+    <span class="code-attribute">VerticalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Stretch"</span>
+    <span class="code-attribute">HorizontalAlignment</span><span class="code-keyword">="</span><span class="code-keyword">Left"</span>
+    <span class="code-attribute">IsReadOnly</span><span class="code-keyword">="</span><span class="code-keyword">{Binding IsReadOnly}"</span>
+    <span class="code-attribute"><b>RenameCommand</b></span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=Data.RenameCommand, Source={StaticResource DataContextProxy}}"</span>
+    <span class="code-attribute">ToolTipService.ShowOnDisabled</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+
+    <span class="code-attribute">InvalidInputCharacters</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static loc:Strings.ForbiddenRenameKeys}"</span>
+    <span class="code-attribute">InvalidInputCharactersErrorMessage</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static loc:Strings.ForbiddenRenameKeysMessage}"</span>
+    <span class="code-attribute">InvalidInputCharactersErrorMessageTitle</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static loc:Strings.ForbiddenRenameKeysTitle}"</span>
+
+    <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">2,0"</span> <span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">StackPanel</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">HierarchicalDataTemplate</span><span class="code-keyword">&gt;</span></pre>
+
+<p>...or a <code>Listbox</code> XAML definition (based on "FileListViewTest/FileListItemView.xaml"):</p>
+
+<pre><span class="code-keyword">&lt;</span><span class="code-leadattribute">ListBox.ItemTemplate</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-leadattribute">Grid</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Grid.ColumnDefinitions</span><span class="code-keyword">&gt;</span>...<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Grid.ColumnDefinitions</span><span class="code-keyword">&gt;</span>
+  
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">Image</span> <span class="code-keyword">&gt;</span> ... <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Image</span><span class="code-keyword">&gt;</span>
+  
+      <span class="code-keyword">&lt;</span><span class="code-leadattribute">EditInPlace:EditBox</span> <span class="code-attribute">Grid.Column</span><span class="code-keyword">="</span><span class="code-keyword">1"</span>
+      <span class="code-attribute">Text</span><span class="code-keyword">="</span><span class="code-keyword">{Binding DisplayName}"</span>
+      <span class="code-attribute">DisplayText</span><span class="code-keyword">="</span><span class="code-keyword">{Binding DisplayName}"</span>
+      <span class="code-attribute"><b>RenameCommand</b></span><span class="code-keyword">="</span><span class="code-keyword">{Binding Path=Data.RenameCommand, Source={StaticResource DataContextProxy}}"</span>
+      <span class="code-attribute">ToolTipService.ShowOnDisabled</span><span class="code-keyword">="</span><span class="code-keyword">True"</span>
+                         
+      <span class="code-attribute">InvalidInputCharacters</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static fvloc:Strings.ForbiddenRenameKeys}"</span>
+      <span class="code-attribute">InvalidInputCharactersErrorMessage</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static fvloc:Strings.ForbiddenRenameKeysMessage}"</span>
+      <span class="code-attribute">InvalidInputCharactersErrorMessageTitle</span><span class="code-keyword">="</span><span class="code-keyword">{x:Static fvloc:Strings.ForbiddenRenameKeysTitle}"</span>
+  
+      <span class="code-attribute">IsEditableOnDoubleClick</span> <span class="code-keyword">="</span><span class="code-keyword">False"</span><span class="code-keyword">/</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Grid</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">DataTemplate</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ListBox.ItemTemplate</span><span class="code-keyword">&gt;</span></pre>
+
+<p>Take a note of the <code>RenameCommand</code> in either XAML definition above. This command is called when a user has successfully edit an item's text and hits enter to confirm his edit.</p>
+
+<p>The above XAML code is not extremely exotic if you have done WPF for a while. It is of course a powerful feature to template every item of an <code>ItemsControl</code>, especially since this can also take actual property values or types of the objects into account. But the <code>EditBox</code> control described in this article makes only use of this WPF feature, while the focus of this article is on another WPF feature called <a href="http://msdn.microsoft.com/en-US/library/ms743737%28v=vs.110%29.aspx">Adorner</a>.</p>
+
+<table border="0">
+	<tbody>
+		<tr>
+			<td valign="bottom"><img src="noneditingmode.png" height="268px" width="326px"></td>
+			<td valign="bottom"><img src="editingmode.png" height="388px" width="356px"></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>The <code>EditBox</code> control displays a <code>TextBlock</code> when it is in <b>non-editing</b> mode and it only displays an <a href="http://msdn.microsoft.com/en-US/library/ms743737%28v=vs.110%29.aspx">Adorner</a> with a <code>TextBox</code> when it is in <b>editing mode</b>. The editing mode is also supported by a measuring <code>TextBlock</code> control that is not displayed in the above figure since it is never visible. The XAML definition of the <b>EditBox</b> control looks like this (based on InplaceEditBoxLib/Views/EditBox.xaml):</p>
+
+<pre><span class="code-keyword">&lt;</span><span class="code-leadattribute">Style</span> <span class="code-attribute">TargetType</span><span class="code-keyword">="</span><span class="code-keyword">{x:Type local:EditBox}"</span> <span class="code-keyword">&gt;</span>
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">HorizontalAlignment"</span> Value=<span class="code-string">"</span><span class="code-string">Left"</span>  /&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">VerticalAlignment"</span>   Value=<span class="code-string">"</span><span class="code-string">Center"</span> /&gt;
+  &lt;Setter Property=<span class="code-string">"</span><span class="code-string">Template"</span>&gt;
+    &lt;Setter.Value&gt;
+      &lt;ControlTemplate TargetType=<span class="code-string">"</span><span class="code-string">{x:Type local:EditBox}"</span>&gt;
+        &lt;Grid&gt;
+          &lt;TextBlock x:Name=<span class="code-string">"</span><span class="code-string">PART_TextBlock"</span> MinWidth=<span class="code-string">"</span><span class="code-string">10"</span>
+                     HorizontalAlignment=<span class="code-string">"</span><span class="code-string">Left"</span>
+                     VerticalAlignment=<span class="code-string">"</span><span class="code-string">Center"</span>
+                   /&gt;
+
+          &lt;TextBlock x:Name=<span class="code-string">"</span><span class="code-string">PART_MeasureTextBlock"</span> MinWidth=<span class="code-string">"</span><span class="code-string">10"</span>
+                     HorizontalAlignment=<span class="code-string">"</span><span class="code-string">Left"</span>
+                     VerticalAlignment=<span class="code-string">"</span><span class="code-string">Center"</span>
+                     Visibility=<span class="code-string">"</span><span class="code-string">Hidden"</span>
+                   /&gt;
+        <span class="code-keyword">&lt;/</span><span class="code-leadattribute">Grid</span><span class="code-keyword">&gt;</span>
+      <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">ControlTemplate</span><span class="code-keyword">&gt;</span>
+    <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter.Value</span><span class="code-keyword">&gt;</span>
+  <span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Setter</span><span class="code-keyword">&gt;</span>
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">Style</span><span class="code-keyword">&gt;</span>
+</pre>
+
+<p>The measuring <code>TextBlock</code> is used to measure the size of a string as the user types a string into the textbox. This part of the control is never visible, but it is part of the control definition to give application developers a chance for using the correct measuring parameters (eg: Font Size, Font Family etc) or just stick with the defaults.</p>
+
+<p>The view part of the <code>EditBox</code> control is mainly implemented in:</p>
+
+<ul>
+	<li><code>InplaceEditBoxLib.Views.EditBox</code></li>
+	<li><code>InplaceEditBoxLib.Views.EditBoxAdorner</code></li>
+</ul>
+
+<p>The visibility of the <code>EditBoxAdorner</code> is controlled by the <code>OnSwitchToEditingMode</code> and <code>OnSwitchToNormalMode</code> methods in <code>EditBox.cs.xaml</code>. The first method establishs the edit mode while the second method is called when the editing mode ends. The <code>OnSwitchToNormalMode</code> method also calls a bound command (if any) to let the underlying viewmodel/model take care of the actual renaming process in the file system:</p>
+
+<pre><span class="code-keyword">if</span> (bCancelEdit == <span class="code-keyword">false</span>)
+{
+  <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.mTextBox != null)
+  {
+    <span class="code-comment">//</span><span class="code-comment"> Tell the ViewModel (if any) that we'd like to rename this item
+</span>    <span class="code-keyword">if</span> (<span class="code-keyword">this</span>.RenameCommand != null)
+    {
+        var tuple = <span class="code-keyword">new</span> Tuple&lt;string, object&gt;(sNewName, <span class="code-keyword">this</span>.DataContext);
+        <span class="code-keyword">this</span>.RenameCommand.Execute(tuple);
+    }
+  }
+}</pre>
+
+<p>The <code>EditBoxAdorner</code> is pretty much the adorner that was originally suggest by the ATC team [1]. I only changed some details in the <code>BuildTextBox</code>, <code>MeasureOverride</code>, and <code>ArrangeOverride</code> methods to implement the binding and measuring with the measuring textblock when the adorner is visible.</p>
+
+<h3>ViewModel Details</h3>
+
+<p>The <code>EditBox</code> control supports a number of dependency properties listed further below in the features section. But it is also important to note that it expects a viewmodel that implements the interfaces:</p>
+
+<ul>
+	<li><code>IEditBox</code></li>
+	<li><code>INotifyableViewModel</code> (implemented by <code>IEditBox</code>)</li>
+</ul>
+
+<p>...at its <code>DataContext</code> (see InplaceEditBoxLib/Interfaces/IEditBox.cs and <code>OnDataContextChanged</code> method in InplaceEditBoxLib/Views/EditBox.xaml.cs).</p>
+
+<p>The <code>IEditBox</code> interface implements 2 events, the <code>ShowNotificationMessage</code> event to show a pop-up notification [4] when error messages should be shown, and the <code>RequestEdit</code> event to start editing when the viewmodel requests this. Both events can be easily implemented by inheriting an item's viewmodel from InplaceEditBoxLib/ViewModels/EditInPlaceViewModel.cs. Raising an event is then nothing more than calling any of the provided <code>RequestEditMode</code> or <code>ShowNotification</code> methods (see for example catch block of <code>RenameFolder</code> method in FolderBrowser/FolderBrowser/ViewModels/FolderViewModel.cs).</p>
+
+<pre><span class="code-keyword">try</span>
+{
+  ...
+}
+<span class="code-keyword">catch</span> (Exception exp)
+{
+  base.ShowNotification(FileSystemModels.Local.Strings.STR_RenameFolderErrorTitle, exp.Message);
+}</pre>
+
+<p>Showing a nice notification could hardly be easier when MVVM is to be designed into the code. It is clear that the layer model (model, viewmodel, view) ensures we re-use this control for many other scenario in which items within an <code>ItemsControl</code> should be editable with a WPF In-Place-Edit textbox control.</p>
+
+<h3><a name="techsummary">Summary</a></h3>
+
+<p>So, wrapping up on the technical section. Have a look into relevant the viewmodels to understand how the <code>EditBox</code> is driven from there. This can be done by using Visual Studio to find all viewmodels that inherit from the <code>InplaceEditBoxLib.ViewModels.EditInPlaceViewModel</code> class. Next you can search for all calls to the methods in this viewmodel to uncover the processing logic in each concrete viewmodel implementation.</p>
+
+<p>The processing logic in <code>InplaceEditBoxLib.ViewModels.EditInPlaceViewModel</code> is tightly coupled (through <code>InplaceEditBoxLib.Interfaces.IEditBox</code>) with the view in <code>EditBox.cs.xaml</code> and <code>EditBoxAdorner.cs</code>.</p>
+
+<h2><a name="features">Features</a></h2>
+
+<p>The edit-in-place text control described in this article can be used as a base for developing applications where users would like to edit text strings as overlay over the normally displayed string.</p>
+
+<p>The best and well known example of an edit-in-place text control is the textbox overlay that is used for renaming files or folders in Windows Explorer. The user typically selects an item in a list (listbox, listview, grid) or structure of items (treeview) and renames the item using a textbox overlay (without an additional dialog).</p>
+
+<p>The edit-in-place control in this project can be used in a WPF collection of any <b>ItemsControl</b> (Treeview, ListBox, ListView etc). A change of focus (activation of a different window) or pressing the Escape key results in canceling of the rename process and pressing enter leads to a confirmation of the new string. This section describes the features of the control such that application developers/users should be able to re-use/use the control described in this article.</p>
+
+<p>The <b>Known Limitations</b> section at the end of this section describes the features that I could not get implemented, yet. Please have a look at it and contribute a solution if you can remove any of the listed limitations.</p>
+
+<h3>Start Editing Text with Context Menu</h3>
+
+<p>The <code>EditBox</code> control can start editing text through its own user interface (via double click) or via 'external' accessibility (context menu or menu).</p>
+
+<p>The edit-in-place control expects the viewmodel to implement the <code>InplaceEditBoxLib.Interfaces.IEditBox</code> interface which contains a <code>RequestEdit</code> event. This event can be fired by the viewmodel to start editing of an item. The <code>IsEditing</code> dependency property can than be used to determine whether the editing mode is currently active or not.</p>
+
+<p>Editing can be started through different routes, but the application should display an overlay textbox control in either way, and that textbox should contain all the current text being selected. This state is referred to as <b>edit mode</b>.</p>
+
+<h3>Editing text with Text and DisplayText properties</h3>
+
+<p>The <code>EditBox</code> control has 2 string properties, one is for display (<strong>DisplayText</strong>) and the other (<strong>Text</strong>) string represents the value that should be edited.</p>
+
+<p>This setup enables application developers to show more than just a name in each item. Each item can, for example, display a name and a number (eg: "Myfiles (123 entries)") by using the <strong>DisplayText</strong> property, while the <strong>Text</strong> property should contain the string that is to be edit (eg: "Myfiles").</p>
+
+<p>The confirmation of editing (pressing enter) does not change either of the above dependency properties. The edit-in-place control executes instead the command that is bound to the <strong>RenameCommand</strong> dependency property to let the viewmodel adjust all relevant strings.</p>
+
+<p>The view generates a command parameter for this command (cannot be configured). The parameter is a <code>Tuple</code> of the new string and the viewmodel instance that is available at the <code>DataContext</code> of the edit-in-place control.</p>
+
+<h3>Usage of Limited Space</h3>
+
+<p>The EditBox in-place overlay control should not exceed the view port area of the parent scrollviewer of the <code>ItemsControl</code>. That is, the <code>EditBox</code> should not exceed the visible area of a treeview if it was used within a treeview. This rule ensures that users do not end up typing in an invisible area (off-screen) when typing long strings.</p>
+
+<p>The following sequence of images shows the application behavior when the user enters the string "The quick fox jumps over the river" in a limited space scenario:</p>
+
+<p><img src="step1.png" height="294px" width="194px"> <img src="step2.png" height="295px" width="193px"> <img src="step3.png" height="295px" width="193px"> <img src="step4.png" height="295px" width="193px"> <img src="step5_result.png" height="295px" width="193px"></p>
+
+<h3>Cancel and Confirm</h3>
+
+<p>Editing text with the edit-in-place control can be canceled by pressing the <b>Esc</b> key or changing the input focus to another window or control. The application shows the text as it was before the editing started.</p>
+
+<p>Editing text can be confirmed pressing the enter key. The application shows the entered text instead of the text before the editing started.</p>
+
+<h3>IsReadOnly property</h3>
+
+<p>The edit-in-place control supports a Boolean <strong>IsReadonly</strong> dependency property to lock individual items from being renamed. Default is <strong>false</strong> meaning every item is editable unless binding defines somthing else.</p>
+
+<h3>IsEditableOnDoubleClick</h3>
+
+<p>Editing the string that is displayed with the edit-in-place control can be triggered with a timed 'double click'. This double click can be configured to occur in a certain time frame. There are 2 double dependency properties that can be setup to consume only those double clicks with a time frame that is larger than <strong>MinimumClickTime</strong> but smaller than <strong>MaximumClickTime</strong>.</p>
+
+<p>Default values for <strong>MinimumClickTime</strong> and <strong>MaximumClickTime</strong> are 300 ms and 700 ms, respectively.</p>
+
+<p>The <strong>IsEditableOnDoubleClick</strong> boolean dependency property can be setup to dermine whether double clicks are evaluated for editing or not. Default is true.</p>
+
+<h3>IsEditing property</h3>
+
+<p>The edit-in-place control supports a <strong>one way</strong> Boolean <code>IsEditing</code> dependency property to enable viewmodels to determine whether an item is currently edited or not. This property cannot be used by the viewmodel to force the view into editable mode (since it is a get only property in the view).</p>
+
+<p>Use the <strong>RequestEdit</strong> event defined in <strong>InplaceEditBoxLib.Interfaces.IEditBox</strong> to request an edit mode that is initialized by the viewmodel and use the <code>IsEditing</code> property to verify the current edit mode in the viewmodel.</p>
+
+<h3>Key Filter and Error Handling</h3>
+
+<p>The EditBox control contains properties that can be used to define a blacklist of characters that should not be input by the user. See properties:</p>
+
+<ul>
+	<li><strong>InvalidInputCharacters</strong><br>
+	Use this property to specifiy the actual set of characters which users should not be able to enter.<br>
+	&nbsp;</li>
+	<li><strong>InvalidInputCharactersMessage</strong><br>
+	Use this property to set a <b>message</b> string that is display when a user hits a key that is not supported.<br>
+	&nbsp;</li>
+	<li><strong>InvalidInputCharactersTitle</strong><br>
+	Use this property to set a <b>title</b> string that is display when a user hits a key that is not supported.<br>
+	&nbsp;</li>
+</ul>
+
+<p>The <code>EditBox</code> control implements a pop-up message element to show hints to the user when he types invalid characters.</p>
+
+<p><img src="popupmessage.png" height="258px" width="442px"></p>
+
+<p>So, each item in a viewmodel can have its own pop-up notification and black list through the <code>IEditBox</code> interface implemented in an items viewmodel. But what about showing a notification when there is no item to display, yet (eg: when creating a new folder in an empty folder that has no create folder permission)? This case is covered with the implementation of a <code>NotifableContentControl</code> [4]. This control is based on a <code>ContentControl</code> and can thus be wrapped around any other control. The control implements the <code>ShowNotification</code> event which can be used to show notifications in the context of any other control.</p>
+
+<p>See FileListViewTest/BrowserAndFileListView.xaml for more details:</p>
+
+<pre><span class="code-keyword">&lt;</span><span class="code-leadattribute">view:NotifyableContentControl</span>
+  <span class="code-attribute">DataContext</span><span class="code-keyword">="</span><span class="code-keyword">{Binding SynchronizedFolderView.FolderItemsView}"</span>
+  <span class="code-attribute">Notification</span><span class="code-keyword">="</span><span class="code-keyword">{Binding Notification}"</span> <span class="code-attribute">Margin</span><span class="code-keyword">="</span><span class="code-keyword">0,26,0,2"</span> <span class="code-attribute">Grid.RowSpan</span><span class="code-keyword">="</span><span class="code-keyword">2"</span><span class="code-keyword">&gt;</span>
+
+  <span class="code-keyword">&lt;</span><span class="code-leadattribute">ListBox</span> <span class="code-attribute">...</span> <span class="code-keyword">&gt;</span>/ListBox&gt;
+
+<span class="code-keyword">&lt;</span><span class="code-keyword">/</span><span class="code-leadattribute">view:NotifyableContentControl</span><span class="code-keyword">&gt;</span>
+</pre>
+
+<h3>Known Limitations</h3>
+
+<ul>
+	<li>Pressing the <b>F2</b> key on a selected <code>Treeview</code> or <code>Listbox</code> item does not start the editing mode.</li>
+	<li>Clicking on the background of the <code>ItemsControl</code> (TreeView, ListView etc) does not cancel the edit mode.</li>
+	<li>Restyling TextBox with Hyperlink does not work since a Hyperlink is stored in the <code>InlineCollection</code> of a TextBox. But an <code>InlineCollection</code> cannot be set via dependency property and I cannot seem to work around this with a custom dependency property.</li>
+	<li>Key definitions entered in the in-place textbox cannot be defined through a white-list. The textbox does not support input masks.</li>
+</ul>
+
+<h2>Points of Interest</h2>
+
+<p>I have learned using adorners with more confidience. I also leaned that adorners can only appear over the real estate of their hosting control's window (An adorner is drawn on the adorner layer of a control (AdornerLayer.GetAdornerLayer()), which is located depended on where you defined the AdornerLayer. But the topmost control you can define is a Window.). It is therefore, more appropriate to have a pop-up message control instead of another adorner for displaying the error notification.</p>
+
+<p>Implementing the pop-up notification was driven by a previously developed project that came in handy when I needed it here. Using an interface definition between view and viewmodel to forward the event from viewmodel to view was one of the many tricks and patterns I take away from here.</p>
+
+<p>I had a nagging feeling that an event could result in a more stable implementation than using an <code>IsEditing</code> dependency property for switching in and out of editing mode. The stability of this implementation proofs me right.</p>
+
+<p>The <code>ContentControl</code> pattern for extending functionality of available controls with Adorners was new to me. The advantage of this approach is that it can easily be used when states and bindings are required. Atteched behaviors may also be considered if the requested extension is simple enough to implement.</p>
+
+<h2>References</h2>
+
+<ul>
+	<li>[1] This code uses part of ATC Avalon Team's work:<br>
+	<a href="http://blogs.msdn.com/atc_avalon_team/archive/2006/03/14/550934.aspx">http://blogs.msdn.com/atc_avalon_team/archive/2006/03/14/550934.aspx</a><br>
+	&nbsp;</li>
+	<li>[2] CodeProject Article "Editable TextBlock in WPF for In-place Editing":<br>
+	<a href="http://www.codeproject.com/Articles/31592/Editable-TextBlock-in-WPF-for-In-place-Editing?fid=1532208%56df=90%56mpp=25%56noise=3%56prof=False%56sort=Position%56view=Normal%56spc=Relaxed%56fr=26#xx0xx">http://www.codeproject.com/Articles/31592/Editable-TextBlock-in-WPF-for-In-place-Editing?fid=1532208%56df=90%56mpp=25%56noise=3%56prof=False%56sort=Position%56view=Normal%56spc=Relaxed%56fr=26#xx0xx</a><br>
+	&nbsp;</li>
+	<li>[3] A WPF File ListView and ComboBox (Version II)<br>
+	<a href="http://fsc.codeplex.com/">http://fsc.codeplex.com/</a><br>
+	<a href="http://www.codeproject.com/Articles/760603/A-WPF-File-ListView-and-ComboBox-Version-II">http://www.codeproject.com/Articles/760603/A-WPF-File-ListView-and-ComboBox-Version-II</a><br>
+	&nbsp;</li>
+	<li>[4] User Notifications via pop-up control<br>
+	<a href="http://msgbox.codeplex.com/wikipage?title=User%20Notification%20Demo%56referringTitle=Documentation">http://msgbox.codeplex.com/wikipage?title=User%20Notification%20Demo%56referringTitle=Documentation</a><br>
+	&nbsp;</li>
+</ul>
+
+<h2>History</h2>
+
+<p>30-07-2014 Created first version of this article</p>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin: 20px 0px 0px 10px; border: 1px solid rgb(204, 204, 204);">
+						
+						</div>
+                        
+                        
+						
+						
+						<div id="LicenseTerms"></div>
+						
+
+                        
+						
+				        <div style="margin-bottom: 40px; width: 385px;">
+					        
+				        </div> 
+    			        
+
+
+						
+						
+						
+
+<br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top: 8px;">
+							
+						</div>
+
+						
+						
+						
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				
+
+					
+					
+					
+					
+				
+
+			</div>
+			
+		</td>
+		<td width="170px">
+			
+		</td>
+		</tr></tbody></table>
+
+		
+		
+
+		<div class="extended tiny-text">
+			
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<div style="display: none;" id="dm_AdTable">
+	
+</div>
+
+
+
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="translate-32.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: rgb(204, 204, 204); background-color: rgb(204, 204, 204); height: 1px; border: medium none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+<iframe src="index_1.html" style="visibility: visible; -moz-box-sizing: content-box; width: 878px; height: 275px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe>
+
+</body></html>
